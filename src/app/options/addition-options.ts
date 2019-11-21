@@ -1,8 +1,10 @@
 import { MinimumMaximumRange } from './minimum-maximum-range';
 
 export class AdditionOptions {
+
+  // Array of minMaxRange objects. 
   addendRanges: MinimumMaximumRange[] = [];
-  enabled = true;
+  enabled = false;
 
   constructor() {
     this.addendRanges.push(new MinimumMaximumRange(100, 999));
