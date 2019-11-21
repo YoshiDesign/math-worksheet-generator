@@ -22,7 +22,7 @@ export class WorksheetOptions {
   letterSpacing = 3;
   lineSpacing = 5;
   problemCount = 25;
-  levelsCount = 0;  // How many different levels were selected
+  lessonsCount = 0;  // How many different levels were selected
   problemFontSize = 2;
   problemsPerRow = 5;
   showAnswers = false;
@@ -41,6 +41,15 @@ export class WorksheetOptions {
   zetaOptions = new ZetaOptions();
   prealgebraOptions = new PreAlgebraOptions();
   aimOptions = new AimOptions();
+
+  alphaCreated = 0;
+  betaCreated = 0;
+  gammaCreated = 0;
+  deltaCreated = 0;
+  epsilonCreated = 0;
+  zetaCreated = 0;
+  prealgebraCreated = 0;
+  aimCreated = 0;
 
   updateFromJson(jsonObject: WorksheetOptions) {
     this.additionOptions.updateFromJson(jsonObject.additionOptions);
