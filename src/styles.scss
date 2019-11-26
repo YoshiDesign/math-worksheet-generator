@@ -26,3 +26,36 @@ app-worksheet-generator {
     background-color: transparent;
   }
 }
+
+.add-button {
+    display:inline-block;
+    background-color:#673ab7;
+    color:white;
+    width:26px;
+    height:26px;
+    padding-right: 0px;
+    padding-top: 4px;
+    text-align:center;
+    font-size:22px;
+    border-radius:50%;
+    cursor:pointer;
+    
+}
+
+.add-text {
+    height:26px;
+    display: inline-block;
+    margin-left: 9px;
+    position: relative;
+    bottom: 2px;
+}
+
+.add-lesson {
+    height:25px;
+    width: 100%;
+    margin-top:15px;
+}
+
+.select-lesson {
+    width:80%;
+}

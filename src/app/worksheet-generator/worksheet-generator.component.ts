@@ -34,6 +34,7 @@ export class WorksheetGeneratorComponent implements OnInit {
     private analytics: AnalyticsService,
     public authService: AuthService
   ) {
+
     this.worksheetService = worksheetService;
   }
 
@@ -63,12 +64,16 @@ export class WorksheetGeneratorComponent implements OnInit {
     });
   }
 
+  isNoN(value) {
+    return Number.isNaN(value);
+  }
+
   generateWorksheet() {
     this.analytics.trackEventWithCategory('worksheet', 'generate');
 
-    this.worksheetService.clearProblems();
+    this.worksheetService.clearProblems();      // 0
 
-    this.worksheetService.generateProblems();
+    this.worksheetService.generateProblems();   // 1
 
     if (!this.isLoggedIn) {
       this.authService.loginAnonymous();
@@ -99,45 +104,45 @@ export class WorksheetGeneratorComponent implements OnInit {
     this.mathProblemsClasses[`math-problems--line-spacing-${this.lineSpacing}`] = true;
   }
 
-  numberOfAddendsSliderChange(event) {
-    if (this.numberOfAddends > event.value) {
-      this.worksheetService.options.additionOptions.removeAddend();
-    }
+  // numberOfAddendsSliderChange(event) {
+  //   if (this.numberOfAddends > event.value) {
+  //     this.worksheetService.options.additionOptions.removeAddend();
+  //   }
 
-    if (this.numberOfAddends < event.value) {
-      this.worksheetService.options.additionOptions.addAddend();
-    }
+  //   if (this.numberOfAddends < event.value) {
+  //     this.worksheetService.options.additionOptions.addAddend();
+  //   }
 
-    this.numberOfAddends = this.worksheetService.options.additionOptions.numberOfAddends;
-  }
+  //   this.numberOfAddends = this.worksheetService.options.additionOptions.numberOfAddends;
+  // }
 
-  numberOfDecimalsSliderChange(event) {
-    this.numberOfDecimals = this.worksheetService.options.divisionOptions.decimalPlaces = event.value;
-  }
+  // numberOfDecimalsSliderChange(event) {
+  //   this.numberOfDecimals = this.worksheetService.options.divisionOptions.decimalPlaces = event.value;
+  // }
 
-  numberOfFactorsSliderChange(event) {
-    if (this.numberOfFactors > event.value) {
-      this.worksheetService.options.multiplicationOptions.removeFactor();
-    }
+  // numberOfFactorsSliderChange(event) {
+  //   if (this.numberOfFactors > event.value) {
+  //     this.worksheetService.options.multiplicationOptions.removeFactor();
+  //   }
 
-    if (this.numberOfFactors < event.value) {
-      this.worksheetService.options.multiplicationOptions.addFactor();
-    }
+  //   if (this.numberOfFactors < event.value) {
+  //     this.worksheetService.options.multiplicationOptions.addFactor();
+  //   }
 
-    this.numberOfFactors = this.worksheetService.options.multiplicationOptions.numberOfFactors;
-  }
+  //   this.numberOfFactors = this.worksheetService.options.multiplicationOptions.numberOfFactors;
+  // }
 
-  numberOfSubtrahendsSliderChange(event) {
-    if (this.numberOfSubtrahends > event.value) {
-      this.worksheetService.options.subtractionOptions.removeSubtrahend();
-    }
+  // numberOfSubtrahendsSliderChange(event) {
+  //   if (this.numberOfSubtrahends > event.value) {
+  //     this.worksheetService.options.subtractionOptions.removeSubtrahend();
+  //   }
 
-    if (this.numberOfSubtrahends < event.value) {
-      this.worksheetService.options.subtractionOptions.addSubtrahend();
-    }
+  //   if (this.numberOfSubtrahends < event.value) {
+  //     this.worksheetService.options.subtractionOptions.addSubtrahend();
+  //   }
 
-    this.numberOfSubtrahends = this.worksheetService.options.subtractionOptions.numberOfSubtrahends;
-  }
+  //   this.numberOfSubtrahends = this.worksheetService.options.subtractionOptions.numberOfSubtrahends;
+  // }
 
   print() {
     window.print();
@@ -152,6 +157,7 @@ export class WorksheetGeneratorComponent implements OnInit {
   }
 
   problemsPerRowSliderChange(event) {
+    console.log(this);
     this.mathProblemsClasses[`math-problems--columns-${this.problemsPerRow}`] = false;
     this.problemsPerRow = this.worksheetService.options.problemsPerRow = event.value;
     this.mathProblemsClasses[`math-problems--columns-${this.problemsPerRow}`] = true;
@@ -188,5 +194,10 @@ export class WorksheetGeneratorComponent implements OnInit {
     this.mathProblemsClasses[`math-problems--font-size-${this.problemFontSize}`] = true;
     this.mathProblemsClasses[`math-problems--letter-spacing-${this.letterSpacing}`] = true;
     this.mathProblemsClasses[`math-problems--line-spacing-${this.lineSpacing}`] = true;
+  }
+
+  setHorizontal() {
+    // Reset to max of 5 problems per row when this is selected
+    this.problemsPerRow = this.worksheetService.options.problemsPerRow = 5;
   }
 }

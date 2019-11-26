@@ -223,6 +223,7 @@ $sidebar-width: 300px;
   @for $i from 1 through 10 {
     .math-problems--columns-#{$i} & {
       width: (100% / $i);
+      display:inline-block;
 
       &:nth-child(-n+#{$i}) {
         margin-top: 0;
@@ -249,11 +250,31 @@ $sidebar-width: 300px;
   text-align: right;
 }
 
+.math-problem__answer-HOR {
+  // border-top: 2px solid #000;
+  color: #E91E63;
+  text-align: right;
+  display:inline;
+}
+
+.math-answer {
+  color: #E91E63;
+}
+
 .math-problem__number {
   font-weight: 500;
   left: 0;
   position: absolute;
   text-align: right;
+  top: 0;
+  width: 2em;
+}
+
+.math-problem__number-HOR {
+  font-weight: 500;
+  left: 0;
+  position: absolute;
+  text-align: left;
   top: 0;
   width: 2em;
 }
@@ -274,6 +295,11 @@ $sidebar-width: 300px;
 .math-problem__value {
   padding-left: 1em; // leave room for the symbol
   text-align: right;
+}
+.math-problem__value-HOR {
+  padding-left: 2px; 
+  text-align: right;
+  display:inline;
 }
 
 .math-problem__answer,

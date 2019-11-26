@@ -22,92 +22,310 @@
                   Number of Problems must be provided
                 </md-error>
               </md-form-field>
-              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.additionOptions.enabled">
-                <md-slide-toggle color="primary" name="additionEnabled" [(ngModel)]="worksheetService.options.additionOptions.enabled">Addition</md-slide-toggle>
-                <div *ngIf="worksheetService.options.additionOptions.enabled">
-                  Number of addends
-                  <br>
-                  <md-slider color="primary" min="2" max="5" [value]="numberOfAddends" (input)="numberOfAddendsSliderChange($event)"></md-slider> {{numberOfAddends}}
-                  <div class="worksheet-option__range-min-max" *ngFor="let addend of worksheetService.options.additionOptions.addendRanges; index as i">
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Addend {{i+1}} Minimum" name="addend-{{i}}-min" required [(ngModel)]="addend.min">
-                    </md-form-field>
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Maximum" name="addend-{{i}}-max" required [(ngModel)]="addend.max">
-                    </md-form-field>
-                  </div>
+
+              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.alphaOptions.enabled">
+                <md-slide-toggle color="primary" name="alphaEnabled" [(ngModel)]="worksheetService.options.alphaOptions.enabled">Alpha</md-slide-toggle>
+                <div *ngIf="worksheetService.options.alphaOptions.enabled">
+
+                    <!-- SELECT YOUR LESSON -->
+
+                        <select name="" class="select-lesson select-alpha-lesson">
+                            <option value="0">Please Select a Lesson</option>
+                            <option value="36">Lesson 4 - Adding 0</option>
+                            <option value="37">Lesson 5 - Adding 1</option>
+                            <option value="39">Lesson 7 - Adding 2</option>
+                            <option value="40">Lesson 8 - Solving for an Unknown</option>
+                            <option value="41">Lesson 9 - Adding 9</option>
+                            <option value="42">Lesson 10 - Adding 8</option>
+                            <option value="44">Leesson 12 - Adding Doubles</option>
+                            <option value="46">Lesson 14 - Adding Doubles Plus 1</option>
+                            <option value="47">Lesson 15 - Adding to Make 10</option>
+                            <option value="48">Lesson 16 - Adding to Make 9</option>
+                            <option value="49">Lesson 17 - 3+5, 4+7, 5+7</option>
+                            <option value="51">Lesson 19 - Subtracting 0 and 1</option>
+                            <option value="52">Lesson 20 - Subtracting 2</option>
+                            <option value="53">Lesson 21 - Subtracting 9</option>
+                            <option value="54">Lesson 22 - Subtracting 8</option>
+                            <option value="55">Lesson 23 - Doubles Subtraction</option>
+                            <option value="56">Lesson 24 - Subtracting From 10</option>
+                            <option value="57">Lesson 25 - Subtracting From 9</option>
+                            <option value="58">Lesson 26 - 7-4, 7-3, 8-5, 8-3</option>
+                            <option value="59">Lesson 27 - Subtracting 7</option>
+                            <option value="60">Lesson 28 - Subtracting 6</option>
+                            <option value="61">Lesson 29 - Subtracting 5</option>
+                            <option value="62">Lesson 30 - Subtracting 3 and 4</option>
+                        </select>
+
+                    <div class="add-lesson">
+                        <div data-level="alpha" class="add-button">
+                            +
+                        </div>
+                        <div class="add-text">
+                            Add Another Lesson
+                        </div>
+                    </div>
                 </div>
               </div>
-              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.subtractionOptions.enabled">
-                <md-slide-toggle color="primary" name="subtractionEnabled" [(ngModel)]="worksheetService.options.subtractionOptions.enabled">Subtraction</md-slide-toggle>
-                <div *ngIf="worksheetService.options.subtractionOptions.enabled">
-                  <div class="worksheet-option__range-min-max">
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Minuend Minimum" name="minuend-min" required [(ngModel)]="worksheetService.options.subtractionOptions.minuendRange.min">
-                    </md-form-field>
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Maximum" name="minuend-max" required [(ngModel)]="worksheetService.options.subtractionOptions.minuendRange.max">
-                    </md-form-field>
+
+              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.betaOptions.enabled">
+                <md-slide-toggle color="primary" name="betaEnabled" [(ngModel)]="worksheetService.options.betaOptions.enabled">Beta</md-slide-toggle>
+                <div *ngIf="worksheetService.options.betaOptions.enabled">
+  
+                    <select name="" class="select-lesson select-beta-lesson">
+                        <option value="0">Please Select a Lesson</option>
+                        <option value="68">Lesson 3 - Inequalities</option>
+                        <option value="69">Lesson 4 - Round to the Nearest Ten</option>
+                        <option value="70">Lesson 5 - Multiple-Digit Addition</option>
+                        <option value="72">Lesson 7 - 2-Digit Addition with Carry</option>
+                        <option value="76">Lesson 11 - 3-Digit Addition: Sum < 1000</option>
+                        <option value="78">Lesson 13 - Column Addition</option>
+                        <option value="81">Lesson 16 - 3-Digit Addition: Sum > 1000</option>
+                        <option value="83">Lesson 18 - 3-Digit Column Addition</option>
+                        <option value="84">Lesson 19 - 4-Digit Column Addition</option>
+                        <option value="85">Lesson 20 - 2 &amp; 3 Digit Subtraction Without Regrouping</option>
+                        <option value="87">Lesson 22 - 2-Digit Subtraction with Regrouping</option>
+                        <option value="89">Lesson 24 - 3-Digit Subtraction with Regrouping</option>
+                        <option value="91">Lesson 26 - 4-Digit Subtraction with Regrouping</option>
+                        <option value="93">Lesson 28 - 5-Digit Subtraction with Regrouping</option>
+                    </select>
+
+                    <div class="add-lesson">
+                      <div data-level="beta" class="add-button">
+                          +
+                      </div>
+                      <div class="add-text">
+                          Add Another Lesson
+                      </div>
                   </div>
-                  Number of subtrahends
-                  <br>
-                  <md-slider color="primary" min="1" max="4" [value]="numberOfSubtrahends" (input)="numberOfSubtrahendsSliderChange($event)"></md-slider> {{numberOfSubtrahends}}
-                  <div class="worksheet-option__range-min-max" *ngFor="let subtrahend of worksheetService.options.subtractionOptions.subtrahendRanges; index as i">
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Subtrahend {{i+1}} Minimum" name="subtrahend-{{i}}-min" required [(ngModel)]="subtrahend.min">
-                    </md-form-field>
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Maximum" name="subtrahend-{{i}}-max" required [(ngModel)]="subtrahend.max">
-                    </md-form-field>
-                  </div>
-                  <md-slide-toggle color="warn" name="allowNegativeAnswers" [(ngModel)]="worksheetService.options.subtractionOptions.allowNegativeAnswers">Allow negative answers</md-slide-toggle>
+
                 </div>
               </div>
-              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.multiplicationOptions.enabled">
-                <md-slide-toggle color="primary" name="multiplicationEnabled" [(ngModel)]="worksheetService.options.multiplicationOptions.enabled">Multiplication</md-slide-toggle>
-                <div *ngIf="worksheetService.options.multiplicationOptions.enabled">
-                  Number of factors
-                  <br>
-                  <md-slider color="primary" min="2" max="5" [value]="numberOfFactors" (input)="numberOfFactorsSliderChange($event)"></md-slider> {{numberOfFactors}}
-                  <div class="worksheet-option__range-min-max" *ngFor="let factor of worksheetService.options.multiplicationOptions.factorRanges; index as i">
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Factor {{i+1}} Minimum" name="factor-{{i}}-min" required [(ngModel)]="factor.min">
-                    </md-form-field>
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Maximum" name="factor-{{i}}-max" required [(ngModel)]="factor.max">
-                    </md-form-field>
+
+              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.gammaOptions.enabled">
+                <md-slide-toggle color="primary" name="gammaEnabled" [(ngModel)]="worksheetService.options.gammaOptions.enabled">Gamma</md-slide-toggle>
+                <div *ngIf="worksheetService.options.gammaOptions.enabled">
+
+                    <select name="" class="select-lesson select-gamma-lesson">
+                        <option value="0">Please Select a Lesson</option>
+                        <option value="98">Lesson 2 - Multiply By 1 And 0, Commutative Property</option>
+                        <option value="100">Lesson 4 - Multiply By 2, 1 Quart = 2 Pints</option>
+                        <option value="102">Lesson 6 - Multiply By 5, 5¢ = 1 Nickel</option>
+                        <option value="104">Lesson 8 - Solve For An Unknown</option>
+                        <option value="106">Lesson 10 - Multiply By 9</option>
+                        <option value="108">Lesson 12 - Multiply By 3, 3 Feet = 1 Yard</option>
+                        <option value="110">Lesson 14 - Multiply By 6</option>
+                        <option value="112">Lesson 16 - Multiply By 4, 4 Quarters = 1 Dollar</option>
+                        <option value="114">Lesson 18 - Multiply By 7 And By Multiples Of 100</option>
+                        <option value="116">Lesson 20 - Multiply By 8</option>
+                        <option value="117">Lesson 21 - Multiple-Digit Multiplication</option>
+                        <option value="119">Lesson 23 - Double-Digit Times Double-Digit</option>
+                        <option value="120">Lesson 24 - Double-Digit With Regrouping</option>
+                        <option value="1211">Lesson 25 (1) - Multiple-Digit Multiplication, Regrouping</option>
+                        <option value="1212">Lesson 25 (2) - Multiple-Digit Multiplication, Regrouping</option>
+                        <option value="1241">Lesson 28 (1) - More Multiple-Digit Multiplication</option>
+                        <option value="1242">Lesson 28 (2) - More Multiple-Digit Multiplication</option>
+                    </select>
+
+                    <div class="add-lesson">
+                      <div data-level="gamma" class="add-button">
+                          +
+                      </div>
+                      <div class="add-text">
+                          Add Another Lesson
+                      </div>
                   </div>
+
                 </div>
               </div>
-              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.divisionOptions.enabled">
-                <md-slide-toggle color="primary" name="divisionEnabled" [(ngModel)]="worksheetService.options.divisionOptions.enabled">Division</md-slide-toggle>
-                <div *ngIf="worksheetService.options.divisionOptions.enabled">
-                  <div class="worksheet-option__range-min-max">
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Divisor Minimum" name="divisor-min" required [(ngModel)]="worksheetService.options.divisionOptions.divisorRange.min">
-                    </md-form-field>
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Maximum" name="divisor-max" required [(ngModel)]="worksheetService.options.divisionOptions.divisorRange.max">
-                    </md-form-field>
+
+              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.deltaOptions.enabled">
+                <md-slide-toggle color="primary" name="deltaEnabled" [(ngModel)]="worksheetService.options.deltaOptions.enabled">Delta</md-slide-toggle>
+                <div *ngIf="worksheetService.options.deltaOptions.enabled">
+
+                    <select name="" class="select-lesson select-delta-lesson">
+                        <option value="0">Please Select a Lesson</option>
+                        <option value="129">Lesson 2 - Division By 1 And 2, Symbols For Division</option>
+                        <option value="130">Lesson 3 - Division By 10, Third Symbol For Division</option>
+                        <option value="131">Lesson 4 - Division By 5 And 3</option>
+                        <option value="133">Lesson 6 - Division By 9</option>
+                        <option value="135">Lesson 8 - Division By 6</option>
+                        <option value="137">Lesson 10 - Division By 4</option>
+                        <option value="139">Lesson 12 - Division By 7 And 8</option>
+                        <option value="143">Lesson 16 - Division By A Single Digit With Remainder</option>
+                        <option value="145">Lesson 18 - Division With Double-Digit Factors</option>
+                        <option value="146">Lesson 19 - Division, Three Digit By One Digit</option>
+                        <option value="147">Lesson 20 - Division, Three Digit By One Digit (Cont.)</option>
+                        <option value="149">Lesson 22 - Division, Three Digit By Two Digit</option>
+                        <option value="150">Lesson 23 - Division, Four Digit By One Digit</option>
+                        <option value="151">Lesson 24 - Division, Four Digit By Two Digit</option>
+                        <option value="152">Lesson 25 - Division, Multiple Digit By Multiple Digit</option>
+                        <option value="154">Lesson 27 - Fraction Of A Number/option>
+                        <option value="155">Lesson 28 - Roman Numerals: I, V, X, L, And C</option>
+                        <option value="157">Lesson 30 - Roman Numerals: D, M, Multiples Of 1,000</option>
+                    </select>
+
+                    <div class="add-lesson">
+                      <div data-level="alpha" class="add-button">
+                          +
+                      </div>
+                      <div class="add-text">
+                          Add Another Lesson
+                      </div>
                   </div>
-                  <div class="worksheet-option__range-min-max">
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Dividend Minimum" name="dividend-min" required [(ngModel)]="worksheetService.options.divisionOptions.dividendRange.min">
-                    </md-form-field>
-                    <md-form-field>
-                      <input mdInput type="number" placeholder="Maximum" name="dividend-max" required [(ngModel)]="worksheetService.options.divisionOptions.dividendRange.max">
-                    </md-form-field>
-                  </div>
-                  <md-slide-toggle color="warn" name="divisionDecimalsEnabled" (change)="showDecimalsChange($event)" [(ngModel)]="worksheetService.options.divisionOptions.showDecimals">Show decimals</md-slide-toggle>
-                  <div *ngIf="worksheetService.options.divisionOptions.showDecimals">
-                    Decimal places
-                    <br>
-                    <md-slider color="warn" min="0" max="5" [value]="numberOfDecimals" (input)="numberOfDecimalsSliderChange($event)"></md-slider> {{numberOfDecimals}}
-                  </div>
-                  <br>
-                  <md-slide-toggle color="warn" name="divisionRemaindersEnabled" (change)="showRemaindersChange($event)" [(ngModel)]="worksheetService.options.divisionOptions.showRemainders">Show remainders</md-slide-toggle>
+
                 </div>
               </div>
+
+              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.epsilonOptions.enabled">
+                <md-slide-toggle color="primary" name="epsilonEnabled" [(ngModel)]="worksheetService.options.epsilonOptions.enabled">Epsilon</md-slide-toggle>
+                <div *ngIf="worksheetService.options.epsilonOptions.enabled">
+
+                        <select name="" class="select-lesson select-epsilon-lesson">
+                            <option value="0">Please Select a Lesson</option>
+                            <option value="161">Lesson 3 - Add And Subtract Fractions</option>
+                            <option value="163">Lesson 5 - Addition And Subtraction</option>
+                            <option value="164">Lesson 6 - The Rule Of Four</option>
+                            <option value="166">Lesson 8 - Adding Multiple Fractions</option>
+                            <option value="167">Lesson 9 - Multiplying Fractions</option>
+                            <option value="168">Lesson 10 - Dividing Fractions With The Rule Of Four</option>
+                            <option value="170">Lesson 12 - Reducing Fractions—Common Factors</option>
+                            <option value="171">Lesson 13 - Reducing Fractions—Prime Factors</option>
+                            <option value="173">Lesson 15 - Mixed Numbers And Improper Fractions</option>
+                            <option value="175">Lesson 17 - Addition And Subtraction Of Mixed Numbers</option>
+                            <option value="176">Lesson 18 - Addition Of Mixed Numbers</option>
+                            <option value="177">Lesson 19 - Subtraction Of Mixed Numbers</option>
+                            <option value="178">Lesson 20 - Subtraction Of Mixed Numbers</option>
+                            <option value="179">Lesson 21 - Adding Mixed Numbers</option>
+                            <option value="180">Lesson 22 - Subtracting Mixed Numbers</option>
+                            <option value="181">Lesson 23 - Dividing Fractions And Mixed Numbers</option>
+                            <option value="183">Lesson 25 - Multiplying Mixed Numbers</option>
+                            <option value="187">Lesson 29 - Fractions To Decimals To Percents</option>
+                        </select>
+
+                        <div class="add-lesson">
+                          <div data-level="alpha" class="add-button">
+                              +
+                          </div>
+                          <div class="add-text">
+                              Add Another Lesson
+                          </div>
+                      </div>
+
+                </div>
+              </div>
+
+              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.zetaOptions.enabled">
+                <md-slide-toggle color="primary" name="zetaEnabled" [(ngModel)]="worksheetService.options.zetaOptions.enabled">Zeta</md-slide-toggle>
+                <div *ngIf="worksheetService.options.zetaOptions.enabled">
+
+                    <select name="" class="select-lesson select-zeta-lesson">
+                        <option value="0">Please Select a Lesson</option>
+                        <option value="193">Lesson 4 - Add Decimal Numbers</option>
+                        <option value="194">Lesson 5 - Subtract Decimal Numbers</option>
+                        <option value="197">Lesson 8 - Metric System Conversion–Part 1</option>
+                        <option value="198">Lesson 9 - Multiply By 1/10 Or 0.1</option>
+                        <option value="199">Lesson 10 - Multiply Decimals By 1/100 Or 0.01</option>
+                        <option value="203">Lesson 14 - Multiply All Decimals</option>
+                        <option value="204">Lesson 15 - Metric System Conversions – Part 2</option>
+                        <option value="206">Lesson 17 - Dividing A Decimal By A Whole Number</option>
+                        <option value="207">Lesson 18 - Dividing A Whole Number By A Decimal</option>
+                        <option value="208">Lesson 19 - Solving For An Unknown</option>
+                        <option value="209">Lesson 20 - Dividing A Decimal By A Decimal</option>
+                        <option value="2101">Lesson 21 (1) - Decimal Remainders</option>
+                        <option value="2102">Lesson 21 (2) - Decimal Remainders</option>
+                        <option value="2103">Lesson 21 (3) - Decimal Remainders</option>
+                        <option value="2104">Lesson 21 (4) - Decimal Remainders</option>
+                        <option value="211">Lesson 22 - More Solving For An Unknown</option>
+                        <option value="212">Lesson 23 - Transform Any Fraction</option>
+                        <option value="213">Lesson 24 - Decimals As Rational Numbers</option>
+                    </select>
+
+                    <div class="add-lesson">
+                      <div data-level="alpha" class="add-button">
+                          +
+                      </div>
+                      <div class="add-text">
+                          Add Another Lesson
+                      </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.prealgebraOptions.enabled">
+                <md-slide-toggle color="primary" name="prealgebraEnabled" [(ngModel)]="worksheetService.options.prealgebraOptions.enabled">Pre-Algebra</md-slide-toggle>
+                <div *ngIf="worksheetService.options.prealgebraOptions.enabled">
+
+                    <select name="" class="select-lesson select-prealgebra-lesson">
+                        <option value="0">Please Select a Lesson</option>
+                        <option value="221">Lesson 1 - Negative Numbers, Addition</option>
+                        <option value="222">Lesson 2 - Negative Numbers, Subtraction</option>
+                        <option value="223">Lesson 3 - Negative Numbers, Multiplication</option>
+                        <option value="224">Lesson 4 - Negative Numbers, Division</option>
+                        <option value="225">Lesson 5 - Exponents</option>
+                        <option value="226">Lesson 7 - Negative Numbers With Exponents</option>
+                        <option value="227">Lesson 8 - Roots And Radicals</option>
+                        <option value="228">Lesson 9 - Solve For An Unknown</option>
+                        <option value="233">Lesson 13 - Solve For An Unknown</option>
+                        <option value="234">Lesson 14 - Solve For An Unknown</option>
+                        <option value="236">Lesson 16 - Transform Celsius To Fahrenheit</option>
+                        <option value="237">Lesson 17 - Transform Fahrenheit To Celsius</option>
+                    </select>
+
+                    <div class="add-lesson">
+                      <div data-level="alpha" class="add-button">
+                          +
+                      </div>
+                      <div class="add-text">
+                          Add Another Lesson
+                      </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.aimOptions.enabled">
+                <md-slide-toggle color="primary" name="aimEnabled" [(ngModel)]="worksheetService.options.aimOptions.enabled">A.I.M.</md-slide-toggle>
+                <div *ngIf="worksheetService.options.aimOptions.enabled">
+                
+                    <select name="" class="select-lesson select-aim-lesson">
+                        <option value="0">Please Select a Lesson</option>
+                        <!-- <option value="524">Lesson 1 - Integer Blocks</option> -->
+                        <option value="525">Lesson 2 - Addition +2</option>
+                        <option value="526">Lesson 3 - Addition +9</option>
+                        <option value="527">Lesson 4 - Addition +8</option>
+                        <option value="528">Lesson 5 - Addition: Doubles</option>
+                        <option value="529">Lesson 6 - Addition: Doubles +1</option>
+                        <option value="530">Lesson 7 - Addition: Making 10</option>
+                        <option value="531">Lesson 8 - Addition: Making 9</option>
+                        <option value="532">Lesson 9 - Addition Of the Extras</option>
+                        <option value="533">Lesson 10 - Solving For the Unknown</option>
+                        <option value="534">Lesson 11 - Introduction To Subtraction</option>
+                        <option value="535">Lesson 12 - Subtraction: -2</option>
+                        <option value="536">Lesson 13 - Subtraction: -9</option>
+                        <option value="537">Lesson 14 - Subtraction: -8</option>
+                        <option value="538">Lesson 15 - Subtraction: Doubles</option>
+                        <option value="539">Lesson 16 - Subtraction: Making 10</option>
+                        <option value="540">Lesson 17 - Subtraction: Making 9</option>
+                        <option value="541">Lesson 18 - Subtraction: Extras</option>
+                        <option value="542">Lesson 19 - Subtraction by 7, or Adding up by 3</option>
+                        <option value="543">Lesson 20 - Subtraction by 6, or Adding up by 4</option>
+                        <option value="544">Lesson 21 - Subtraction by 5, or Adding up by 5</option>
+                        <option value="545">Lesson 22 - Subtraction by 3 and 4</option>
+                    </select>
+
+                    <div class="add-lesson">
+                      <div data-level="alpha" class="add-button">
+                          +
+                      </div>
+                      <div class="add-text">
+                          Add Another Lesson
+                      </div>
+                  </div>
+
+                </div>
+              </div>
+
             </md-expansion-panel>
             <md-expansion-panel class="worksheet-options__panel-display-options mat-elevation-z0">
               <md-expansion-panel-header>
@@ -118,14 +336,19 @@
               <div>
                 Problems per row
                 <br>
-                <md-slider color="primary" min="1" max="10" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></md-slider> {{problemsPerRow}}
+                <md-slider color="primary" min="1" max="5" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></md-slider> {{problemsPerRow}}
               </div>
+              <!-- <div *ngIf="worksheetService.options.showHorizontal">
+                Problems per row
+                <br>
+                <md-slider color="primary" min="1" max="5" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></md-slider> {{problemsPerRow}}
+              </div> -->
               <div>
                 Problem font size
                 <br>
                 <md-slider color="primary" min="1" max="6" [value]="problemFontSize" (input)="problemFontSizeSliderChange($event)"></md-slider> {{problemFontSize}}
               </div>
-              <div>
+              <div *ngIf="!worksheetService.options.showHorizontal">
                 Problem letter spacing
                 <br>
                 <md-slider color="primary" min="1" max="10" [value]="letterSpacing" (input)="letterSpacingSliderChange($event)"></md-slider> {{letterSpacing}}
@@ -170,6 +393,9 @@
               <div>
                 <md-slide-toggle color="primary" name="landscape" [(ngModel)]="worksheetService.options.landscape" mdTooltip="This is a preview only. You will have to adjust your printer settings to print in landscape mode." mdTooltipPosition="right">Landscape preview</md-slide-toggle>
               </div>
+              <div>
+                  <md-slide-toggle color="primary" name="showHorizontal" [(ngModel)]="worksheetService.options.showHorizontal" (click)="setHorizontal()" >Horizontal Equations</md-slide-toggle>
+              </div>
             </md-expansion-panel>
           </md-accordion>
         </md-card-content>
@@ -177,7 +403,8 @@
     </form>
   </div>
   <div class="worksheet-content">
-    <md-card class="worksheet__card" [class.worksheet__card--landscape]="worksheetService.options.landscape" *ngIf="worksheetService.problems.length">
+    <md-card style='overflow: hidden;' class="worksheet__card" [class.worksheet__card--landscape]="worksheetService.options.landscape" *ngIf="worksheetService.problems.length">
+
       <md-card-content>
         <h2 class="worksheet__name-date clearfix" *ngIf="worksheetService.options.showNameLine || worksheetService.options.showDateLine">
           <span class="worksheet__name" *ngIf="worksheetService.options.showNameLine">Name:</span>
@@ -186,25 +413,94 @@
         <h1 class="worksheet__title" *ngIf="worksheetService.options.showTitle">{{worksheetService.options.title}}</h1>
         <h3 class="worksheet__instructions" *ngIf="worksheetService.options.showInstructions">{{worksheetService.options.instructions}}</h3>
         <div class="math-problems" [ngClass]="mathProblemsClasses">
-          <div class="math-problem" *ngFor="let problem of worksheetService.problems; index as i">
-            <div class="math-problem__problem">
-              <div class="math-problem__number" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-              <div class="math-problem__symbol">{{ problem.symbol }}</div>
-              <div class="math-problem__value" *ngFor="let value of problem.values">{{ value }}</div>
-              <div class="math-problem__answer" *ngIf="worksheetService.options.showAnswers">
-                <ng-container *ngIf="isDivisionProblem(problem)">
-                  <ng-container *ngIf="worksheetService.options.divisionOptions.showRemainders">{{problem.answerFloored}}<strong>r</strong>{{problem.remainder}}</ng-container>
-                  <ng-container *ngIf="!worksheetService.options.divisionOptions.showRemainders">{{problem.answer | number:getDivisionNumberFormat()}}</ng-container>
-                </ng-container>
-                <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.answer }}</ng-container>
-              </div>
-              <div class="math-problem__answer" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
+          <!-- Begin Loop -->
+
+          <!-- HORIZONTAL -->
+          <div style="width:100%;" *ngIf="worksheetService.options.showHorizontal">
+            <div class="math-problem" *ngFor="let problem of worksheetService.problems; index as i">
+
+              <!-- Non Division Problems -->
+                <div class="math-problem__problem" *ngIf="!isDivisionProblem(problem)">
+                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <div class="math-problem__symbol"></div>
+                  <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">
+                    <!--   -->
+                    <span *ngIf="problem.problemType === 1 ">
+
+                      <span *ngIf="!problem.solveForUnknown || value != '_'">{{ value }}&nbsp;</span>
+                      <span *ngIf="problem.solveForUnknown && value == '_'">
+                        <span *ngIf="!worksheetService.options.showAnswers">{{ value }}&nbsp;</span>
+                        <span class="math-answer" *ngIf="worksheetService.options.showAnswers">{{ problem.answer }}&nbsp;</span>
+                      </span>
+                    </span>
+                    <!-- MULTIPLICATION -->
+                    <span *ngIf="problem.problemType === 8 && problem.lessonNo === 104">
+                      <!--  Solve for Unknown Mult -->
+                        <span *ngIf="problem.solveForUnknown">
+                          <span *ngIf="!worksheetService.options.showAnswers">{{ value }}&nbsp;</span>
+                          <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 1">{{problem.lhs}} x {{ problem.answer }}&nbsp;</span>
+                        </span>
+                    </span>
+                    <!-- <span class="math-problem__value-HOR" *ngIf="problem.solveForUnknown && value == '_' && worksheetService.options.showAnswers">{{ problem.answer }}</span> -->
+                    <span *ngIf="j == problem.values.length - 1"> = </span><span *ngIf="j < problem.values.length - 1">{{ problem.symbol }}</span>
+                  </div>
+
+                  <!-- Normal answers -->
+                  <div class="math-problem__answer-HOR" *ngIf="worksheetService.options.showAnswers && problem.solveForUnknown == false">
+                    <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.answer }}</ng-container> 
+                  </div>
+
+
+                  <!--  SFU answers ? What ? -->
+                  <div class="math-problem__value-HOR" *ngIf="problem.solveForUnknown == true">
+                      <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.sfu_answer }}</ng-container> 
+                  </div>
+
+                  <div class="math-problem__answer-HOR" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
+                </div>
+
+                <!-- Horizontal Division Problems -->
+                <div class="math-problem__problem" *ngIf="isDivisionProblem(problem)">
+                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                    <div class="math-problem__symbol"></div>
+                    <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">{{ value }}&nbsp;<span *ngIf="j == problem.values.length - 1"> = </span><span *ngIf="j < problem.values.length - 1">{{ problem.symbol }}</span></div>
+                    <div class="math-problem__answer-HOR" *ngIf="worksheetService.options.showAnswers">
+                      <ng-container *ngIf="isDivisionProblem(problem)">
+                        <ng-container *ngIf="worksheetService.options.divisionOptions.showRemainders">{{problem.answerFloored}}<strong>r</strong>{{problem.remainder}}</ng-container>
+                        <ng-container *ngIf="!worksheetService.options.divisionOptions.showRemainders">{{problem.answer | number:getDivisionNumberFormat()}}</ng-container>
+                      </ng-container>
+                      <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.answer }}</ng-container> 
+                    </div>
+                    <div class="math-problem__answer-HOR" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
+                </div>
             </div>
           </div>
+
+          <!-- NOT HORIZONTAL -->
+          <div *ngIf="!worksheetService.options.showHorizontal">
+            <div class="math-problem" *ngFor="let problem of worksheetService.problems; index as i">
+              <div class="math-problem__problem">
+                <div class="math-problem__number" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <div class="math-problem__symbol">{{ problem.symbol }}</div>
+                <div class="math-problem__value" *ngFor="let value of problem.values">{{ value }}</div>
+                <div class="math-problem__answer" *ngIf="worksheetService.options.showAnswers">
+                  <ng-container *ngIf="isDivisionProblem(problem)">
+                    <ng-container *ngIf="worksheetService.options.divisionOptions.showRemainders">{{problem.answerFloored}}<strong>r</strong>{{problem.remainder}}</ng-container>
+                    <ng-container *ngIf="!worksheetService.options.divisionOptions.showRemainders">{{problem.answer | number:getDivisionNumberFormat()}}</ng-container>
+                  </ng-container>
+                  <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.answer }}</ng-container>
+                </div>
+                <div class="math-problem__answer" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- End Loop -->
         </div>
         <div class="worksheet__id" *ngIf="worksheetService.id">Worksheet Id: {{worksheetService.id}}</div>
       </md-card-content>
     </md-card>
+
     <div class="worksheet-display-disclaimer mat-elevation-z5 d-print-none" *ngIf="worksheetService.problems.length">
       The view shown here is meant to simulate a printed page (8.5x11 inch standard US paper size).
       <br>

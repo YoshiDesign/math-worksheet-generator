@@ -240,28 +240,29 @@ export class WorksheetService {
 
               switch (y) {
                 case 'alpha' :
+                  // console.log("Getting Alpha");
                   this.addProblem(this.getAlphaProblem(current_lesson));
                   break;
                 case 'beta' :
-                  this.getBetaProblem(current_lesson);
+                  this.addProblem(this.getBetaProblem(current_lesson));
                   break;
                 case 'gamma' : 
-                  this.getGammaProblem(current_lesson);
+                  this.addProblem(this.getGammaProblem(current_lesson));
                   break;
                 case 'delta' :
-                  this.getDeltaProblem(current_lesson);
+                  this.addProblem(this.getDeltaProblem(current_lesson));
                   break;
                 case 'epsilon' :
-                  this.getEpsilonProblem(current_lesson);
+                  this.addProblem(this.getEpsilonProblem(current_lesson));
                   break;
                 case 'zeta' :
-                  this.getZetaProblem(current_lesson);
+                  this.addProblem(this.getZetaProblem(current_lesson));
                   break;
                 case 'prealgebra' :
-                  this.getPrealgebraProblem(current_lesson);
+                  this.addProblem(this.getPrealgebraProblem(current_lesson));
                   break;
                 case 'aim' :
-                  this.getAimProblem(current_lesson);
+                  this.addProblem(this.getAimProblem(current_lesson));
                   break;
 
               }
@@ -440,55 +441,345 @@ export class WorksheetService {
   // MUS Functions
   private getAlphaProblem(lessonNo){
 
-    console.log("ALPHA LESSON" + String(lessonNo));
+    // console.log("ALPHA LESSON" + String(lessonNo));
     const problem = new AlphaProblems();
 
     switch (Number(lessonNo)) {
-      case 36 : 
+      case 36 : // Lesson 4 - Adding 0
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = this.getRandomInt(10);
+        problem.values[1] = problem.values[0] === 0 ? this.getRandomInt(9) : 0;
+        problem.symbol = "+";
         break;
-      case 37 : 
+      case 37 : // Lesson 5- Adding 1
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = this.getRandomInt(10);
+        problem.values[1] = problem.values[0] === 1 ? this.getRandomInt(9) : 1;
+        problem.symbol = "+";
         break;
-      case 39 : 
+      case 39 : // Lesson 6 - Adding 2
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = this.getRandomInt(10);
+        problem.values[1] = problem.values[0] === 2 ? this.getRandomInt(9) : 2;
+        problem.symbol = "+";
         break;
-      case 40 : 
+      case 40 : // Lesson 8 - Solve for Unknown
+        
+        var a = this.getRandomInt(10);
+        var c = this.getRandomInt(10);
+        var switcher = this.getRandomInt(2);
+
+        problem.problemType = 1;
+
+        // smaller of the two
+        var lhs = (a >= c) ? c : a;
+        // larger of the two
+        var rhs = (a >= c) ? a : c;
+
+        this.options.showHorizontal = true;
+        problem.requiresHorizontal = true;
+        problem.solveForUnknown = true;
+
+        problem.lhs = lhs;
+        problem.rhs = rhs;
+        problem.firstPosition = (switcher === 1) ? lhs : "_";
+        problem.secondPosition = (switcher === 1) ? "_" : lhs;
+        problem.values[0] = problem.firstPosition;
+        problem.values[1] = problem.secondPosition; 
+        problem.sfu_answer = rhs;
+
+        problem.symbol = "+";
+
         break;
       case 41 : 
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = this.getRandomInt(10);
+        problem.values[1] = problem.values[0] === 9 ? this.getRandomInt(9) : 9;
+        problem.symbol = "+";
         break;
       case 42 : 
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = this.getRandomInt(10);
+        problem.values[1] = problem.values[0] === 8 ? this.getRandomInt(9) : 8;
+        problem.symbol = "+";
         break;
       case 44 : 
+        var num = this.getRandomInt(10);
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = num;
+        problem.values[1] = num;
+        problem.symbol = "+";
         break;
       case 46 : 
+        var num = this.getRandomInt(10);
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = num;
+        problem.values[1] = num + 1;
+        problem.symbol = "+";
         break;
       case 47 : 
+        // Lesson 15 - Adding to make 10
+        var x = 0;
+        var y = 0;
+        do {
+          x = this.getRandomInt(10); // TODO repeat the randomization for either x or y, we're getting lots of repeats
+          y = this.getRandomInt(10);
+        } while (x + y != 10)
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "+";
         break;
       case 48 : 
+        // Lesson 16 - Adding to make 9
+        var x = 0;
+        var y = 0;
+        do {
+          x = this.getRandomInt(10); // TODO repeat the randomization for either x or y, we're getting lots of repeats
+          y = this.getRandomInt(10);
+        } while (x + y != 9)
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "+";
         break;
       case 49 : 
+        // Lesson 17 - 3+5, 4+7, 5+7
+        var x = 0;
+        var y = 0;
+        do {
+          x = this.getRandomInt(7);
+          var inspect = (x == 3 || x == 4 || x == 5)
+        } while (!inspect)
+
+        if (x == 3)
+          y = 5;
+        if (x == 4 || x == 5)
+          y = 7;
+
+        // Occasionally switch x and y
+        var rand = this.getRandomInt(2);
+        if (rand == 1) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "+";
         break;
       case 51 : 
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(11);
+          y = this.getRandomInt(11);
+          if (y == 1 || y == 0 && x > 0) {
+            inspect = true;
+          }
+          if (!inspect) {
+            if ((x - y) === 0)
+              inspect = true;
+            if ((x-y) === 1)
+              inspect = true;
+          }
+        } while(!inspect)
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 52 : 
+      case 52 : // Lesson 20 - Subtracting 2
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(13);
+          y = this.getRandomInt(13);
+          if (y == 2 && x >= 3) {
+            inspect = true;
+          }
+          if (!inspect) {
+            if ((x - y) === 2)
+              inspect = true;
+          }
+        } while(!inspect)
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 53 : 
+
+      case 53 : // Lesson 21 - Subtracting 9
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(21);
+          y = this.getRandomInt(21);
+          if (y == 9 && x >= 10) {
+            inspect = true;
+          }
+          if (!inspect) {
+            if ((x - y) === 9)
+              inspect = true;
+          }
+        } while(!inspect)
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 54 : 
+
+      case 54 : // Lesson 22 - Subtracting 8
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(21);
+          y = this.getRandomInt(21);
+          if (y == 8 && x >= 9) {
+            inspect = true;
+          }
+          if (!inspect) {
+            if ((x - y) === 8)
+              inspect = true;
+          }
+        } while(!inspect)
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 55 : 
+
+      case 55 : // Lesson 23 - Doubles Subtraction
+
+        var x = this.getRandomInt(10);
+        var y = x;
+        x = x * 2;
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 56 : 
+
+      case 56 : // Lesson 24 Subtraction Making 10
+        
+        var x = 10;
+        var y = this.getRandomInt(10);
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 57 : 
+
+      case 57 :  // Lesson 25 Subtraction Making 9
+        var x = 9;
+        var y = this.getRandomInt(9);
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 58 : 
+      case 58 : // Lesson 26 Subtraction - Extras
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(9);
+          if (x == 7) {
+            y = this.getRandomInt(6);
+            if (y == 4 || y == 3) {
+              inspect = true; 
+            }
+          }
+          if (x == 8) {
+            y = this.getRandomInt(6);
+            if (y == 5  || y == 3) {
+              inspect = true;
+            }
+          }
+        } while (!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+
         break;
-      case 59 : 
+      case 59 : // Lesson 27 - Subtracting 7
+
+        var x = 0;
+        var y = 7;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(15);
+          if (x >= 7)
+            inspect = true;
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 60 : 
+
+      case 60 : // Lesson 27 - Subtracting 6
+        var x = 0;
+        var y = 6;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(13);
+          if (x >= 6)
+            inspect = true;
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 61 : 
+
+      case 61 : // Lesson 28 - Subtracting 5
+        var x = 0;
+        var y = 5;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(13);
+          if (x >= 5)
+            inspect = true;
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 62 : 
+
+      case 62 : // Subtraction by 3 and 4
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          
+          x = this.getRandomInt(11);
+          y = this.getRandomInt(5);
+
+          if ((y == 3 || y == 4) && x >= 5) {
+            inspect = true;
+          }
+
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
 
     }
@@ -542,27 +833,85 @@ export class WorksheetService {
 
     switch (Number(lessonNo)) {
     
-      case 98 : 
+      case 98 : // Lesson 2 - Multiply By 1 And 0, Commutative Property
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = this.getRandomInt(10);
+        problem.values[1] = problem.values[0] === (0 || 1) ? this.getRandomInt(10) : this.getRandomInt(2);
+        problem.symbol = "x";
         break;
-      case 100 : 
+      case 100 : // Lesson 4 - Multiply By 2, 1 Quart = 2 Pints
+        var x = this.getRandomInt(10);
+        var y = 2;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
         break;
-      case 102 : 
+      case 102 : // Lesson 6 - Multiply By 5, 5¢ = 1 Nickel
+        var x = this.getRandomInt(10);
+        var y = 5;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
         break;
-      case 104 : 
+      case 104 : // Lesson 8 - Solve For An Unknown
+        var a = this.getRandomInt(10);
+        var c = this.getRandomInt(10);
+        var nn = a * c;
+        var switcher = this.getRandomInt(2);
+        var letters = [
+          "C", "E", "K", "F", "B", "N", "A", "L", "D", "G"
+        ]
+        var letter = letters[this.getRandomInt(letters.length - 1)];
+
+        var lhs = a;
+        var rhs = c;
+
+        this.options.showHorizontal = true;
+        problem.problemType = 8;
+        problem.requiresHorizontal = true;
+        problem.solveForUnknown = true;
+
+        problem.lhs = lhs;
+        problem.rhs = rhs;
+        problem.lessonNo = 104;
+        problem.firstPosition = lhs;
+        problem.secondPosition = letter;
+        problem.values[0] = problem.firstPosition;
+        problem.values[1] = problem.secondPosition; 
+        problem.sfu_answer = nn;
+
+        problem.symbol = "";
+
         break;
-      case 106 : 
+      case 106 : // Lesson 10 - Multiply By 9
         break;
-      case 108 : 
+      case 108 : //
         break;
-      case 110 : 
+      case 110 : //
         break;
-      case 112 : 
+      case 112 : //
         break;
-      case 114 : 
+      case 114 : //
         break;
-      case 116 : 
+      case 116 : //
         break;
-      case 117 : 
+      case 117 : // 
         break;
       case 119 : 
         break;
@@ -770,60 +1119,289 @@ export class WorksheetService {
 
     switch (Number(lessonNo)) {
       
-      case 524:
+      // case 524:
+      //   break;
+      case 525: // Lesson 2 - Addition +2
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = this.getRandomInt(10);
+        problem.values[1] = problem.values[0] === 2 ? this.getRandomInt(9) : 2;
+        problem.symbol = "+";
+        
         break;
-      case 525:
+      case 526: // Lesson 3 - Addition +9
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = this.getRandomInt(10);
+        problem.values[1] = problem.values[0] === 9 ? this.getRandomInt(9) : 9;
+        problem.symbol = "+";
         break;
-      case 526:
+      case 527: // Lesson 4 - Addition +8
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = this.getRandomInt(10);
+        problem.values[1] = problem.values[0] === 8 ? this.getRandomInt(9) : 8;
+        problem.symbol = "+";
         break;
-      case 527:
+      case 528: // Lesson 5 - Addition Doubles
+        var num = this.getRandomInt(10);
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = num;
+        problem.values[1] = num;
+        problem.symbol = "+";
         break;
-      case 528:
+      case 529: // Lesson 6 - Addition Doubles +1
+        var num = this.getRandomInt(10);
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = num;
+        problem.values[1] = num + 1;
+        problem.symbol = "+";
         break;
-      case 529:
+      case 530: // Lesson 7 - Addition making 10
+        var x = 0;
+        var y = 0;
+        do {
+          x = this.getRandomInt(10); // TODO repeat the randomization for either x or y, we're getting lots of repeats
+          y = this.getRandomInt(10);
+        } while (x + y != 10)
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "+";
         break;
-      case 530:
+      case 531: // Lesson 8 - Addition making 9
+        var x = 0;
+        var y = 0;
+        do {
+          x = this.getRandomInt(10); // TODO repeat the randomization for either x or y, we're getting lots of repeats
+          y = this.getRandomInt(10);
+        } while (x + y != 9)
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "+";
         break;
-      case 531:
+      case 532: // Lesson 9 - Addition of the Extras
+        var x = 0;
+        var y = 0;
+        do {
+          x = this.getRandomInt(7);
+          var inspect = (x == 3 || x == 4 || x == 5)
+        } while (!inspect)
+
+        if (x == 3)
+          y = 5;
+        if (x == 4 || x == 5)
+          y = 7;
+
+        // Occasionally switch x and y
+        var rand = this.getRandomInt(2);
+        if (rand == 1) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "+";
         break;
-      case 532:
+      case 533: // Lesson 10 - Solving for the Unknown
+        //
+        // Horizontal requirement
+        //
         break;
-      case 533:
+      case 534: // Lesson 11 - Intro to Subtraction
+        var x = 0;
+        var y = 0;
+        do {
+          x = this.getRandomInt(10); // TODO repeat the randomization for either x or y, we're getting lots of repeats
+          y = this.getRandomInt(10);
+        } while (x < y)
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 534:
+      case 535: // Lesson 12 - Subtraction -2
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(13);
+          y = this.getRandomInt(13);
+          if (y == 2 && x >= 3) {
+            inspect = true;
+          }
+          if (!inspect) {
+            if ((x - y) === 2)
+              inspect = true;
+          }
+        } while(!inspect)
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 535:
+      case 536: // Lesson 13 - Subtraction -9
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(21);
+          y = this.getRandomInt(21);
+          if (y == 9 && x >= 10) {
+            inspect = true;
+          }
+          if (!inspect) {
+            if ((x - y) === 9)
+              inspect = true;
+          }
+        } while(!inspect)
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 536:
+      case 537: // Lesson 14 - Subtraction -8
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(21);
+          y = this.getRandomInt(21);
+          if (y == 8 && x >= 9) {
+            inspect = true;
+          }
+          if (!inspect) {
+            if ((x - y) === 8)
+              inspect = true;
+          }
+        } while(!inspect)
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 537:
+      case 538: // Lesson 15 - Subtraction Doubles
+        var x = this.getRandomInt(10);
+        var y = x;
+        x = x * 2;
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 538:
+      case 539: // Lesson 16 - Sub Make 10
+        var x = 10;
+        var y = this.getRandomInt(10);
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 539:
+      case 540: // Lesson 17 - Sub Make 9
+        var x = 9;
+        var y = this.getRandomInt(9);
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 540:
+      case 541: // Lesson 18 - Sub Extras
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(9);
+          if (x == 7) {
+            y = this.getRandomInt(6);
+            if (y == 4 || y == 3) {
+              inspect = true; 
+            }
+          }
+          if (x == 8) {
+            y = this.getRandomInt(6);
+            if (y == 5  || y == 3) {
+              inspect = true;
+            }
+          }
+        } while (!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 541:
+      case 542: // Lesson 19 - Sub by 7 or adding up by 3
+        var x = 0;
+        var y = 7;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(15);
+          if (x >= 7)
+            inspect = true;
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 542:
+      case 543: // Lesson 20 - Sub by 6 or adding up by 4
+        var x = 0;
+        var y = 6;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(13);
+          if (x >= 6)
+            inspect = true;
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 543:
+      case 544: // Lesson 21 - Sub by 5 or adding up by 5
+        var x = 0;
+        var y = 5;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(13);
+          if (x >= 5)
+            inspect = true;
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
-      case 544:
-        break;
-      case 545:
+      case 545: // Lesson 22 - Subtraction by 3 and 4
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          
+          x = this.getRandomInt(11);
+          y = this.getRandomInt(5);
+
+          if ((y == 3 || y == 4) && x >= 5) {
+            inspect = true;
+          }
+
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
         break;
 
     }
     return problem;
   }
-
-
-
-  // 
-
-
 
   private getRandomNumberFromRange(range: MinimumMaximumRange) {
     return this.getRandomNumber(range.min, range.max);
@@ -834,5 +1412,9 @@ export class WorksheetService {
     max = Math.floor(max);
 
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  private getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
   }
 }
