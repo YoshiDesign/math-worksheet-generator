@@ -342,4 +342,26 @@ $sidebar-width: 300px;
     padding: 0;
     width: 100%;
   }
+
+  .divide-box {
+
+  }
+  .divide {
+    display: inline-block;
+    width:50%;
+  }
+  .divide-1 {
+    display: inline-block;
+  }
+  .divide-2 {
+    display: inline-block;
+  }
+  .divide-3 {
+    display: inline-block;
+  }
+  .divide-4 {
+    display: inline-block;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+  }
 }

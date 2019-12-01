@@ -30,6 +30,7 @@ import {
   AimOptions,
   WorksheetOptions
 } from '../options';
+import { splitAtColon } from '../../../node_modules/@angular/compiler/src/util';
 
 @Injectable()
 export class WorksheetService {
@@ -47,6 +48,8 @@ export class WorksheetService {
   }
 
   addProblem(problem) {
+    console.log("PUSHING PROBLEM");
+    console.log(problem);
     this.problems.push(problem);
   }
 
@@ -789,19 +792,139 @@ export class WorksheetService {
   private getBetaProblem(lessonNo){
 
     const problem = new BetaProblems();
-    console.log("Beta LESSON" + String(lessonNo));
+    // console.log("Beta LESSON" + String(lessonNo));
 
     switch (Number(lessonNo)) {
 
       case 68 : 
+
+        this.options.showHorizontal = true;
+        this.options.containsInequality = true;
+        this.options.problemsPerRow = 3;
+        problem.problemType = ProblemType.Inequality;
+        problem.isInequality = true;
+        problem.equation_inequality = (this.getRandomInt(2)) == 1 ? true : false;
+
+        var w = 0;
+        var x = 0;
+        var y = 0;
+        var z = 0;
+        var ans;
+
+        if (problem.equation_inequality == true) {
+
+          // Equation inequality
+          w = this.getRandomInt(10);
+          x = this.getRandomInt(10);
+          y = this.getRandomInt(10);
+          z = this.getRandomInt(10);
+
+          problem.values[0] = String(w) + " + " + String(x);
+          problem.values[1] = String(y) + " + " + String(z);
+          
+          if ((w + x) < (y + z)) {
+            ans = "<";
+          } else if ((w + x) > (y + z)) {
+            ans = ">";
+          } else if ((w + x) == (y + z)) {
+            ans = "=";
+          }
+
+        } else {
+          // whole number inequality
+          x = this.getRandomInt(10);
+          y = this.getRandomInt(10);
+          if (x > y) ans = ">";
+          else if (x < y) ans = "<";
+          else if (x == y) ans = "=";
+          problem.values[0] = x;
+          problem.values[1] = y;
+        }
+        problem.answer_inequality = ans;
+
         break;
-      case 69 : 
+      case 69 : // Round to nearest 10
+
+        var x = this.getRandomInt(90);
+        var y = x;
+        var ansTen = 0;
+        var iSwitch = 0;
+
+        do {
+
+          console.log(x);
+          console.log(y);
+          x++;
+          y--;
+          
+          if (x % 10 ==  0 && y % 10 == 0) {
+            console.log("FOUND A FIVE!!!!!!!!!!!");
+            ansTen = x;
+
+          } else if (x % 10 !=  0 && y % 10 == 0) {
+            console.log("FOUND Y");
+            ansTen = y;
+          } else if (x % 10 == 0 && y % 10 != 0) {
+            console.log("FOUND X");
+            ansTen = x;
+          }
+
+
+
+        } while(ansTen % 10 != 0)
+
+        console.log(`ansTEN == ${ansTen}`);
+
+        this.options.showHorizontal = true;
+        problem.problemType = ProblemType.RoundingTen;
+        problem.roundingTen = true;
+        problem.answer_roundingTen = ansTen;
+        problem.values[0] = x;
+
         break;
-      case 70 : 
+      case 70 : // Multiple Digit Addition
+        var x = 0;
+        var y = 0;
+        do {
+
+          x = this.getRandomInt(999);
+          y = this.getRandomInt(999);
+
+        } while ((x < 100) || (y < 100))
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "+";
         break;
-      case 72 : 
+      case 72 : // 2 Digit addition with carry
+
+        var x = 0;
+        var y = 0;
+        var str_x = "";
+        var str_y = "";
+
+        do {
+
+          x = this.getRandomInt(99);
+          y = this.getRandomInt(99);
+          str_x = String(x);
+          str_y = String(y);
+          var str_x_split = str_x.split("");
+          var str_y_split = str_y.split("");
+
+          console.log("STRS");
+          console.log(str_x_split);
+          console.log(str_y_split);
+
+        } while ((Number(str_x_split) + Number(str_y_split) < 10))
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "+";
+
         break;
-      case 76 : 
+      case 76 : // Sum < 1000
+
         break;
       case 78 : 
         break;
@@ -828,7 +951,6 @@ export class WorksheetService {
 
   private getGammaProblem(lessonNo){
 
-    console.log("Gamma LESSON" + String(lessonNo));
     const problem = new GammaProblems();
 
     switch (Number(lessonNo)) {
@@ -900,30 +1022,179 @@ export class WorksheetService {
 
         break;
       case 106 : // Lesson 10 - Multiply By 9
+        var x = this.getRandomInt(10);
+        var y = 9;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
         break;
-      case 108 : //
+      case 108 : // x3
+        var x = this.getRandomInt(10);
+        var y = 3;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
         break;
-      case 110 : //
+      case 110 : // x6
+        var x = this.getRandomInt(10);
+        var y = 6;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
         break;
-      case 112 : //
+      case 112 : // x4
+        var x = this.getRandomInt(10);
+        var y = 4;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
         break;
-      case 114 : //
+      case 114 : // x7
+        var x = this.getRandomInt(10);
+        var y = 7;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
         break;
-      case 116 : //
+      case 116 : // x8
+        var x = this.getRandomInt(10);
+        var y = 8;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
         break;
       case 117 : // 
+        var x = this.getRandomInt(10);
+        var y = this.getRandomInt(251);
+        // var switcher = this.getRandomInt(2);
+        // if (switcher !== 0) {
+        //   var tmp = x;
+        //   x = y;
+        //   y = tmp;
+        // }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = y;
+        problem.values[1] = x;
+        problem.symbol = "x";
         break;
       case 119 : 
+        var x = this.getRandomInt(100);
+        var y = this.getRandomInt(100);
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = y;
+        problem.values[1] = x;
+        problem.symbol = "x";
         break;
       case 120 : 
+        var x = this.getRandomInt(100);
+        var y = this.getRandomInt(100);
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = y;
+        problem.values[1] = x;
+        problem.symbol = "x";
         break;
       case 1211 : 
+        var x = 0; 
+        var y = 0;
+        do {
+          x = this.getRandomInt(100);
+          y = this.getRandomInt(751);
+        } while (y < 100 && x < 10 )
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = y;
+        problem.values[1] = x;
+        problem.symbol = "x";
         break;
       case 1212 : 
+        var x = 0; 
+        var y = 0;
+        do {
+          x = this.getRandomInt(751);
+          y = this.getRandomInt(751);
+        } while (y < 100 && x < 100 )
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = y;
+        problem.values[1] = x;
+        problem.symbol = "x";
         break;
       case 1241 : 
+        var x = 0; 
+        var y = 0;
+        do {
+          x = this.getRandomInt(751);
+          y = this.getRandomInt(9000);
+        } while (y < 1000 && x < 100 )
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = y;
+        problem.values[1] = x;
+        problem.symbol = "x";
         break;
       case 1242 : 
+        var x = 0; 
+        var y = 0;
+        do {
+          x = this.getRandomInt(9000);
+          y = this.getRandomInt(9000);
+        } while (y < 1000 && x < 1000 )
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = y;
+        problem.values[1] = x;
+        problem.symbol = "x";
         break;
 
     }
@@ -937,42 +1208,269 @@ export class WorksheetService {
 
     switch (Number(lessonNo)) {
 
-      case 129 :
-        break;;
-      case 130 :
-        break;;
-      case 131 :
-        break;;
-      case 133 :
-        break;;
-      case 135 :
-        break;;
-      case 137 :
-        break;;
-      case 139 :
-        break;;
-      case 143 :
-        break;;
-      case 145 :
-        break;;
-      case 146 :
-        break;;
-      case 147 :
-        break;;
-      case 149 :
-        break;;
-      case 150 :
-        break;;
-      case 151 :
-        break;;
-      case 152 :
-        break;;
-      case 154 :
-        break;;
+      case 129 : // Lesson 2
+        var y : any;
+        var x : any; 
+        var ans = 0;
+
+        do {
+          y = this.getRandomInt(3);
+          x = this.getRandomInt(10);
+          if (x === 0 || y === 0) {
+            x = 7;
+            y = 102;
+          }
+        } while(Math.ceil((x / y)) !== (x / y) || Math.floor((x / y)) !== (x / y))
+        ans = (x / y);
+        this.options.showHorizontal = true;
+        problem.problemType = ProblemType.Division;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "÷";
+        problem.divAnswer = ans;
+
+        break;
+      case 130 : // Lesson 3
+        var y : any;
+        var x : any; 
+        var ans = 0;
+
+        do {
+          y = 10;
+          x = this.getRandomInt(101);
+          if (x === 0) {
+            x = 7; // Will prompt another iteration
+          }
+        } while(x % 10 !== 0)
+        ans = (x / y);
+        this.options.showHorizontal = true;
+        problem.problemType = ProblemType.Division;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "÷";
+        problem.divAnswer = ans;
+        break;
+      case 131 : // Lesson 4 - Division by 3 or 5
+        var y : any;
+        var x : any; 
+        var ans = 0;
+
+        do {
+          y = this.getRandomInt(2) === 0 ? 3 : 5;
+          x = this.getRandomInt(101);
+
+        } while(x !== 0 && (Math.ceil((x / y)) !== (x / y) || Math.floor((x / y)) !== (x / y)))
+        ans = (x / y);
+        this.options.showHorizontal = true;
+        problem.problemType = ProblemType.Division;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "÷";
+        problem.divAnswer = ans;
+        break;
+      case 133 : // Lesson 6 - Divide by 9
+        var y : any;
+        var x : any; 
+        var ans = 0;
+
+        do {
+          y = 9;
+          x = this.getRandomInt(101);
+          if (x === 0) {
+            x = 7; // Will prompt another iteration
+          }
+        } while (x % 9 !== 0)
+        ans = (x / y);
+        this.options.showHorizontal = true;
+        problem.problemType = ProblemType.Division;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "÷";
+        problem.divAnswer = ans;
+        break;
+      case 135 : // Lesson 8
+        var y : any;
+        var x : any; 
+        var ans = 0;
+
+        do {
+          y = 6;
+          x = this.getRandomInt(101);
+          if (x === 0) {
+            x = 7; // Will prompt another iteration
+          }
+        } while (x % 6 !== 0)
+        ans = (x / y);
+        this.options.showHorizontal = true;
+        problem.problemType = ProblemType.Division;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "÷";
+        problem.divAnswer = ans;
+        break;
+      case 137 : // Lesson 10 - Division by 4
+        var y : any;
+        var x : any; 
+        var ans = 0;
+
+        do {
+          y = 4;
+          x = this.getRandomInt(101);
+          if (x === 0) {
+            x = 7; // Will prompt another iteration
+          }
+        } while (x % 4 !== 0)
+        ans = (x / y);
+        this.options.showHorizontal = true;
+        problem.problemType = ProblemType.Division;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "÷";
+        problem.divAnswer = ans;
+        break;
+      case 139 : // Lesson 12 Div by 7 or 8
+        var y : any;
+        var x : any; 
+        var ans = 0;
+
+        do {
+          y = this.getRandomInt(2) === 0 ? 7 : 8;
+          x = this.getRandomInt(101);
+
+        } while(x !== 0 && (Math.ceil((x / y)) !== (x / y) || Math.floor((x / y)) !== (x / y)))
+        ans = (x / y);
+        this.options.showHorizontal = true;
+        problem.problemType = ProblemType.Division;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "÷";
+        problem.divAnswer = ans;
+        break;
+      case 143 :// Lesson 16 - Div with a 1 dig remainder
+        var y : any;
+        var x : any; 
+        var ans = 0;
+
+        problem.problemType = ProblemType.Division;
+
+        var divisor = Math.floor(Math.random() * 8) + 2;
+        var quotient = Math.floor(Math.random() * 9) + 1;
+        var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
+        var dividend = (divisor * quotient) + remainder;
+        
+        problem.values[1] = divisor;
+        problem.values[0] = dividend;
+        problem.divAnswer = quotient;
+        problem.divRemainder = remainder;
+
+        console.log("ANSWER");
+        console.log(problem.divAnswer);
+        console.log("REMAINDER");
+        console.log(problem.remainder);
+
+        break;
+      case 145 : // Lesson 18
+
+        problem.problemType = ProblemType.Division;
+        var divisor = Math.floor(Math.random() * 8) + 2;
+        var quotient = Math.floor(Math.random() * (Math.floor(100/divisor) - 9)) + 10;
+        var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
+        var dividend = (divisor * quotient) + remainder;
+        problem.values[1] = divisor;
+        problem.values[0] = dividend;
+        problem.divAnswer = quotient;
+        problem.divRemainder = remainder;
+
+        break;
+      case 146 : // Lesson 19
+        var divisor = Math.floor(Math.random() * 8) + 2;
+        var quotient = Math.floor(Math.random() * (Math.floor(999/divisor) - 109)) + 100;
+        var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
+        var dividend = (divisor * quotient) + remainder;
+        problem.problemType = ProblemType.Division;
+        problem.values[1] = divisor;
+        problem.values[0] = dividend;
+        problem.divAnswer = quotient;
+        problem.divRemainder = remainder;
+        break;
+      case 147 : // Lesson 20
+        var divisor = Math.floor(Math.random() * 8) + 2;
+        var quotient = Math.floor(Math.random() * (Math.floor(999/divisor)));
+        var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
+        var dividend = (divisor * quotient) + remainder;
+        problem.problemType = ProblemType.Division;
+        problem.values[1] = divisor;
+        problem.values[0] = dividend;
+        problem.divAnswer = quotient;
+        problem.divRemainder = String(" ") + String(remainder) + "/" + String(divisor);
+
+        break;
+      case 149 : // Lesson 22
+        var divisor = Math.floor(Math.random() * 11) + 10;
+        var quotient = Math.floor(Math.random() * 31) + 20;
+        var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
+        var dividend = (divisor * quotient) + remainder;
+        problem.problemType = ProblemType.Division;
+        problem.values[1] = divisor;
+        problem.values[0] = dividend;
+        problem.divAnswer = quotient;
+        problem.divRemainder = remainder;
+
+        break;
+      case 150 : // Lessons 23
+        var divisor = Math.floor(Math.random() * 9) + 2;
+        var quotient = Math.floor(Math.random() * (9999/divisor));
+        var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
+        var dividend = (divisor * quotient) + remainder;
+
+        problem.problemType = ProblemType.Division;
+        problem.values[1] = divisor;
+        problem.values[0] = dividend;
+        problem.divAnswer = quotient;
+        problem.divRemainder = remainder;
+
+        break;
+      case 151 : // Lesson 24
+        var divisor = Math.floor(Math.random() * 90) + 10;
+        var quotient = Math.floor(Math.random() * (9999/divisor));
+        var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
+        var dividend = (divisor * quotient) + remainder;
+
+        problem.problemType = ProblemType.Division;
+        problem.values[1] = divisor;
+        problem.values[0] = dividend;
+        problem.divAnswer = quotient;
+        problem.divRemainder = remainder;
+
+        break;
+      case 152 : // Lesson 25
+        var divisor = Math.floor(Math.random() * 800) + 100;
+        var quotient = Math.floor(Math.random() * (100000/divisor));
+        var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
+        var dividend = (divisor * quotient) + remainder;
+
+        problem.problemType = ProblemType.Division;
+        problem.values[1] = divisor;
+        problem.values[0] = dividend;
+        problem.divAnswer = quotient;
+        problem.divRemainder = remainder;
+
+        break;
+      case 154 : // Lesson 27
+        problem.divFractionOf = true;
+        var factor1 = this.pickFromRange(1, 6);
+        var factor2 = this.pickFromRange(1, 8);
+        var product = factor1 * factor2;
+        var numerator = this.pickFromRange(1, (factor2 - 1));
+        var denominator = factor2;
+
+
+
+        break;
       case 155 :
-        break;;
+        break;
       case 157 :
-        break;;
+        break;
     
     }
     return problem;
@@ -981,7 +1479,6 @@ export class WorksheetService {
   private getEpsilonProblem(lessonNo){
 
     const problem = new EpsilonProblems();
-    console.log("Epsil LESSON" + String(lessonNo));
 
     switch (Number(lessonNo)) {
     
@@ -1030,7 +1527,6 @@ export class WorksheetService {
   private getZetaProblem(lessonNo){
 
     const problem = new ZetaProblems();
-    console.log("Zeta LESSON" + String(lessonNo));
 
     switch (Number(lessonNo)) {
     
@@ -1079,7 +1575,6 @@ export class WorksheetService {
   private getPrealgebraProblem(lessonNo){
 
     const problem = new PrealgebraProblems();
-    console.log("Prealg LESSON" + String(lessonNo));
 
     switch (Number(lessonNo)) {
 
@@ -1115,7 +1610,6 @@ export class WorksheetService {
   private getAimProblem(lessonNo){
 
     const problem = new AimProblems();
-    console.log("AIM LESSON" + String(lessonNo));
 
     switch (Number(lessonNo)) {
       
@@ -1207,6 +1701,30 @@ export class WorksheetService {
         //
         // Horizontal requirement
         //
+        var a = this.getRandomInt(10);
+        var c = this.getRandomInt(10);
+        var switcher = this.getRandomInt(2);
+
+        problem.problemType = 1;
+
+        // smaller of the two
+        var lhs = (a >= c) ? c : a;
+        // larger of the two
+        var rhs = (a >= c) ? a : c;
+
+        this.options.showHorizontal = true;
+        problem.requiresHorizontal = true;
+        problem.solveForUnknown = true;
+
+        problem.lhs = lhs;
+        problem.rhs = rhs;
+        problem.firstPosition = (switcher === 1) ? lhs : "_";
+        problem.secondPosition = (switcher === 1) ? "_" : lhs;
+        problem.values[0] = problem.firstPosition;
+        problem.values[1] = problem.secondPosition; 
+        problem.sfu_answer = rhs;
+
+        problem.symbol = "+";
         break;
       case 534: // Lesson 11 - Intro to Subtraction
         var x = 0;
@@ -1416,5 +1934,9 @@ export class WorksheetService {
 
   private getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
+  }
+  private  pickFromRange(upperLimit, lowerLimit) {
+    var result = Math.floor(Math.random() * ((upperLimit + 1) - lowerLimit)) + lowerLimit;
+    return result;
   }
 }

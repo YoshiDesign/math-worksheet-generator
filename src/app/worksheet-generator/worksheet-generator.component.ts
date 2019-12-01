@@ -74,6 +74,7 @@ export class WorksheetGeneratorComponent implements OnInit {
     this.worksheetService.clearProblems();      // 0
 
     this.worksheetService.generateProblems();   // 1
+    this.problemsPerRow = this.worksheetService.options.problemsPerRow;
 
     if (!this.isLoggedIn) {
       this.authService.loginAnonymous();
@@ -157,7 +158,7 @@ export class WorksheetGeneratorComponent implements OnInit {
   }
 
   problemsPerRowSliderChange(event) {
-    console.log(this);
+
     this.mathProblemsClasses[`math-problems--columns-${this.problemsPerRow}`] = false;
     this.problemsPerRow = this.worksheetService.options.problemsPerRow = event.value;
     this.mathProblemsClasses[`math-problems--columns-${this.problemsPerRow}`] = true;

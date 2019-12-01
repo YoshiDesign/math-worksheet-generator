@@ -12,5 +12,6 @@ export const enum ProblemType {
   Zeta  = 512,
   Prealgebra  = 1024,
   Aim  = 2048,
-
+  Inequality = 4096,
+  RoundingTen = 8192
 }

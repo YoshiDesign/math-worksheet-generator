@@ -33,6 +33,8 @@ export class WorksheetOptions {
   showTitle = true;
   title = 'Math Worksheet';
 
+  containsInequality = false;
+
   alphaOptions = new AlphaOptions();
   betaOptions = new BetaOptions();
   gammaOptions = new GammaOptions();

@@ -338,10 +338,10 @@
                 <br>
                 <md-slider color="primary" min="1" max="5" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></md-slider> {{problemsPerRow}}
               </div>
-              <!-- <div *ngIf="worksheetService.options.showHorizontal">
+              <!-- <div *ngIf="worksheetService.options.containsInequality == true">
                 Problems per row
                 <br>
-                <md-slider color="primary" min="1" max="5" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></md-slider> {{problemsPerRow}}
+                <md-slider color="primary" min="1" max="3" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></md-slider> {{problemsPerRow}}
               </div> -->
               <div>
                 Problem font size
@@ -419,12 +419,60 @@
           <div style="width:100%;" *ngIf="worksheetService.options.showHorizontal">
             <div class="math-problem" *ngFor="let problem of worksheetService.problems; index as i">
 
-              <!-- Non Division Problems -->
-                <div class="math-problem__problem" *ngIf="!isDivisionProblem(problem)">
+                <!-- Linear: DIVISION PROBLEMS  -->
+                <div class="math-problem__problem" *ngIf="isDivisionProblem(problem)">
+      
+                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                    <div class="math-problem__symbol"></div>
+                    <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as n">
+                      <span>{{ value }}&nbsp;</span>
+                      <span *ngIf="n == 1">&nbsp;=</span>
+                      <span class="math-answer" *ngIf="worksheetService.options.showAnswers && n == 1">&nbsp;{{ problem.divAnswer }}&nbsp;</span>
+                      <span *ngIf="n == 0">{{ problem.symbol }}</span>
+                    </div>
+
+                </div>
+                <!-- End Division problems -->
+
+               <!-- Inequalities for Beta -->
+               <div class="math-problem__problem" *ngIf="problem.isInequality == true">
+
                   <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
                   <div class="math-problem__symbol"></div>
                   <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">
-                    <!--   -->
+                      <span>{{ value }}&nbsp;</span>
+                      <span *ngIf="!worksheetService.options.showAnswers  && j === 0">&nbsp;_&nbsp;</span>
+                      <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 0">{{ problem.answer_inequality }}&nbsp;</span>
+                      <!-- <span>{{ value }}&nbsp;</span> -->
+                  </div>
+   
+                </div>
+
+                <!-- Rounding 10 -->
+                <div class="math-problem__problem" *ngIf="problem.roundingTen == true">
+                    
+                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                    <div class="math-problem__symbol"></div>
+                    <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">
+
+                        <span>{{ value }}&nbsp;&rarr;</span>
+                        <span *ngIf="!worksheetService.options.showAnswers  && j === 0">&nbsp;_&nbsp;</span>
+                        <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 0">{{ problem.answer_roundingTen }}&nbsp;</span>
+
+                    </div>
+
+                </div>
+                <!-- End Beta Inequalities -->
+
+
+
+                <!-- Non Division Problems -->
+                <div class="math-problem__problem" *ngIf="!isDivisionProblem(problem) && !problem.isInequality && !problem.roundingTen">
+                  ÷
+                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <div class="math-problem__symbol"></div>
+                  <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">
+                    <!-- Addition only  -->
                     <span *ngIf="problem.problemType === 1 ">
 
                       <span *ngIf="!problem.solveForUnknown || value != '_'">{{ value }}&nbsp;</span>
@@ -434,15 +482,18 @@
                       </span>
                     </span>
                     <!-- MULTIPLICATION -->
-                    <span *ngIf="problem.problemType === 8 && problem.lessonNo === 104">
-                      <!--  Solve for Unknown Mult -->
+
+                    <!--  Solve for Unknown Mult -->
+                      <span *ngIf="problem.problemType === 8 && problem.lessonNo === 104">
                         <span *ngIf="problem.solveForUnknown">
-                          <span *ngIf="!worksheetService.options.showAnswers">{{ value }}&nbsp;</span>
+                          <span *ngIf="!worksheetService.options.showAnswers">{{ value }}</span>
                           <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 1">{{problem.lhs}} x {{ problem.answer }}&nbsp;</span>
                         </span>
-                    </span>
-                    <!-- <span class="math-problem__value-HOR" *ngIf="problem.solveForUnknown && value == '_' && worksheetService.options.showAnswers">{{ problem.answer }}</span> -->
-                    <span *ngIf="j == problem.values.length - 1"> = </span><span *ngIf="j < problem.values.length - 1">{{ problem.symbol }}</span>
+                      </span>
+                      <!--  Solve for Unknown Mult -->
+                      <!-- Solve for unknown Add + Mult symbols -->
+                      <span *ngIf="j == problem.values.length - 1"> = </span><span *ngIf="j < problem.values.length - 1">{{ problem.symbol }}</span>
+
                   </div>
 
                   <!-- Normal answers -->
@@ -450,17 +501,17 @@
                     <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.answer }}</ng-container> 
                   </div>
 
-
-                  <!--  SFU answers ? What ? -->
+                  <!--  Solve For Unknown Answers -->
                   <div class="math-problem__value-HOR" *ngIf="problem.solveForUnknown == true">
                       <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.sfu_answer }}</ng-container> 
                   </div>
 
                   <div class="math-problem__answer-HOR" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
                 </div>
+              <!-- ENd non division problems -->
 
                 <!-- Horizontal Division Problems -->
-                <div class="math-problem__problem" *ngIf="isDivisionProblem(problem)">
+                <!-- <div class="math-problem__problem" *ngIf="isDivisionProblem(problem) && !problem.isInequality">
                     <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
                     <div class="math-problem__symbol"></div>
                     <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">{{ value }}&nbsp;<span *ngIf="j == problem.values.length - 1"> = </span><span *ngIf="j < problem.values.length - 1">{{ problem.symbol }}</span></div>
@@ -472,14 +523,38 @@
                       <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.answer }}</ng-container> 
                     </div>
                     <div class="math-problem__answer-HOR" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
-                </div>
+                </div> -->
+
             </div>
           </div>
 
           <!-- NOT HORIZONTAL -->
           <div *ngIf="!worksheetService.options.showHorizontal">
             <div class="math-problem" *ngFor="let problem of worksheetService.problems; index as i">
-              <div class="math-problem__problem">
+              <div class="math-problem__problem" *ngIf="isDivisionProblem(problem)">
+                <div class="math-problem__number" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <div style="width:100%;" class="divide-box">
+                  <div>
+                    <div style="display: inline-block; width: 19px;" class="divide divide-1"> <span></span> </div>
+                    <div style="display: inline-block; " class="math-problem__answer-HOR divide divide-2"> <span *ngIf="worksheetService.options.showAnswers">{{ problem.divAnswer }} &nbsp; R{{ problem.divRemainder }}</span> </div>
+                  </div>
+                  <div>
+
+                      <span class='numbers' style="border-right: 1px black solid; border-radius: 0px 0px 10px 0px">
+                        {{problem.values[1]}}
+                      </span>
+
+                      <span class='numbers' style="border-top: 1px black solid; ">
+                        {{problem.values[0]}}
+                      </span>
+                      
+                  </div>
+
+                </div>
+
+              </div>
+              <!-- Non Division Problems -->
+              <div class="math-problem__problem" *ngIf="!isDivisionProblem(problem) && problem.problemType != 4096">
                 <div class="math-problem__number" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
                 <div class="math-problem__symbol">{{ problem.symbol }}</div>
                 <div class="math-problem__value" *ngFor="let value of problem.values">{{ value }}</div>
@@ -515,5 +590,5 @@
   </div>
 </div>
 <div class="worksheet__generate mat-elevation-z5 d-print-none">
-  <button type="button" md-raised-button color="primary" (click)="generateWorksheet()" [disabled]="!optionsForm.form.valid">Generate Worksheet</button>
+  <button type="button" style="background:#001f69;" md-raised-button color="primary" (click)="generateWorksheet()" [disabled]="!optionsForm.form.valid">Generate Worksheet</button>
 </div>
