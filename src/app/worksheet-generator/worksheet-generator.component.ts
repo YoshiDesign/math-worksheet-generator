@@ -199,6 +199,18 @@ export class WorksheetGeneratorComponent implements OnInit {
 
   setHorizontal() {
     // Reset to max of 5 problems per row when this is selected
-    this.problemsPerRow = this.worksheetService.options.problemsPerRow = 5;
+    // this.problemsPerRow = this.worksheetService.options.problemsPerRow = 3;
+  }
+
+  addLessonList(level) {
+    console.log(level);
+    var list = document.getElementById(String(level) + "-select");
+    var dock = document.getElementById(String(level) + "-selector");
+    var listClone = list.cloneNode(true);
+    dock.appendChild(listClone);
+  }
+
+  reset() {
+    location.reload();
   }
 }

@@ -20,11 +20,12 @@ export class WorksheetOptions {
   landscape = false;
   showHorizontal = false;
   letterSpacing = 3;
-  lineSpacing = 5;
-  problemCount = 25;
+  lineSpacing = 3;
+  problemCount = 20;
+  Fractions = false;
   lessonsCount = 0;  // How many different levels were selected
   problemFontSize = 2;
-  problemsPerRow = 5;
+  problemsPerRow = 3;
   showAnswers = false;
   showDateLine = true;
   showInstructions = true;

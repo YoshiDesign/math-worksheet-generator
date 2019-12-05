@@ -319,6 +319,68 @@ $sidebar-width: 300px;
   margin-top: 1rem;
 }
 
+  /*
+  * New Styles
+  */
+  .style1 {font-size: x-large}
+  .style2 {color: #03438d; font-family: "Times New Roman", Times, serif; font-weight: bold;}
+  .divsign {
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-left-style: solid;
+    border-top-color: #000000;
+    border-left-color: #000000;
+  }
+  .smallfraction {
+    font-size: medium;
+  }
+  .numerator {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #000000;
+    text-align: center;
+  }
+  .baseline {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #000000;
+    text-align:right;
+  }
+  .overbar {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #333333;
+    line-height: 15pt;
+    border-left-color: #FFFFFF;
+    margin-top: 2px;
+  }
+  .radical {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #FFFFFF;
+    line-height: 18pt;
+  }
+  td {
+    white-space: nowrap;
+  }
+  
+  tr {
+    /*height: 30px;*/
+  }
+  
+  ins {
+    text-decoration: none;
+  }
+  del {
+    text-decoration: line-through;
+  }
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
 @media print {
   .math-problem {
     @for $i from 1 through 10 {
@@ -364,4 +426,67 @@ $sidebar-width: 300px;
     border-top: 1px solid black;
     border-left: 1px solid black;
   }
+
+  /*
+  * New Styles
+  */
+  .style1 {font-size: x-large}
+  .style2 {color: #03438d; font-family: "Times New Roman", Times, serif; font-weight: bold;}
+  .divsign {
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-left-style: solid;
+    border-top-color: #000000;
+    border-left-color: #000000;
+  }
+  .smallfraction {
+    font-size: medium;
+  }
+  .numerator {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #000000;
+    text-align: center;
+  }
+  .baseline {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #000000;
+    text-align:right;
+  }
+  .overbar {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #333333;
+    line-height: 15pt;
+    border-left-color: #FFFFFF;
+    margin-top: 2px;
+  }
+  .radical {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #FFFFFF;
+    line-height: 18pt;
+  }
+  td {
+    white-space: nowrap;
+  }
+  
+  tr {
+    /*height: 30px;*/
+  }
+  
+  ins {
+    text-decoration: none;
+  }
+  del {
+    text-decoration: line-through;
+  }
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
 }

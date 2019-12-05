@@ -9,6 +9,7 @@ export class DeltaProblems {
   divAnswer : any;
   divRemainder : any;
   divFractionOf : boolean;
+  divRoman : boolean;
 
 
   constructor () {
