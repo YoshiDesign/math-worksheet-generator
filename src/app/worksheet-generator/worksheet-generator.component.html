@@ -416,7 +416,7 @@
               
               <div class="math-problem__problem" *ngIf="problem.deltaProblem && worksheetService.options.showAnswers && problem.lessonNo == 154">
                   <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="1"><tr><td class="numerator">{{problem.numerator}}</td><td rowspan="2" valign="center">&nbsp;&nbsp;of &nbsp; {{problem.product}} &nbsp;=&nbsp; {{problem.divProd}}</td></tr><tr><td>&nbsp;{{problem.denominator}}</td></tr></table>
+                    <table cellpadding="1"><tr><td class="numerator">{{problem.numerator}}</td><td rowspan="2" valign="center">&nbsp;&nbsp;of &nbsp; {{problem.product}} &nbsp;=&nbsp; <span class="math-answer">{{problem.divProd}}</span></td></tr><tr><td>&nbsp; {{problem.denominator}}</td></tr></table>
                 
               </div>
 
@@ -437,7 +437,6 @@
                   <table *ngIf="problem.direction == 1" cellpadding="1"><tr><td>{{problem.arabic}}&nbsp; = &nbsp;<span class="math-answer"> {{problem.roman}}</span></td></tr></table>
                   <table  *ngIf="problem.direction !== 1" cellpadding="1"><tr><td>{{problem.roman}}&nbsp; = <span class="math-answer"> &nbsp; {{problem.arabic}}</span></td></tr></table>
               </div>
-
 
               <!-- Delta Lesson 30 -->
               <div class="math-problem__problem" *ngIf="problem.deltaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 157">
