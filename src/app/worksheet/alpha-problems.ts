@@ -11,8 +11,10 @@ export class AlphaProblems {
   secondPosition;
   lhs;
   rhs;
+  problemNo : any;
 
   constructor() {
+    this.problemNo = 0;
     this.problemType = null;
     this.requiresHorizontal = false;
     this.solveForUnknown = false;

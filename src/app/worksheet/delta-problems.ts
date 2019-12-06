@@ -10,9 +10,26 @@ export class DeltaProblems {
   divRemainder : any;
   divFractionOf : boolean;
   divRoman : boolean;
-
+  deltaProblem : boolean;
+  divProd : any;
+  factor1 : any;
+  factor2 : any;
+  product : any;
+  numerator : any;
+  denominator : any;
+  lessonNo : any;
+  arabic : any;
+  roman : any;
+  direction : any;
+  override : boolean;
+  horizontalBlock : boolean;
+  problemNo : any;
+  both : boolean;
+  numerals : boolean;
 
   constructor () {
+    this.problemNo = 0;
+    this.deltaProblem = false;
     this.problemType = null;
     this.divAnswer = 0;
     this.divRemainder = 0;

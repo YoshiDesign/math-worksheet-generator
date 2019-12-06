@@ -53,6 +53,8 @@ export class WorksheetService {
 
   clearProblems() {     // 0
     this.problems = [];
+    this.all_selected_lessons = [];
+    this.lessons_selected = [];
     this.options.lessonsCount = 0;
   }
 
@@ -148,7 +150,6 @@ export class WorksheetService {
     // Delta Selections
     if (this.options.deltaOptions.enabled) {
       
-
       let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-delta-lesson');
       let adding_lesson = false;
 
@@ -291,6 +292,10 @@ export class WorksheetService {
     // DEMME METHOD
     var original_count = this.options.problemCount;
     var min_problems = Math.floor(this.options.problemCount / this.options.lessonsCount);
+    console.log(`ProblemCount ${this.options.problemCount}`);
+    console.log(`LessonCount ${this.options.lessonsCount}`);
+    console.log(`MinProblems ${min_problems}`);
+
     var extras = this.options.lessonsCount % this.options.problemCount;
     var add_extras = false;
     // Gather lesson id's in ascending order
@@ -337,6 +342,7 @@ export class WorksheetService {
               }
 
               if (extras != 0 && add_extras == false) {
+                console.log('adding extras');
                 n -= ( extras -1 );
                 add_extras = true;
               }
@@ -405,6 +411,7 @@ export class WorksheetService {
         //   break;
       // }
     // }
+    this.options.problemCount = original_count;
   }
 
   getById(id: string): FirebaseObjectObservable<WorksheetService> {
@@ -1652,30 +1659,61 @@ export class WorksheetService {
 
         break;
       case 154 : // Lesson 27 TODO
+        problem.deltaProblem = true;
+        problem.lessonNo = 154;
+        problem.both = false;
+
         problem.divFractionOf = true;
         var factor1 = this.pickFromRange(1, 6);
         var factor2 = this.pickFromRange(1, 8);
         var product = factor1 * factor2;
         var numerator = this.pickFromRange(1, (factor2 - 1));
         var denominator = factor2;
+        var divProd =  ((product/denominator) * numerator);
+
+        problem.numerals = true;
+        this.options.showHorizontal = true;
+        problem.factor1 = factor1;
+        problem.factor2 = factor2;
+        problem.product = product;
+        problem.numerator = numerator;
+        problem.denominator = denominator;
+        problem.divProd = divProd;
 
         break;
       case 155 : // Lesson 28 TODO
 
         var arabic = this.pickFromRange(399, 1);
         var roman = this.romanize(arabic);
-        var dir = this.pickFromRange(2, 1);
-        if (dir == 1) {
-          ;
-        } else {
-          ;
-        }
+        var direction = this.pickFromRange(2, 1);
+
+        // problem.override = true;
+        problem.numerals = true;
+        problem.both = false;
+        problem.lessonNo = 155;
+        this.options.showHorizontal = true;
+        problem.deltaProblem = true;
+        problem.arabic = arabic;
+        problem.roman = roman;
+        problem.direction = direction;
 
         break;
-      case 157 :
+
+      case 157 : // Lesson 30 
         var arabic = this.pickFromRange(3999, 400);
         var roman = this.romanize(arabic);
-        var direction = this.pickFromRange(2, 1)
+        var direction = this.pickFromRange(2, 1);
+
+        problem.numerals = true;
+        problem.both = false;
+        // problem.override = true;
+        problem.lessonNo = 157;
+        this.options.showHorizontal = true;
+        problem.deltaProblem = true;
+        problem.arabic = arabic;
+        problem.roman = roman;
+        problem.direction = direction;
+
         break;
     }
     return problem;
@@ -1781,9 +1819,6 @@ export class WorksheetService {
         
         this.options.showHorizontal = true;
         this.options.Fractions = true;
-
-        console.log("EPSILON LESSON 5 PROBLEM");
-        console.log(problem);
 
         problem.numerator1 = numerator1;
         problem.numerator2 = numerator2;
@@ -1996,7 +2031,7 @@ export class WorksheetService {
         var answerNumerator = problemNumerator;
 
         for (f = 10; f > 1; f--) {
-            if ((answerDenominator % f == 0) && (answerNumerator % f == 0)) { //reduce fraction2
+            if ((answerDenominator % f == 0) && (answerNumerator % f == 0)) { 
                 answerDenominator = answerDenominator / f;
                 answerNumerator = answerNumerator / f;
             }
@@ -2007,7 +2042,7 @@ export class WorksheetService {
         problem.problemDenominator = problemDenominator;
         problem.problemNumerator = problemNumerator;
         problem.answerNumerator = answerNumerator;
-        problem.answerDenominator = problemDenominator;
+        problem.answerDenominator = answerDenominator;
 
         break;
 
@@ -2034,7 +2069,7 @@ export class WorksheetService {
         problem.problemDenominator = problemDenominator;
         problem.problemNumerator = problemNumerator;
         problem.answerNumerator = answerNumerator;
-        problem.answerDenominator = problemDenominator;
+        problem.answerDenominator = answerDenominator;
 
         break;
       case 173: // Lesson 15
@@ -3416,12 +3451,12 @@ export class WorksheetService {
   private romanize (num) {
     if (!+num)
         return false;
-    var	digits = String(+num).split(""),
-        key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+    var	digits = String(+num).split("");
+        var key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
             "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
-            "","I","II","III","IV","V","VI","VII","VIII","IX"],
-        roman = "",
-        i = 3;
+            "","I","II","III","IV","V","VI","VII","VIII","IX"];
+        var roman = "";
+        var i = 3;
     while (i--)
         roman = (key[+digits.pop() + (i * 10)] || "") + roman;
     return Array(+digits.join("") + 1).join("M") + roman;

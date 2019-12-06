@@ -11,8 +11,10 @@ export class BetaProblems {
   equation_inequality : boolean;
   answer_inequality : string;
   answer_roundingTen : number;
+  problemNo : any;
 
   constructor() {
+    this.problemNo = 0;
     this.roundingTen = false;
     this.problemType = null;
     this.requiresHorizontal = false;

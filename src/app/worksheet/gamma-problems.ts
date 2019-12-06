@@ -12,8 +12,10 @@ export class GammaProblems {
   lhs;
   rhs;
   lessonNo;
+  problemNo : any;
 
   constructor() {
+    this.problemNo = 0;
     this.problemType = null;
     this.requiresHorizontal = false;
     this.solveForUnknown = false;

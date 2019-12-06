@@ -27,10 +27,12 @@ export class PrealgebraProblems {
   reducer : any;
   correctedBase : any;
   finalFactor : any;
+  problemNo : any;
   answerSign : any;
 
 
   constructor() {
+    this.problemNo = 0;
     this.prealgebraProblem = true;
     this.override = false;
     this.containsNegative = false;

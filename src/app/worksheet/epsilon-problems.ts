@@ -90,7 +90,9 @@ denom : any;
 num : any;
 
 decimal : any;
+problemNo : any;
   constructor() {
+    this.problemNo = 0;
     this.fraction = false;
     this.requiresHorizontal = false;
     this.epsilonProblem = true;

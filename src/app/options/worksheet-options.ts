@@ -53,6 +53,7 @@ export class WorksheetOptions {
   zetaCreated = 0;
   prealgebraCreated = 0;
   aimCreated = 0;
+  override = true;
 
   updateFromJson(jsonObject: WorksheetOptions) {
     this.additionOptions.updateFromJson(jsonObject.additionOptions);
