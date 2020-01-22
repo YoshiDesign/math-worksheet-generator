@@ -1,7 +1,7 @@
 
 export class AlphaOptions {
 
-  enabled = true;
+  enabled = false;
   
   lesson_36 = false
   lesson_37 = false

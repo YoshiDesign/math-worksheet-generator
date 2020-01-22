@@ -110,7 +110,9 @@ $sidebar-width: 300px;
 
 .worksheet-sidebar {
   background-color: $sidebar-bg;
-  height: calc(100% - 84px); // leave room for the generate button
+  // height: calc(100% - 84px); // leave room for the generate button
+  height: auto;
+  overflow-x: hidden;
   overflow-y: auto;
   position: relative;
   width: $sidebar-width;
@@ -120,8 +122,8 @@ $sidebar-width: 300px;
   background-color: $sidebar-bg;
   left: 0;
   padding: 24px;
-  position: fixed;
-  bottom: 0;
+  // position: fixed;
+  // bottom: 0;
   width: $sidebar-width;
   z-index: 10;
 
@@ -139,6 +141,10 @@ $sidebar-width: 300px;
   margin: 75px auto 1rem;
   padding: 2rem;
   width: 511pt; // emulate 8.5x11 paper width
+  
+}
+.worksheet__card::-webkit-scrollbar {
+  display:none;
 }
 
 .worksheet__card--landscape {
@@ -405,9 +411,6 @@ $sidebar-width: 300px;
     width: 100%;
   }
 
-  .divide-box {
-
-  }
   .divide {
     display: inline-block;
     width:50%;
@@ -418,11 +421,11 @@ $sidebar-width: 300px;
   .divide-2 {
     display: inline-block;
   }
-  .divide-3 {
-    display: inline-block;
+  div.divide-3 {
+    display: inline-block !important;
   }
   .divide-4 {
-    display: inline-block;
+    display: inline-block !important;
     border-top: 1px solid black;
     border-left: 1px solid black;
   }

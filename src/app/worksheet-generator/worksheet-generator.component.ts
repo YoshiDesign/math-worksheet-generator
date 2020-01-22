@@ -69,6 +69,11 @@ export class WorksheetGeneratorComponent implements OnInit {
   }
 
   generateWorksheet() {
+    // Refresh the message box
+    var messages = document.getElementById('messaging');
+    if (messages != undefined)
+      document.getElementById('messaging').style.display = "block";
+
     this.analytics.trackEventWithCategory('worksheet', 'generate');
 
     this.worksheetService.clearProblems();      // 0
@@ -146,9 +151,11 @@ export class WorksheetGeneratorComponent implements OnInit {
   // }
 
   print() {
+
+    document.getElementById('messaging').style.display = "none";
     window.print();
 
-    this.analytics.trackEventWithCategory('worksheet', 'print');
+    // this.analytics.trackEventWithCategory('worksheet', 'print');
   }
 
   problemFontSizeSliderChange(event) {

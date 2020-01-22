@@ -1,4 +1,4 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/demme-theme.css';
 @import 'variables';
 @import 'reboot';
 
@@ -66,4 +66,16 @@ app-worksheet-generator {
 
 .select-lesson {
     width:80%;
+}
+
+.message-block {
+  margin:15px auto;
+  position:absolute;
+  top: -25px;
+  left:50%;
+  z-index:99;
+}
+.message-block p {
+  padding:10px;
+  text-align:center;
 }

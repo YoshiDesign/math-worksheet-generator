@@ -1,3 +1,9 @@
+<div id="messaging" class="message-block" *ngIf="worksheetService.problems.length">
+    <p>
+        This worksheeet will become scrollable.<br>Problems will be printed on additional pages.
+    </p>
+
+  </div>
 <div class="worksheet">
   <div class="worksheet-sidebar mat-elevation-z5 d-print-none">
     <form #optionsForm="ngForm">
@@ -13,7 +19,7 @@
             <md-expansion-panel class="worksheet-options__panel-problem-options mat-elevation-z0" expanded="true">
               <md-expansion-panel-header>
                 <md-panel-title>
-                  Problem Type Options
+                   Levels and Lessons
                 </md-panel-title>
               </md-expansion-panel-header>
               <md-form-field>
@@ -108,7 +114,7 @@
                         <option value="98">Lesson 2 - Multiply By 1 And 0, Commutative Property</option>
                         <option value="100">Lesson 4 - Multiply By 2, 1 Quart = 2 Pints</option>
                         <option value="102">Lesson 6 - Multiply By 5, 5¢ = 1 Nickel</option>
-                        <option value="104">Lesson 8 - Solve For An Unknown</option>
+                        <option value="104">Lesson 8 - Solve for an Unknown</option>
                         <option value="106">Lesson 10 - Multiply By 9</option>
                         <option value="108">Lesson 12 - Multiply By 3, 3 Feet = 1 Yard</option>
                         <option value="110">Lesson 14 - Multiply By 6</option>
@@ -186,7 +192,7 @@
                             <option value="171">Lesson 13 - Reducing Fractions—Prime Factors</option>
                             <option value="173">Lesson 15 - Mixed Numbers And Improper Fractions</option>
                             <option value="175">Lesson 17 - Addition And Subtraction Of Mixed Numbers</option>
-                            <option value="176">Lesson 18 - Addition Of Mixed Numbers</option>
+                            <option value="176">Lesson 18 - Addition of Mixed Numbers</option>
                             <option value="177">Lesson 19 - Subtraction Of Mixed Numbers</option>
                             <option value="179">Lesson 21 - Adding Mixed Numbers</option>
                             <option value="180">Lesson 22 - Subtracting Mixed Numbers</option>
@@ -287,9 +293,9 @@
                         <option value="529">Lesson 6 - Addition: Doubles +1</option>
                         <option value="530">Lesson 7 - Addition: Making 10</option>
                         <option value="531">Lesson 8 - Addition: Making 9</option>
-                        <option value="532">Lesson 9 - Addition Of the Extras</option>
+                        <option value="532">Lesson 9 - Addition of the Extras</option>
                         <option value="533">Lesson 10 - Solving For the Unknown</option>
-                        <option value="534">Lesson 11 - Introduction To Subtraction</option>
+                        <!-- <option value="534">Lesson 11 - Introduction To Subtraction</option> -->
                         <option value="535">Lesson 12 - Subtraction: -2</option>
                         <option value="536">Lesson 13 - Subtraction: -9</option>
                         <option value="537">Lesson 14 - Subtraction: -8</option>
@@ -335,11 +341,11 @@
                 <br>
                 <md-slider color="primary" min="1" max="6" [value]="problemFontSize" (input)="problemFontSizeSliderChange($event)"></md-slider> {{problemFontSize}}
               </div>
-              <div *ngIf="!worksheetService.options.showHorizontal">
+              <!-- <div *ngIf="!worksheetService.options.showHorizontal">
                 Problem letter spacing
                 <br>
                 <md-slider color="primary" min="1" max="10" [value]="letterSpacing" (input)="letterSpacingSliderChange($event)"></md-slider> {{letterSpacing}}
-              </div>
+              </div> -->
               <div>
                 Line spacing
                 <br>
@@ -384,12 +390,42 @@
                   <md-slide-toggle color="primary" name="showHorizontal" [(ngModel)]="worksheetService.options.showHorizontal" (click)="setHorizontal()" >Horizontal Equations</md-slide-toggle>
               </div>
             </md-expansion-panel>
+
+
+            <!-- <md-expansion-panel class="worksheet-options__panel-display-options mat-elevation-z0">
+                <md-expansion-panel-header>
+                  <md-panel-title>
+                    More Info.
+                  </md-panel-title>
+                </md-expansion-panel-header>
+                <div>
+                  <p>Test</p>
+                </div>
+              </md-expansion-panel> -->
+
+
           </md-accordion>
         </md-card-content>
       </md-card>
     </form>
+
+    <div class="worksheet__generate mat-elevation-z5 d-print-none">
+
+      <button type="button" style="background:#256eb7;" md-raised-button color="primary" (click)="generateWorksheet()" [disabled]="!optionsForm.form.valid">Generate Worksheet</button>
+      <br><br>
+
+      <button type="button" style="background:#f37c21;" md-raised-button color="primary" (click)="reset()" [disabled]="!optionsForm.form.valid">Reset</button>
+      <br><br>
+      <button *ngIf="worksheetService.problems.length" type="button" style="background:#042065; " md-raised-button color="primary" (click)="print()" [disabled]="!optionsForm.form.valid">Print</button>
+
+      <!-- <button class="worksheet__print-button d-print-none" md-fab color="accent" *ngIf="worksheetService.problems.length">
+        <md-icon class="md-24" aria-label="Print the worksheet" (click)="print()">print</md-icon>
+      </button> -->
+    </div>
+
   </div>
   <div id="main-sheet" class="worksheet-content">
+
     <md-card style='overflow: scroll;' class="worksheet__card" [class.worksheet__card--landscape]="worksheetService.options.landscape" *ngIf="worksheetService.problems.length">
 
       <md-card-content>
@@ -1541,7 +1577,7 @@
 
                
 
-                <!-- Linear: DIVISION PROBLEMS  -->
+                <!-- HORIZONTAL : DIVISION PROBLEMS  -->
                 <div class="math-problem__problem" *ngIf="isDivisionProblem(problem) && !worksheetService.options.Fractions">
       
                     <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
@@ -1549,7 +1585,7 @@
                     <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as n">
                       <span>{{ value }}&nbsp;</span>
                       <span *ngIf="n == 1">&nbsp;=</span>
-                      <span class="math-answer" *ngIf="worksheetService.options.showAnswers && n == 1" style="position:relative; left:10px;">&nbsp;{{ problem.divAnswer }}&nbsp; <span *ngIf="problem.divRemainder">R&nbsp;{{problem.divRemainder}}</span></span>
+                      <span class="math-answer" *ngIf="worksheetService.options.showAnswers && n == 1" style="position:relative; left:10px;">&nbsp;{{ problem.divAnswer }}&nbsp; <span *ngIf="problem.divRemainder"><span *ngIf="problem.lessonNo !== 147">R&nbsp;</span>{{problem.divRemainder}}</span></span>
                       <span *ngIf="n == 0">÷</span>
                     </div>
 
@@ -1632,10 +1668,10 @@
 
                     <!--  Solve for Unknown Mult : Gamma Lesson 8 -->
                       <span *ngIf="problem.problemType === 8 && problem.lessonNo === 104">
-                        <span *ngIf="problem.solveForUnknown">
-                          <span *ngIf="!worksheetService.options.showAnswers">{{ value }}</span>
+
+                          <span *ngIf="!worksheetService.options.showAnswers && problem.solveForUnknown">{{ value }}</span>
                           <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 1">{{problem.lhs}} x {{ problem.answer }}&nbsp;</span>
-                        </span>
+
                       </span>
                       <!--  Solve for Unknown Mult -->
                       <!-- Solve for unknown AddMult symbols -->
@@ -1691,22 +1727,41 @@
 
                 <div class="math-problem__number" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
+                <!-- VERTICAL DIVISION PROBLEMS -->
                 <div style="width:100%;" class="divide-box">
                   <div>
-                    <div style="display: inline-block; width: 19px;" class="divide divide-1"> <span></span> </div>
-                    <div style="display: inline-block; " class="math-problem__answer-HOR divide divide-2"> <span *ngIf="worksheetService.options.showAnswers">{{ problem.divAnswer }} &nbsp; <span *ngIf="problem.divRemainder">R{{ problem.divRemainder }}</span></span> </div>
-                  </div>
-                  <div>
-                      <!-- LONG DIVISION TABLES -->
-                      <span class='numbers' style="border-right: 1px black solid;">
-                        {{problem.values[1]}}
-                      </span>
+                    <div style="display: inline-block;  min-width: 30px; " class="divide divide-1"> <span></span> </div>
 
-                      <span class='numbers' style="border-top: 1px black solid; ">
-                        {{problem.values[0]}}
+                    <!-- 
+                      DIVISION ALIGNMENT PROPERTIES 
+                      The placement of the quotient depends on how many digits are in the dividend and how many are in the divisor
+                    -->
+
+                    <div style="display: inline-block;position:relative;left:7px;" class="math-problem__answer-HOR divide divide-2"> 
+                      <span *ngIf="worksheetService.options.showAnswers">{{ problem.divAnswer }} &nbsp; 
+                        <span *ngIf="problem.divRemainder"><span *ngIf="problem.lessonNo !== 147">R</span>{{ problem.divRemainder }}
                       </span>
-                      
+                    </span> 
+                    </div>
+
+                </div>
+
+                <div>
+                  <!-- LONG DIVISION TABLES -->
+                  <div style="display: inline-block; min-width: 30px; text-align:center;"  class="divide-3">
+
+                    <span class='numbers' >
+                      {{problem.values[1]}}
+                    </span>
                   </div>
+
+                  <div class="divide-4" style="display: inline-block;border-left: 1px black solid; border-top: 1px black solid;min-width: 27px;text-align: center;">
+                    <span class='numbers'>
+                      {{problem.values[0]}}
+                    </span>
+                  </div>
+
+                </div>
 
                 </div>
 
@@ -1733,6 +1788,7 @@
         </div>
         <div class="worksheet__id" *ngIf="worksheetService.id">Worksheet Id: {{worksheetService.id}}</div>
       </md-card-content>
+ 
     </md-card>
 
     <!-- <div class="worksheet-display-disclaimer mat-elevation-z5 d-print-none" *ngIf="worksheetService.problems.length">
@@ -1740,16 +1796,25 @@
       <br>
       Your actual printout may look different depending on a number of factors including printer settings.
     </div> -->
-    <button class="worksheet__print-button d-print-none" md-fab color="accent" *ngIf="worksheetService.problems.length">
+
+
+    <!-- <button class="worksheet__print-button d-print-none" md-fab color="accent" *ngIf="worksheetService.problems.length">
       <md-icon class="md-24" aria-label="Print the worksheet" (click)="print()">print</md-icon>
-    </button>
+    </button> -->
+
+
     <!-- <button class="worksheet__save-button d-print-none" md-fab color="primary" *ngIf="worksheetService.problems.length && (authService.user | async)?.uid">
       <md-icon class="md-24" aria-label="Save the worksheet" (click)="save()">save</md-icon>
     </button> -->
+
+    
   </div>
+
+
+
 </div>
-<div class="worksheet__generate mat-elevation-z5 d-print-none">
+<!-- <div class="worksheet__generate mat-elevation-z5 d-print-none">
   <button type="button" style="background:#001f69;" md-raised-button color="primary" (click)="generateWorksheet()" [disabled]="!optionsForm.form.valid">Generate Worksheet</button>
   <br><br>
   <button type="button" style="background:#d37a1a;" md-raised-button color="primary" (click)="reset()" [disabled]="!optionsForm.form.valid">Reset</button>
-</div>
+</div> -->

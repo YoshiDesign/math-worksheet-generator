@@ -40,7 +40,7 @@ export class WorksheetService {
   lessons_selected : Array <Number>;
   all_selected_lessons : Array <Object>;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db : AngularFireDatabase) {
     this.options = new WorksheetOptions();
     this.problems = new Array<MathProblem>();
     this.lessons_selected = [];
@@ -66,6 +66,8 @@ export class WorksheetService {
 
     this.clearProblems();
 
+    console.log("Generating ...");
+
     /**
      * Add the enumerator value to the list of availableProblemTYpes
      */
@@ -75,6 +77,7 @@ export class WorksheetService {
       
       // Get lesson numbers
       let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-alpha-lesson');
+      console.log(`-A- found ${lesson_elements.length} alpha lessons.`);
       let adding_lesson = false;
 
       // Array of lesson ID's
@@ -89,7 +92,8 @@ export class WorksheetService {
       // Organize selections into the main selections obj
       if (adding_lesson){
 
-        this.all_selected_lessons.push({'alpha' : this.lessons_selected});
+        // this.all_selected_lessons.push({'alpha' : this.lessons_selected});
+        this.all_selected_lessons['alpha'] = this.lessons_selected
         this.lessons_selected = [];
         availableProblemTypes.push(ProblemType.Alpha);
         
@@ -104,6 +108,8 @@ export class WorksheetService {
       let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-beta-lesson');
       let adding_lesson = false;
 
+      console.log(`-B- found ${lesson_elements.length} beta lessons.`);
+
       for (var i = 0; i < lesson_elements.length; i++) {
         if (lesson_elements[i].value !== "default") {
           this.options.lessonsCount += 1;
@@ -114,7 +120,8 @@ export class WorksheetService {
 
       if (adding_lesson){
 
-        this.all_selected_lessons.push({'beta' : this.lessons_selected});
+        // this.all_selected_lessons.push({'beta' : this.lessons_selected});
+        this.all_selected_lessons['beta'] = this.lessons_selected
         this.lessons_selected = [];
         availableProblemTypes.push(ProblemType.Beta);
         
@@ -129,6 +136,8 @@ export class WorksheetService {
       let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-gamma-lesson');
       let adding_lesson = false;
 
+      console.log(`-G- found ${lesson_elements.length} gamma lessons.`);
+
       for (var i = 0; i < lesson_elements.length; i++) {
         if (lesson_elements[i].value !== "default") {
           this.options.lessonsCount += 1;
@@ -139,7 +148,8 @@ export class WorksheetService {
 
       if (adding_lesson){
 
-        this.all_selected_lessons.push({'gamma' : this.lessons_selected});
+        // this.all_selected_lessons.push({'gamma' : this.lessons_selected});
+        this.all_selected_lessons['gamma'] = this.lessons_selected
         this.lessons_selected = [];
         availableProblemTypes.push(ProblemType.Gamma);
         
@@ -153,6 +163,8 @@ export class WorksheetService {
       let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-delta-lesson');
       let adding_lesson = false;
 
+      console.log(`-D- found ${lesson_elements.length} delta lessons.`);
+
       for (var i = 0; i < lesson_elements.length; i++) {
         if (lesson_elements[i].value !== "default") {
           this.options.lessonsCount += 1;
@@ -163,7 +175,8 @@ export class WorksheetService {
 
       if (adding_lesson){
 
-        this.all_selected_lessons.push({'delta' : this.lessons_selected});
+        // this.all_selected_lessons.push({'delta' : this.lessons_selected});
+        this.all_selected_lessons['delta'] = this.lessons_selected
         this.lessons_selected = [];
         availableProblemTypes.push(ProblemType.Delta);
         
@@ -174,9 +187,10 @@ export class WorksheetService {
     // Epsilon Selection
     if (this.options.epsilonOptions.enabled) {
       
-
       let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-epsilon-lesson');
       let adding_lesson = false;
+
+      console.log(`-E- found ${lesson_elements.length} epsilon lessons.`);
 
       for (var i = 0; i < lesson_elements.length; i++) {
         
@@ -189,7 +203,8 @@ export class WorksheetService {
 
       if (adding_lesson){
 
-        this.all_selected_lessons.push({'epsilon' : this.lessons_selected});
+        // this.all_selected_lessons.push({'epsilon' : this.lessons_selected});
+        this.all_selected_lessons['epsilon'] = this.lessons_selected
         this.lessons_selected = [];
         availableProblemTypes.push(ProblemType.Epsilon);
         
@@ -203,6 +218,8 @@ export class WorksheetService {
       let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-zeta-lesson');
       let adding_lesson = false;
 
+      console.log(`-Z- found ${lesson_elements.length} zeta lessons.`);
+
       for (var i = 0; i < lesson_elements.length; i++) {
         if (lesson_elements[i].value !== "default") {
           this.options.lessonsCount += 1;
@@ -213,7 +230,8 @@ export class WorksheetService {
 
       if (adding_lesson){
 
-        this.all_selected_lessons.push({'zeta' : this.lessons_selected});
+        // this.all_selected_lessons.push({'zeta' : this.lessons_selected});
+        this.all_selected_lessons['zeta'] = this.lessons_selected
         this.lessons_selected = [];
         availableProblemTypes.push(ProblemType.Zeta);
         
@@ -227,6 +245,8 @@ export class WorksheetService {
       let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-prealgebra-lesson');
       let adding_lesson = false;
 
+      console.log(`-PA- found ${lesson_elements.length} prealgebra lessons.`);
+
       for (var i = 0; i < lesson_elements.length; i++) {
         if (lesson_elements[i].value !== "default") {
           this.options.lessonsCount += 1;
@@ -237,7 +257,8 @@ export class WorksheetService {
 
       if (adding_lesson){
 
-        this.all_selected_lessons.push({'prealgebra' : this.lessons_selected});
+        // this.all_selected_lessons.push({'prealgebra' : this.lessons_selected});
+        this.all_selected_lessons['prealgebra'] = this.lessons_selected
         this.lessons_selected = [];
         availableProblemTypes.push(ProblemType.Prealgebra);
         
@@ -248,9 +269,10 @@ export class WorksheetService {
     // AIM Selections
     if (this.options.aimOptions.enabled) {
       
-
       let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-aim-lesson');
       let adding_lesson = false;
+
+      console.log(`-AIM- found ${lesson_elements.length} AIM lessons.`);
 
       for (var i = 0; i < lesson_elements.length; i++) {
         if (lesson_elements[i].value !== "default") {
@@ -262,156 +284,87 @@ export class WorksheetService {
 
       if (adding_lesson){
 
-        this.all_selected_lessons.push({'aim' : this.lessons_selected});
+        // this.all_selected_lessons.push({'aim' : this.lessons_selected});
+        this.all_selected_lessons['aim'] = this.lessons_selected
         this.lessons_selected = [];
         availableProblemTypes.push(ProblemType.Aim);
         
       }
     }
-
-    // console.log(this.all_selected_lessons);
-
-    // if (this.options.additionOptions.enabled) {
-    //   availableProblemTypes.push(ProblemType.Addition);
-    // }
-
-    // if (this.options.divisionOptions.enabled) {
-    //   availableProblemTypes.push(ProblemType.Division);
-    // }
-
-    // if (this.options.multiplicationOptions.enabled) {
-    //   availableProblemTypes.push(ProblemType.Multiplication);
-    // }
-
-    // if (this.options.subtractionOptions.enabled) {
-    //   availableProblemTypes.push(ProblemType.Subtraction);
-    // }
-
-
+    console.log(`Modulus of lessons per level = ${String(Math.floor(this.options.problemCount % this.options.lessonsCount))}`);
 
     // DEMME METHOD
-    var original_count = this.options.problemCount;
-    var min_problems = Math.floor(this.options.problemCount / this.options.lessonsCount);
+    var current_level : string;
+    var current_lesson : number;
+    var original_count : number = this.options.problemCount;
+    var min_problems : number = Math.floor(this.options.problemCount / this.options.lessonsCount);
+    // Math.floor is a safety mechanism to ensure this is never a float.
+    var extra_mod : number = Math.floor(this.options.problemCount % this.options.lessonsCount);
+    var levels : Array <string> = Object.keys(this.all_selected_lessons);
+
     console.log(`ProblemCount ${this.options.problemCount}`);
     console.log(`LessonCount ${this.options.lessonsCount}`);
     console.log(`MinProblems ${min_problems}`);
+    console.log('all seleected lessons');
+    console.log(this.all_selected_lessons);
+    console.log("LEVELS");
+    console.log(levels);
 
-    var extras = this.options.lessonsCount % this.options.problemCount;
-    var add_extras = false;
-    // Gather lesson id's in ascending order
-    for (let x of this.all_selected_lessons) {
-      
-      for (let y in x) {
+    // Gather lesson id's in ascending orders
+    for (let i = 0; i < levels.length; i++) { // Current level to get problems
+ 
+      current_level = levels[i];
+      console.log(`Current L = ${current_level}`);
 
-        var arr = x[y];
-
-        for (let z in arr) {
-
-          var current_lesson = arr[z];
-            
-            for (let n = 0; n < min_problems; n++) {
-              this.options.problemCount--;
-
-              switch (y) {
-                case 'alpha' :
-                  // console.log("Getting Alpha");
-                  this.addProblem(this.getAlphaProblem(current_lesson));
-                  break;
-                case 'beta' :
-                  this.addProblem(this.getBetaProblem(current_lesson));
-                  break;
-                case 'gamma' : 
-                  this.addProblem(this.getGammaProblem(current_lesson));
-                  break;
-                case 'delta' :
-                  this.addProblem(this.getDeltaProblem(current_lesson));
-                  break;
-                case 'epsilon' :
-                  this.addProblem(this.getEpsilonProblem(current_lesson));
-                  break;
-                case 'zeta' :
-                  this.addProblem(this.getZetaProblem(current_lesson));
-                  break;
-                case 'prealgebra' :
-                  this.addProblem(this.getPrealgebraProblem(current_lesson));
-                  break;
-                case 'aim' :
-                  this.addProblem(this.getAimProblem(current_lesson));
-                  break;
-
-              }
-
-              if (extras != 0 && add_extras == false) {
-                console.log('adding extras');
-                n -= ( extras -1 );
-                add_extras = true;
-              }
-
-            }
-
+      for (let j = 0; j < this.all_selected_lessons[String(levels[i])].length; j++) { // loop through lessons of current level
+        
+        current_lesson = this.all_selected_lessons[String(levels[i])][j]; // INT - The current lesson id we're looking at
+        console.log(`current lesson == ${current_lesson}`);
+          
+        for (let n = 0; n < min_problems; n++) {
+          this.options.problemCount--;
+          console.log(`Reducing problem count ${this.options.problemCount}`);
+          this.generateProblemFrom(current_level, current_lesson);
         }
-
       }
-
+    }
+    for (let i = 0; i < extra_mod; i++)
+    {
+      this.generateProblemFrom(current_level, current_lesson);
     }
 
-    // this.options.problemCount = original_count;
-    // original_count = this.options.problemCount;
-    // min_problems = 0;
-    // extras = 0;
-    // add_extras = false; 
-
-
-    // OLD METHOD
-
-
-    // for (let i = 0; i < this.options.problemCount; i++) {
-
-      /**
-       * Types of problems to be included:
-       * 
-       * This is where we will extrapolate everything into lesson by lesson inclusions
-       * 
-       * Right now this goes:
-       * 
-       *  Problem Type -> Read options -> Generate Problem -> add Problem
-       *  
-       * This needs to be:
-       * 
-       *  Lesson Number -> Lesson Problem Type -> Read Lesson Options -> Generate Problem -> Add Problem
-       *  
-       */
-
-      // const problemType = availableProblemTypes[this.getRandomNumber(0, availableProblemTypes.length - 1)];
-
-      // switch (problemType) {
-      
-        // case ProblemType.Addition:
-          // this.addProblem(this.getAdditionProblem(this.options.additionOptions));
-        //   break;
-        // case ProblemType.Division:
-        //   this.addProblem(this.getDivisionProblem(this.options.divisionOptions));
-        //   break;
-        // case ProblemType.Multiplication:
-        //   this.addProblem(this.getMultiplicationProblem(this.options.multiplicationOptions));
-        //   break;
-        // case ProblemType.Subtraction:
-        //   const problem = this.getSubtractionProblem(this.options.subtractionOptions);
-
-        //   if (this.options.subtractionOptions.allowNegativeAnswers) {
-        //     this.addProblem(problem);
-        //   } else {
-        //     if (problem.answer >= 0) {
-        //       this.addProblem(problem);
-        //     } else {
-        //       i--; // it was a negative answer, so we don't want to add it, reset the loop counter
-        //     }
-        //   }
-
-        //   break;
-      // }
-    // }
     this.options.problemCount = original_count;
+  }
+
+  private generateProblemFrom(current_level, current_lesson) : void {
+    switch (current_level) {
+      case 'alpha' :
+        // console.log("Getting Alpha");
+        this.addProblem(this.getAlphaProblem(current_lesson));
+        break;
+      case 'beta' :
+        this.addProblem(this.getBetaProblem(current_lesson));
+        break;
+      case 'gamma' : 
+        this.addProblem(this.getGammaProblem(current_lesson));
+        break;
+      case 'delta' :
+        this.addProblem(this.getDeltaProblem(current_lesson));
+        break;
+      case 'epsilon' :
+        this.addProblem(this.getEpsilonProblem(current_lesson));
+        break;
+      case 'zeta' :
+        this.addProblem(this.getZetaProblem(current_lesson));
+        break;
+      case 'prealgebra' :
+        this.addProblem(this.getPrealgebraProblem(current_lesson));
+        break;
+      case 'aim' :
+        this.addProblem(this.getAimProblem(current_lesson));
+        break;
+
+    }
   }
 
   getById(id: string): FirebaseObjectObservable<WorksheetService> {
@@ -1199,17 +1152,19 @@ export class WorksheetService {
         problem.symbol = "x";
         break;
       case 104 : // Lesson 8 - Solve For An Unknown
-        var a = this.getRandomInt(10);
-        var c = this.getRandomInt(10);
-        var nn = a * c;
-        var switcher = this.getRandomInt(2);
-        var letters = [
-          "C", "E", "K", "F", "B", "N", "A", "L", "D", "G"
-        ]
-        var letter = letters[this.getRandomInt(letters.length - 1)];
+        do{
+          var a = this.getRandomInt(10);
+          var c = this.getRandomInt(10);
+          var nn = a * c;
+          var switcher = this.getRandomInt(2);
+          var letters = [ // Arbitrary coefficients
+            "C", "E", "K", "F", "B", "N", "A", "L", "D", "G", "X"
+          ]
+          var letter = letters[this.getRandomInt(letters.length - 1)];
 
-        var lhs = a;
-        var rhs = c;
+          var lhs = a;
+          var rhs = c;
+        } while(a == 0);
 
         this.options.showHorizontal = true;
         problem.problemType = 8;
@@ -1584,6 +1539,7 @@ export class WorksheetService {
         problem.divRemainder = remainder;
 
         break;
+
       case 146 : // Lesson 19
         var divisor = Math.floor(Math.random() * 8) + 2;
         var quotient = Math.floor(Math.random() * (Math.floor(999/divisor) - 109)) + 100;
@@ -1595,11 +1551,14 @@ export class WorksheetService {
         problem.divAnswer = quotient;
         problem.divRemainder = remainder;
         break;
+
       case 147 : // Lesson 20
         var divisor = Math.floor(Math.random() * 8) + 2;
         var quotient = Math.floor(Math.random() * (Math.floor(999/divisor)));
         var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
         var dividend = (divisor * quotient) + remainder;
+
+        problem.lessonNo = 147;
         problem.problemType = ProblemType.Division;
         problem.values[1] = divisor;
         problem.values[0] = dividend;
@@ -1607,6 +1566,7 @@ export class WorksheetService {
         problem.divRemainder = String(" ") + String(remainder) + "/" + String(divisor);
 
         break;
+
       case 149 : // Lesson 22
         var divisor = Math.floor(Math.random() * 11) + 10;
         var quotient = Math.floor(Math.random() * 31) + 20;
