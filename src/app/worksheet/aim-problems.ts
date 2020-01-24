@@ -2,6 +2,7 @@ import { ProblemType } from './problem-type.enum';
 
 export class AimProblems {
 
+  custom : boolean;
   problemType: ProblemType;
   symbol: string;
   values;
@@ -14,6 +15,7 @@ export class AimProblems {
   rhs;
 
   constructor() {
+    this.custom = true;
     this.problemType = null;
     this.requiresHorizontal = false;
     this.solveForUnknown = false;

@@ -2,6 +2,7 @@ import { ProblemType } from './problem-type.enum';
 
 export class DeltaProblems {
   
+  custom : boolean;
   problemType: ProblemType;
   values = [];
   symbol: string;
@@ -28,6 +29,7 @@ export class DeltaProblems {
   numerals : boolean;
 
   constructor () {
+    this.custom = true;
     this.problemNo = 0;
     this.deltaProblem = false;
     this.problemType = null;

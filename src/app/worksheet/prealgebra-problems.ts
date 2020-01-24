@@ -1,6 +1,7 @@
 import { ProblemType } from './problem-type.enum';
 
 export class PrealgebraProblems {
+  custom : boolean;
   problemType: ProblemType;
   values = [];
   symbol: string;
@@ -32,6 +33,7 @@ export class PrealgebraProblems {
 
 
   constructor() {
+    this.custom = true;
     this.problemNo = 0;
     this.prealgebraProblem = true;
     this.override = false;

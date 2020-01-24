@@ -302,28 +302,17 @@ export class WorksheetService {
     var extra_mod : number = Math.floor(this.options.problemCount % this.options.lessonsCount);
     var levels : Array <string> = Object.keys(this.all_selected_lessons);
 
-    console.log(`ProblemCount ${this.options.problemCount}`);
-    console.log(`LessonCount ${this.options.lessonsCount}`);
-    console.log(`MinProblems ${min_problems}`);
-    console.log('all seleected lessons');
-    console.log(this.all_selected_lessons);
-    console.log("LEVELS");
-    console.log(levels);
-
     // Gather lesson id's in ascending orders
     for (let i = 0; i < levels.length; i++) { // Current level to get problems
  
       current_level = levels[i];
-      console.log(`Current L = ${current_level}`);
 
       for (let j = 0; j < this.all_selected_lessons[String(levels[i])].length; j++) { // loop through lessons of current level
         
         current_lesson = this.all_selected_lessons[String(levels[i])][j]; // INT - The current lesson id we're looking at
-        console.log(`current lesson == ${current_lesson}`);
           
         for (let n = 0; n < min_problems; n++) {
           this.options.problemCount--;
-          console.log(`Reducing problem count ${this.options.problemCount}`);
           this.generateProblemFrom(current_level, current_lesson);
         }
       }
@@ -834,6 +823,7 @@ export class WorksheetService {
         problem.problemType = ProblemType.Inequality;
         problem.isInequality = true;
         problem.equation_inequality = (this.getRandomInt(2)) == 1 ? true : false;
+        problem.lessonNo = 68;
 
         var w = 0;
         var x = 0;
@@ -875,37 +865,45 @@ export class WorksheetService {
         break;
       case 69 : // Round to nearest 10
 
-        var x = this.getRandomInt(90);
+      // Pick a value that isn't a multiple of 10 already
+        do {
+          var x : number = this.pickFromRange(10, 90);
+        } while (x % 10 == 0);
         var y = x;
-        var ansTen = 0;
+        var orig_x = x;
+        var ansTen = 1;
         var iSwitch = 0;
 
         do {
 
-          x++;
-          y--;
-          
+          ++x;
+          --y;
+
           if (x % 10 ==  0 && y % 10 == 0) {
 
             ansTen = x;
 
-          } else if (x % 10 !=  0 && y % 10 == 0) {
+          }
+
+          if (x % 10 !=  0 && y % 10 == 0) {
 
             ansTen = y;
-          } else if (x % 10 == 0 && y % 10 != 0) {
+
+          }
+
+          if (x % 10 == 0 && y % 10 != 0) {
 
             ansTen = x;
           }
 
+        } while(ansTen % 10 !== 0)
 
-
-        } while(ansTen % 10 != 0)
-
+        problem.lessonNo = 69;
         this.options.showHorizontal = true;
         problem.problemType = ProblemType.RoundingTen;
         problem.roundingTen = true;
         problem.answer_roundingTen = ansTen;
-        problem.values[0] = x;
+        problem.values[0] = orig_x;
 
         break;
       case 70 : // Multiple Digit Addition
@@ -966,8 +964,9 @@ export class WorksheetService {
         problem.values[1] = y;
         problem.symbol = "+";
         break;
-      case 78 : 
+      case 78 : // Lesson 13
 
+        problem.lessonNo = 78;
         problem.problemType = ProblemType.Addition;
         problem.values[0] = this.getRandomInt(100);
         problem.values[1] = this.getRandomInt(100);
@@ -988,7 +987,7 @@ export class WorksheetService {
         this.options.showHorizontal = false;
 
         break;
-      case 83 : 
+      case 83 : // Lesson 18
         problem.problemType = ProblemType.Addition;
         problem.values[0] = this.pickFromRange(1000, 101);
         problem.values[1] = this.pickFromRange(1000, 101);
@@ -999,7 +998,7 @@ export class WorksheetService {
         this.options.showHorizontal = false;
         
         break;
-      case 84 : 
+      case 84 : //Lesson 19
         problem.problemType = ProblemType.Addition;
         problem.values[0] = this.pickFromRange(9999, 350);
         problem.values[1] = this.pickFromRange(9999, 350);
@@ -1043,7 +1042,7 @@ export class WorksheetService {
         this.options.showHorizontal = false;
         
         break;
-      case 87 : // Lesson 2 & 3 Digit Subtraction Without Regrouping
+      case 87 : // Lesson 22
         var topDigits = new Array();
         for (var ii = 0; ii < topDigits.length; ii ++) {
             topDigits[ii] = null;
@@ -3427,5 +3426,13 @@ private pickFromList(hatArray) {
   return(hatArray[hatIndex]);
 }
 
+// private schoolRound(numberToRound, toNearest) { //toNearest is nearest "10", "100", etc.
+//     var remainder = numberToRound % toNearest;
+//     var roundedNumber = numberToRound - remainder; //subtract the remainder
+//     if (remainder >= 5) {
+//         roundedNumber = roundedNumber + toNearest; //if the remainder is greater than or equal to 5, it will be the next higher instead
+//     }
+//     return(roundedNumber);
+// }
 
 }

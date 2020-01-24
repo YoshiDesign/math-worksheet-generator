@@ -2,6 +2,7 @@ import { ProblemType } from './problem-type.enum';
 
 export class BetaProblems {
 
+  custom : boolean;
   problemType: ProblemType;
   values = [];
   symbol: string;
@@ -12,8 +13,11 @@ export class BetaProblems {
   answer_inequality : string;
   answer_roundingTen : number;
   problemNo : any;
+  lessonNo : number;
+  betaProblem : boolean;
 
   constructor() {
+    this.custom = true;
     this.problemNo = 0;
     this.roundingTen = false;
     this.problemType = null;
@@ -22,6 +26,8 @@ export class BetaProblems {
     this.equation_inequality = false;
     this.answer_inequality = "";
     this.answer_roundingTen = 0;
+    this.lessonNo = 0;
+    this.betaProblem = true;
   }
 
   get answer(): number {

@@ -1,6 +1,7 @@
 import { ProblemType } from './problem-type.enum';
 
 export class EpsilonProblems {
+  custom : boolean;
   problemType: ProblemType;
   values = [];
   symbol: string;
@@ -92,6 +93,7 @@ num : any;
 decimal : any;
 problemNo : any;
   constructor() {
+    this.custom = true;
     this.problemNo = 0;
     this.fraction = false;
     this.requiresHorizontal = false;

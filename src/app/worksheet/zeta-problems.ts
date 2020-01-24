@@ -1,6 +1,7 @@
 import { ProblemType } from './problem-type.enum';
 
 export class ZetaProblems {
+  custom : boolean;
   problemType: ProblemType;
   zetaProblem : boolean;
   values = [];
@@ -75,6 +76,7 @@ export class ZetaProblems {
   productD : any;
 
   constructor() {
+    this.custom = true;
     this.zetaProblem = true;
     this.problemType = null;
     this.requiresHorizontal = false;

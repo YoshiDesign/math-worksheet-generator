@@ -442,126 +442,196 @@
           <!-- HORIZONTAL -->
           <!-- <div style="width:100%;" *ngIf="worksheetService.options.showHorizontal"> -->
 
-            
+          <!-- START GENERATION -->
+
             <div class="math-problem" *ngFor="let problem of worksheetService.problems; index as i">
-              
-              <!-- DELTA Problems -->
-              <div class="math-problem__problem" *ngIf="problem.deltaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 154">
 
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <!-- SPECIFIC PROBLEM RENDERING -->
+              <!-- ALPHA VALUES
+              36
+              37
+              39
+              40
+              41
+              42
+              44
+              46
+              47
+              48
+              49
+              51
+              52
+              53
+              54
+              55
+              56
+              57
+              58
+              59
+              60
+              61
+              62 
+            -->
 
-                    <table cellpadding="1"><tr><td class="numerator">{{problem.numerator}}</td>
-                      <td rowspan="2" valign="center">&nbsp;&nbsp;of &nbsp; {{problem.product}}&nbsp;=</td>
-                    </tr><tr>
-                      <td>&nbsp;{{problem.denominator}}</td></tr>
-                    </table>
+            <!-- BETA VALUES
 
-              </div>
-              
-              <div class="math-problem__problem" *ngIf="problem.deltaProblem && worksheetService.options.showAnswers && problem.lessonNo == 154">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="1"><tr><td class="numerator">{{problem.numerator}}</td><td rowspan="2" valign="center">&nbsp;&nbsp;of &nbsp; {{problem.product}} &nbsp;=&nbsp; <span class="math-answer">{{problem.divProd}}</span></td></tr><tr><td>&nbsp; {{problem.denominator}}</td></tr></table>
-                
-              </div>
+              68
+              69
+              78
 
-              <!-- Delta lesson 28 -->
-              <div class="math-problem__problem" *ngIf="problem.deltaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 155">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <!-- if(direction == 1){ -->
-                    <table *ngIf="problem.direction == 1" cellpadding="1"><tr><td>{{problem.arabic}} = </td></tr></table>
-                    
+            -->
 
-                    <table  *ngIf="problem.direction != 1" cellpadding="1"><tr><td>{{problem.roman}} = </td></tr></table>
-                    
-              </div>
-             
-              <div class="math-problem__problem" *ngIf="problem.deltaProblem && worksheetService.options.showAnswers && problem.lessonNo == 155">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+          <div *ngIf="problem.custom === true">
 
-                  <table *ngIf="problem.direction == 1" cellpadding="1"><tr><td>{{problem.arabic}}&nbsp; = &nbsp;<span class="math-answer"> {{problem.roman}}</span></td></tr></table>
-                  <table  *ngIf="problem.direction !== 1" cellpadding="1"><tr><td>{{problem.roman}}&nbsp; = <span class="math-answer"> &nbsp; {{problem.arabic}}</span></td></tr></table>
-              </div>
+            <div class="math-problem__problem" *ngIf="problem.betaProblem && problem.lessonNo == 68">
 
-              <!-- Delta Lesson 30 -->
-              <div class="math-problem__problem" *ngIf="problem.deltaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 157">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                   <table *ngIf="direction == 1" cellpadding="1"><tr><td> {{problem.arabic}} = </td></tr></table>
-                   <table *ngIf="direction != 1" cellpadding="1"><tr><td> {{problem.roman}} = </td></tr></table>
-              </div>
-
-
-              <div class="math-problem__problem" *ngIf="problem.deltaProblem && worksheetService.options.showAnswers && problem.lessonNo == 157">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table *ngIf="direction == 1" cellpadding="1"><tr><td> {{problem.arabic}}&nbsp;=&nbsp;<span class="math-answer">{{problem.roman}}</span></td></tr></table>
-                    <table *ngIf="direction != 1" cellpadding="1"><tr><td> {{problem.roman}}&nbsp; =&nbsp;<span class="math-answer">{{problem.arabic}}</span></td></tr></table>
-              </div>
-              
-              <!--  For Epsilon Problems -->
-
-              <!-- EPSILON Lesson 3 161-->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 161">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <table cellpadding="1"><tr><td class="numerator">  {{problem.numerator1}}  </td>
-                    <td rowspan="2" valign="middle">&nbsp;  {{problem.thisOperator}} &nbsp;</td>
-                    <td class="numerator">  {{problem.numerator2}}  </td>
-                    <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                    <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-                    <tr><td>  {{problem.denominator}}  </td><td>  {{problem.denominator}}  </td><td>&nbsp;</td></tr>
-                  </table>
-
-              </div>
-              
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 161">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <table cellpadding="1"><tr><td class="numerator">  {{problem.numerator1}}  </td>
-                     <td rowspan="2" valign="middle">&nbsp;  {{problem.thisOperator}}  &nbsp;</td>
-                     <td class="numerator">  {{problem.numerator2}}  </td>
-                     <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                     <td class="numerator">  <span class="math-answer">{{problem.numerator3}}  </span></td></tr>
-                     <tr><td> {{problem.denominator}}  </td><td> {{problem.denominator}} </td><td>  <span class="math-answer">{{problem.denominator}}</span> </td></tr>
-                  </table>
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <div class="math-problem__symbol"></div>
+              <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">
+                  <span>{{ value }}&nbsp;</span>
+                  <span *ngIf="!worksheetService.options.showAnswers  && j === 0">&nbsp;_&nbsp;</span>
+                  <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 0">{{ problem.answer_inequality }}&nbsp;</span>
+                  <!-- <span>{{ value }}&nbsp;</span> -->
               </div>
 
-              <!-- /E3 -->
-              <!-- Epsilon Lesson 5 163 -->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 163">
+            </div>
+
+
+
+            <div class="math-problem__problem" *ngIf="problem.betaProblem && problem.lessonNo == 69">
+
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <div class="math-problem__symbol"></div>
+              <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">
+
+                <span>{{ value }}&nbsp;&rarr;</span>
+                <span *ngIf="!worksheetService.options.showAnswers  && j === 0">&nbsp;_&nbsp;</span>
+                <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 0">{{ problem.answer_roundingTen }}&nbsp;</span>
+
+              </div>
+            </div>
+
+            <!-- Vertical Beta Column Addition Lesson 13-->
+            <div class="math-problem__problem" *ngIf="problem.betaProblem && problem.lessonNo == 78">
+            
+              <div class="math-problem__number" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+              <div class="math-problem__symbol">{{ problem.symbol }}</div>
+              <div class="math-problem__value" *ngFor="let value of problem.values">{{ value }}</div>
+              <div class="math-problem__answer" *ngIf="worksheetService.options.showAnswers">
+                <!-- <ng-container *ngIf="isDivisionProblem(problem)">
+                  <ng-container *ngIf="worksheetService.options.divisionOptions.showRemainders">{{problem.answerFloored}}<strong>r</strong>{{problem.remainder}}</ng-container>
+                  <ng-container *ngIf="!worksheetService.options.divisionOptions.showRemainders">{{problem.answer | number:getDivisionNumberFormat()}}</ng-container>
+                </ng-container> -->
+                <ng-container>{{ problem.answer }}</ng-container>
+              </div>
+              <div class="math-problem__answer" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
+            </div>
+
+
+
+
+            <!-- DELTA Problems -->
+            <div class="math-problem__problem" *ngIf="problem.deltaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 154">
+
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                <table cellpadding="1"><tr><td class="numerator">{{problem.numerator}}</td>
+                  <td rowspan="2" valign="center">&nbsp;&nbsp;of &nbsp; {{problem.product}}&nbsp;=</td>
+                </tr><tr>
+                  <td>&nbsp;{{problem.denominator}}</td></tr>
+                </table>
+
+            </div>
+            
+            <div class="math-problem__problem" *ngIf="problem.deltaProblem && worksheetService.options.showAnswers && problem.lessonNo == 154">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1">
+                  <tr>
+                    <td class="numerator">{{problem.numerator}}</td>
+                    <td rowspan="2" valign="center">&nbsp;&nbsp;of &nbsp; {{problem.product}} &nbsp;=&nbsp; <span class="math-answer">{{problem.divProd}}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp; {{problem.denominator}}</td>
+                  </tr>
+                </table>
+            </div>
+
+            <!-- Delta lesson 28 -->
+            <div class="math-problem__problem" *ngIf="problem.deltaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 155">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <!-- if(direction == 1){ -->
+                  <table *ngIf="problem.direction == 1" cellpadding="1"><tr><td>{{problem.arabic}} = </td></tr></table>
+                  
+
+                  <table  *ngIf="problem.direction != 1" cellpadding="1"><tr><td>{{problem.roman}} = </td></tr></table>
+                  
+            </div>
+            
+            <div class="math-problem__problem" *ngIf="problem.deltaProblem && worksheetService.options.showAnswers && problem.lessonNo == 155">
                 <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
-                <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;{{problem.thisOperator}}&nbsp;</td>
-                  <td class="numerator">{{problem.numerator2}}</td>
+                <table *ngIf="problem.direction == 1" cellpadding="1"><tr><td>{{problem.arabic}}&nbsp; = &nbsp;<span class="math-answer"> {{problem.roman}}</span></td></tr></table>
+                <table  *ngIf="problem.direction !== 1" cellpadding="1"><tr><td>{{problem.roman}}&nbsp; = <span class="math-answer"> &nbsp; {{problem.arabic}}</span></td></tr></table>
+            </div>
+
+            <!-- Delta Lesson 30 -->
+            <div class="math-problem__problem" *ngIf="problem.deltaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 157">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                  <table *ngIf="direction == 1" cellpadding="1"><tr><td> {{problem.arabic}} = </td></tr></table>
+                  <table *ngIf="direction != 1" cellpadding="1"><tr><td> {{problem.roman}} = </td></tr></table>
+            </div>
+
+
+            <div class="math-problem__problem" *ngIf="problem.deltaProblem && worksheetService.options.showAnswers && problem.lessonNo == 157">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table *ngIf="direction == 1" cellpadding="1"><tr><td> {{problem.arabic}}&nbsp;=&nbsp;<span class="math-answer">{{problem.roman}}</span></td></tr></table>
+                <table *ngIf="direction != 1" cellpadding="1"><tr><td> {{problem.roman}}&nbsp; =&nbsp;<span class="math-answer">{{problem.arabic}}</span></td></tr></table>
+            </div>
+            
+            <!--  For Epsilon Problems -->
+
+            <!-- EPSILON Lesson 3 161-->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 161">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1"><tr><td class="numerator">  {{problem.numerator1}}  </td>
+                  <td rowspan="2" valign="middle">&nbsp;  {{problem.thisOperator}} &nbsp;</td>
+                  <td class="numerator">  {{problem.numerator2}}  </td>
                   <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
                   <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-                  <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>&nbsp;</td></tr>
+                  <tr><td>  {{problem.denominator}}  </td><td>  {{problem.denominator}}  </td><td>&nbsp;</td></tr>
                 </table>
-              </div>
-              
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 163">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
-                  <table cellpadding="1">
-                    <tr>
-                      <td class="numerator">{{problem.numerator1}}</td>
-                      <td rowspan="2" valign="middle">&nbsp;{{problem.thisOperator}}&nbsp;</td>
-                      <td class="numerator">{{problem.numerator2}}</td>
-                      <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+            </div>
+            
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 161">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1"><tr><td class="numerator">  {{problem.numerator1}}  </td>
+                    <td rowspan="2" valign="middle">&nbsp;  {{problem.thisOperator}}  &nbsp;</td>
+                    <td class="numerator">  {{problem.numerator2}}  </td>
+                    <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+                    <td class="numerator">  <span class="math-answer">{{problem.numerator3}}  </span></td></tr>
+                    <tr><td> {{problem.denominator}}  </td><td> {{problem.denominator}} </td><td>  <span class="math-answer">{{problem.denominator}}</span> </td></tr>
+                </table>
+            </div>
 
-                      <td *ngIf="problem.numerator3 == 0" rowspan="2" valign="middle">0</td>
-                      <td *ngIf="problem.numerator3 != 0" class="numerator"><span class="math-answer">{{problem.numerator3}}</span></td>
-                    </tr>
-                        
-                        <tr *ngIf="problem.numerator3 == 0"><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td></tr>
-                        <tr *ngIf="problem.numerator3 != 0"><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td><span class="math-answer">{{problem.denominator3}}</span></td></tr>
-                      
-                  </table>
+            <!-- /E3 -->
+            <!-- Epsilon Lesson 5 163 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 163">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
-              </div>
-
-              <!-- /E5 -->
-
-              <!-- Epsilon Lesson 6 164 -->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 164">
+              <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
+                <td rowspan="2" valign="middle">&nbsp;{{problem.thisOperator}}&nbsp;</td>
+                <td class="numerator">{{problem.numerator2}}</td>
+                <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+                <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>&nbsp;</td></tr>
+              </table>
+            </div>
+            
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 163">
                 <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
                 <table cellpadding="1">
@@ -570,339 +640,366 @@
                     <td rowspan="2" valign="middle">&nbsp;{{problem.thisOperator}}&nbsp;</td>
                     <td class="numerator">{{problem.numerator2}}</td>
                     <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                    <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+                    <td *ngIf="problem.numerator3 == 0" rowspan="2" valign="middle">0</td>
+                    <td *ngIf="problem.numerator3 != 0" class="numerator"><span class="math-answer">{{problem.numerator3}}</span></td>
                   </tr>
-                  <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>&nbsp;</td></tr>
-                </table>
-              
-              </div>
-
-
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 164">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <table cellpadding="1">
-                    <tr>
-                      <td class="numerator">{{problem.numerator1}}</td>
-                      <td rowspan="2" valign="middle">&nbsp;{{problem.thisOperator}}&nbsp;</td>
-                      <td class="numerator">{{problem.numerator2}}</td>
-                      <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-
-                        <td *ngIf="problem.numerator3 == 0" rowspan="2" valign="middle">0</td>
-                        <td *ngIf="problem.numerator3 != 0" class="numerator"><span class="math-answer">{{problem.numerator3}}</span></td>
-                      </tr>
-                        <tr *ngIf="problem.numerator3 == 0" ><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td></tr>
-
-                        <tr *ngIf="problem.numerator3 != 0" ><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td><span class="math-answer">{{problem.denominator3}}</span></td></tr>
                       
-                  </table>
+                      <tr *ngIf="problem.numerator3 == 0"><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td></tr>
+                      <tr *ngIf="problem.numerator3 != 0"><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td><span class="math-answer">{{problem.denominator3}}</span></td></tr>
+                    
+                </table>
 
+            </div>
 
-              </div>
+            <!-- /E5 -->
 
-              <!-- E6 -->
+            <!-- Epsilon Lesson 6 164 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 164">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
-
-              <!-- Epsilon Lesson 8 166 -->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 166">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;+&nbsp; </td>
-                  <td class="numerator">{{problem.numerator2}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;+&nbsp; </td>
-                  <td class="numerator">{{problem.numerator3}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                  <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-                  <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>{{problem.denominator3}}</td><td>&nbsp;</td></tr></table>
-              
-              </div>
-
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 166">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-
-                <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;+&nbsp;</td>
-                  <td class="numerator">{{problem.numerator2}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;+&nbsp; </td>
-                  <td class="numerator">{{problem.numerator3}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                  <td class="numerator"><span class="math-answer">{{problem.sumNumerator}}</span></td></tr>
-                  <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>{{problem.denominator3}}</td><td align="center"><span class="math-answer">{{problem.sumDenominator}}</span></td></tr></table>
-
-              </div>
-              
-              <!-- E5 -->
-
-              <!-- Epsilon Lesson 9 167 -->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 167">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;x&nbsp;</td>
+              <table cellpadding="1">
+                <tr>
+                  <td class="numerator">{{problem.numerator1}}</td>
+                  <td rowspan="2" valign="middle">&nbsp;{{problem.thisOperator}}&nbsp;</td>
                   <td class="numerator">{{problem.numerator2}}</td>
                   <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                  <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-                  <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>&nbsp;</td></tr></table>
-              
-                </div>
-                
-                <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 167">
+                  <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>&nbsp;</td></tr>
+              </table>
+            
+            </div>
+
+
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 164">
                 <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                
-                <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
+                <table cellpadding="1">
+                  <tr>
+                    <td class="numerator">{{problem.numerator1}}</td>
+                    <td rowspan="2" valign="middle">&nbsp;{{problem.thisOperator}}&nbsp;</td>
+                    <td class="numerator">{{problem.numerator2}}</td>
+                    <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+
+                      <td *ngIf="problem.numerator3 == 0" rowspan="2" valign="middle">0</td>
+                      <td *ngIf="problem.numerator3 != 0" class="numerator"><span class="math-answer">{{problem.numerator3}}</span></td>
+                    </tr>
+                      <tr *ngIf="problem.numerator3 == 0" ><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td></tr>
+
+                      <tr *ngIf="problem.numerator3 != 0" ><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td><span class="math-answer">{{problem.denominator3}}</span></td></tr>
+                    
+                </table>
+
+
+            </div>
+
+            <!-- E6 -->
+
+
+            <!-- Epsilon Lesson 8 166 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 166">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+              <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
+                <td rowspan="2" valign="middle">&nbsp;+&nbsp; </td>
+                <td class="numerator">{{problem.numerator2}}</td>
+                <td rowspan="2" valign="middle">&nbsp;+&nbsp; </td>
+                <td class="numerator">{{problem.numerator3}}</td>
+                <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+                <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>{{problem.denominator3}}</td><td>&nbsp;</td></tr></table>
+            
+            </div>
+
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 166">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+
+              <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
+                <td rowspan="2" valign="middle">&nbsp;+&nbsp;</td>
+                <td class="numerator">{{problem.numerator2}}</td>
+                <td rowspan="2" valign="middle">&nbsp;+&nbsp; </td>
+                <td class="numerator">{{problem.numerator3}}</td>
+                <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+                <td class="numerator"><span class="math-answer">{{problem.sumNumerator}}</span></td></tr>
+                <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>{{problem.denominator3}}</td><td align="center"><span class="math-answer">{{problem.sumDenominator}}</span></td></tr></table>
+
+            </div>
+            
+            <!-- E5 -->
+
+            <!-- Epsilon Lesson 9 167 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 167">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+              <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
                 <td rowspan="2" valign="middle">&nbsp;x&nbsp;</td>
                 <td class="numerator">{{problem.numerator2}}</td>
                 <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                <td class="numerator"><span class="math-answer">{{problem.productNumerator}}</span></td></tr>
-                <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td align="center"><span class="math-answer">{{problem.productDenominator}}</span></td></tr></table>
-
+                <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>&nbsp;</td></tr></table>
+            
               </div>
               
-              <!-- E5 -->
+              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 167">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              
+              <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
+              <td rowspan="2" valign="middle">&nbsp;x&nbsp;</td>
+              <td class="numerator">{{problem.numerator2}}</td>
+              <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+              <td class="numerator"><span class="math-answer">{{problem.productNumerator}}</span></td></tr>
+              <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td align="center"><span class="math-answer">{{problem.productDenominator}}</span></td></tr></table>
 
-              <!-- Epsilon Lesson 10 168 -->
+            </div>
+            
+            <!-- E5 -->
 
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 168">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            <!-- Epsilon Lesson 10 168 -->
 
-                <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;&divide;&nbsp;</td>
-                  <td class="numerator">{{problem.numerator2}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                  <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-                  <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>&nbsp;</td></tr>
-                </table>
-              </div>
-
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 168">
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 168">
                 <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
-                <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;&divide;&nbsp;</td>
-                  <td class="numerator">{{problem.numerator2}}</td>
-                  <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                  <td *ngIf="problem.divNumDom" valign="center" rowspan="2">{{problem.numDivDom}}</td>
-                  <td *ngIf="!problem.divNumDom" class="numerator"><span class="math-answer">{{problem.quotientNumerator}}</span></td>
-                </tr>
-                <tr *ngIf="problem.divNumDom"><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td></tr>
-                <tr *ngIf="!problem.divNumDom"><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td *ngIf="!problem.divNumDom" align="center"><span class="math-answer">{{problem.quotientDenominator}}</span></td></tr>
+              <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
+                <td rowspan="2" valign="middle">&nbsp;&divide;&nbsp;</td>
+                <td class="numerator">{{problem.numerator2}}</td>
+                <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+                <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                <tr><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td>&nbsp;</td></tr>
               </table>
+            </div>
 
-              </div>
-              <!-- /E10 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 168">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
-              <!-- Epsilon Lesson 12 170 -->
+              <table cellpadding="1"><tr><td class="numerator">{{problem.numerator1}}</td>
+                <td rowspan="2" valign="middle">&nbsp;&divide;&nbsp;</td>
+                <td class="numerator">{{problem.numerator2}}</td>
+                <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+                <td *ngIf="problem.divNumDom" valign="center" rowspan="2">{{problem.numDivDom}}</td>
+                <td *ngIf="!problem.divNumDom" class="numerator"><span class="math-answer">{{problem.quotientNumerator}}</span></td>
+              </tr>
+              <tr *ngIf="problem.divNumDom"><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td></tr>
+              <tr *ngIf="!problem.divNumDom"><td>{{problem.denominator1}}</td><td>{{problem.denominator2}}</td><td *ngIf="!problem.divNumDom" align="center"><span class="math-answer">{{problem.quotientDenominator}}</span></td></tr>
+            </table>
+
+            </div>
+            <!-- /E10 -->
+
+            <!-- Epsilon Lesson 12 170 -->
 
 
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 170">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-  
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 170">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
-                    <table cellpadding="1"><tr><td class="numerator">{{problem.problemNumerator}}</td>
-                      <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                      <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-                      <tr><td>{{problem.problemDenominator}}</td><td>&nbsp;</td></tr>
-                    </table>
-            
-              </div>
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 170">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
-                    <table cellpadding="1"><tr><td class="numerator">{{problem.problemNumerator}}</td>
+                  <table cellpadding="1"><tr><td class="numerator">{{problem.problemNumerator}}</td>
                     <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                    <td class="numerator"><span class="math-answer">{{problem.answerNumerator}}</span></td></tr>
-                    <tr><td>{{problem.problemDenominator}}</td><td><span class="math-answer">{{problem.answerDenominator}}</span></td></tr></table>
-
-              </div>
-
-              <!-- /E12 -->
-
-              <!-- Epsilon Lesson 13 171 -->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 171">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-  
-
-                    <table cellpadding="1"><tr><td class="numerator">{{problem.problemNumerator}}</td>
-                      <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                      <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-                      <tr><td>{{problem.problemDenominator}}</td><td>&nbsp;</td></tr>
-                    </table>
-            
-              </div>
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 171">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-
-                    <table cellpadding="1"><tr><td class="numerator">{{problem.problemNumerator}}</td>
-                    <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                    <td class="numerator"><span class="math-answer">{{problem.answerNumerator}}</span></td></tr>
-                    <tr><td>{{problem.problemDenominator}}</td><td><span class="math-answer">{{problem.answerDenominator}}</span></td></tr></table>
-
-              </div>
-
-              <!--  /E13  -->
-
-              <!-- Epsilon Lesson 15 173 -->
-
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 173">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                  <!-- if ((Math.floor(Math.random() * 2)1) == 1) { -->
-                <div *ngIf="problem.mainSwitch == true" style="display:inline-block">
-                  <table cellpadding="1">
-                    <tr>
-                      <td rowspan="2" valign="middle">{{problem.wholeNumber}}</td>
-                      <td class="numerator" align="center">{{problem.mixNumerator}}</td>
-                      <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td><td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                    </tr>
-                    <tr><td align="center">{{problem.mixDenominator}}</td><td>&nbsp;</td></tr>
+                    <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                    <tr><td>{{problem.problemDenominator}}</td><td>&nbsp;</td></tr>
                   </table>
           
-                </div>
-                
-                <div *ngIf="!problem.mainSwitch" style="display:inline-block">
+            </div>
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 170">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                  <table cellpadding="1"><tr><td class="numerator">{{problem.problemNumerator}}</td>
+                  <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+                  <td class="numerator"><span class="math-answer">{{problem.answerNumerator}}</span></td></tr>
+                  <tr><td>{{problem.problemDenominator}}</td><td><span class="math-answer">{{problem.answerDenominator}}</span></td></tr></table>
+
+            </div>
+
+            <!-- /E12 -->
+
+            <!-- Epsilon Lesson 13 171 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 171">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+
+                  <table cellpadding="1"><tr><td class="numerator">{{problem.problemNumerator}}</td>
+                    <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+                    <td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                    <tr><td>{{problem.problemDenominator}}</td><td>&nbsp;</td></tr>
+                  </table>
+          
+            </div>
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 171">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+
+                  <table cellpadding="1"><tr><td class="numerator">{{problem.problemNumerator}}</td>
+                  <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+                  <td class="numerator"><span class="math-answer">{{problem.answerNumerator}}</span></td></tr>
+                  <tr><td>{{problem.problemDenominator}}</td><td><span class="math-answer">{{problem.answerDenominator}}</span></td></tr></table>
+
+            </div>
+
+            <!--  /E13  -->
+
+            <!-- Epsilon Lesson 15 173 -->
+
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 173">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                <!-- if ((Math.floor(Math.random() * 2)1) == 1) { -->
+              <div *ngIf="problem.mainSwitch == true" style="display:inline-block">
                 <table cellpadding="1">
                   <tr>
-                    <td class="numerator">{{problem.improperNumerator}}</td><td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                    <td rowspan="2">&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-                  <tr>
-                    <td align="center">{{problem.improperDenominator}}</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td rowspan="2" valign="middle">{{problem.wholeNumber}}</td>
+                    <td class="numerator" align="center">{{problem.mixNumerator}}</td>
+                    <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td><td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   </tr>
+                  <tr><td align="center">{{problem.mixDenominator}}</td><td>&nbsp;</td></tr>
                 </table>
-                  
-                  
-                </div>
+        
+              </div>
+              
+              <div *ngIf="!problem.mainSwitch" style="display:inline-block">
+              <table cellpadding="1">
+                <tr>
+                  <td class="numerator">{{problem.improperNumerator}}</td><td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+                  <td rowspan="2">&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                <tr>
+                  <td align="center">{{problem.improperDenominator}}</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+              </table>
                 
                 
               </div>
               
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 173">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                
-                <div *ngIf="problem.mainSwitch" style="display:inline-block">
-                  <table cellpadding="1">
-                    <tr>
-                      <td rowspan="2" valign="middle">{{problem.wholeNumber}}</td>
-                      <td class="numerator" align="center">{{problem.mixNumerator}}</td>
-                      <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td><td class="numerator" align="center"><span class="math-answer">{{problem.improperNumerator}}</span></td>
-                    </tr>
-                    <tr>
-                      <td align="center">{{problem.mixDenominator}}</td><td align="center"><span class="math-answer">{{problem.improperDenominator}}</span></td>
-                    </tr>
-                  </table>
-                </div>
-                
-                <div *ngIf="!problem.mainSwitch" style="display:inline-block">
-                  <table cellpadding="1">
-                    <tr>
-                      <td class="numerator">{{problem.improperNumerator}}</td>
-                      <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
-                      <td rowspan="2"><span class="math-answer">{{problem.wholeNumber}}</span></td><td class="numerator" align="center"><span class="math-answer">{{problem.mixNumerator}}</span></td>
-                    </tr>
-                    <tr>
-                      <td align="center">{{problem.improperDenominator}}</td><td><span class="math-answer">{{problem.mixDenominator}}</span></td>
-                
-                    </tr>
-                  </table>
-                </div>
-              </div>
-    
-
-
-              <!-- /E15 -->
-
-
-              <!-- Epsilon Lesson 17 175 -->
-        <div *ngIf="problem.mainSwitch">
-
-          <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 175">
+              
+            </div>
+            
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 173">
               <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-              <!--  Display  -->
+              
+              <div *ngIf="problem.mainSwitch" style="display:inline-block">
+                <table cellpadding="1">
+                  <tr>
+                    <td rowspan="2" valign="middle">{{problem.wholeNumber}}</td>
+                    <td class="numerator" align="center">{{problem.mixNumerator}}</td>
+                    <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td><td class="numerator" align="center"><span class="math-answer">{{problem.improperNumerator}}</span></td>
+                  </tr>
+                  <tr>
+                    <td align="center">{{problem.mixDenominator}}</td><td align="center"><span class="math-answer">{{problem.improperDenominator}}</span></td>
+                  </tr>
+                </table>
+              </div>
+              
+              <div *ngIf="!problem.mainSwitch" style="display:inline-block">
+                <table cellpadding="1">
+                  <tr>
+                    <td class="numerator">{{problem.improperNumerator}}</td>
+                    <td rowspan="2" valign="middle">&nbsp;=&nbsp;</td>
+                    <td rowspan="2"><span class="math-answer">{{problem.wholeNumber}}</span></td><td class="numerator" align="center"><span class="math-answer">{{problem.mixNumerator}}</span></td>
+                  </tr>
+                  <tr>
+                    <td align="center">{{problem.improperDenominator}}</td><td><span class="math-answer">{{problem.mixDenominator}}</span></td>
+              
+                  </tr>
+                </table>
+              </div>
+            </div>
+  
+
+
+            <!-- /E15 -->
+
+
+            <!-- Epsilon Lesson 17 175 -->
+            <div *ngIf="problem.mainSwitch">
+
+              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 175">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <!--  Display  -->
                   <table><tr><td align="right">
                     <table cellpadding="1"><tr><td rowspan="2">{{problem.wholeAddend1}}</td><td class="numerator" align="center">{{problem.numAddend1}}</td></tr>
                       <tr><td>{{problem.denominator}}</td></tr></table>
                       </td></tr><tr><td class="numerator" align="right">
                       <table cellpadding="1"><tr><td rowspan="2">+&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
                       <tr><td>{{problem.denominator}}</td></tr></table>
-                      </td></tr><tr><td align="right">
-                      <table cellpadding="1"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
-                      <tr><td>&nbsp;</td></tr>
-                    </table>
-                    </td></tr>
+                      </td></tr>
+                      <tr>
+                        <td align="right">
+                          <table cellpadding="1"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
+                          <tr><td>&nbsp;</td></tr>
+                          </table>
+                        </td>
+                      </tr>
                   </table>
-                  </div>
+              </div>
 
-                        
-          <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 175">
-              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-              <!--  Answer Key -->
-                <table>
-                  <tr>
-                    <td align="right">
-                      <table cellpadding="1">
-                        <tr>
-                          <td rowspan="2">{{problem.wholeAddend1}}</td>
-                          <td class="numerator" align="center">{{problem.numAddend1}}</td>
-                        </tr>
-                        <tr>
-                          <td>{{problem.denominator}}</td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="numerator" align="right">
-                      <table cellpadding="1">
-                        <tr>
-                          <td rowspan="2">+&nbsp;</td>
-                          <td rowspan="2">{{problem.wholeAddend2}}</td>
-                          <td class="numerator" align="center">{{problem.numAddend2}}</td>
-                        </tr>
-                        <tr><td>{{problem.denominator}}</td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="right">
-                      <table cellpadding="1">
-                        <tr>
-                          <td rowspan="2"><span class="math-answer">{{problem.wholeSum}}</span></td>
-                          <td class="numerator" align="center"><span class="math-answer">{{problem.numSum}}</span></td>
-                        </tr>
-                        <tr>
-                          <td> <span class="math-answer">{{problem.denominator}}</span></td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                </table><br>
-
-          </div>
-
-        </div>
-
-
-        <div *ngIf="!problem.mainSwitch">
-
-                        
-            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 175">
+                      
+              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 175">
                 <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                <!-- Display -->
-                    <table><tr><td align="right">
-                    <table cellpadding="1"><tr><td rowspan="2">{{problem.wholeSum}}</td><td class="numerator" align="center">{{problem.numSum}}</td></tr>
-                    <tr><td>{{problem.denominator}}</td></tr></table>
-                    </td></tr><tr><td class="numerator" align="right">
-                    <table cellpadding="1"><tr><td rowspan="2">-&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
-                    <tr><td>{{problem.denominator}}</td></tr></table>
-                    </td></tr><tr><td align="right">
-                    <table cellpadding="1"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
-                    <tr><td>&nbsp;</td></tr></table>
-                    </td></tr></table>
+                <!--  Answer Key -->
+                  <table>
+                    <tr>
+                      <td align="right">
+                        <table cellpadding="1">
+                          <tr>
+                            <td rowspan="2">{{problem.wholeAddend1}}</td>
+                            <td class="numerator" align="center">{{problem.numAddend1}}</td>
+                          </tr>
+                          <tr>
+                            <td>{{problem.denominator}}</td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="numerator" align="right">
+                        <table cellpadding="1">
+                          <tr>
+                            <td rowspan="2">+&nbsp;</td>
+                            <td rowspan="2">{{problem.wholeAddend2}}</td>
+                            <td class="numerator" align="center">{{problem.numAddend2}}</td>
+                          </tr>
+                          <tr><td>{{problem.denominator}}</td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="right">
+                        <table cellpadding="1">
+                          <tr>
+                            <td rowspan="2"><span class="math-answer">{{problem.wholeSum}}</span></td>
+                            <td class="numerator" align="center"><span class="math-answer">{{problem.numSum}}</span></td>
+                          </tr>
+                          <tr>
+                            <td> <span class="math-answer">{{problem.denominator}}</span></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table><br>
+
+              </div>
+
             </div>
 
-                                  
+
+            <div *ngIf="!problem.mainSwitch">
+
+        
+              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 175">
+                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <!-- Display -->
+                      <table><tr><td align="right">
+                      <table cellpadding="1"><tr><td rowspan="2">{{problem.wholeSum}}</td><td class="numerator" align="center">{{problem.numSum}}</td></tr>
+                      <tr><td>{{problem.denominator}}</td></tr></table>
+                      </td></tr><tr><td class="numerator" align="right">
+                      <table cellpadding="1"><tr><td rowspan="2">-&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
+                      <tr><td>{{problem.denominator}}</td></tr></table>
+                      </td></tr><tr><td align="right">
+                      <table cellpadding="1"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
+                      <tr><td>&nbsp;</td></tr></table>
+                      </td></tr></table>
+              </div>
+
+                                
               <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 175">
                   <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
                   <!-- Answer key -->
@@ -919,60 +1016,74 @@
 
               </div>
 
-        </div>
-              <!-- /E17 -->
+            </div>
+            <!-- /E17 -->
 
 
-              <!-- Epsilon Lesson 18 176 -->
+            <!-- Epsilon Lesson 18 176 -->
 
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 176">
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 176">
 
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table><tr><td align="right">
-                        <table cellpadding="1"><tr><td rowspan="2">{{problem.wholeAddend1}}</td><td class="numerator" align="center">{{problem.numAddend1}}</td></tr>
-                        <tr><td>{{problem.denominator}}</td></tr></table>
-                        </td></tr><tr><td class="numerator" align="right">
-                        <table cellpadding="1"><tr><td rowspan="2">+&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
-                        <tr><td>{{problem.denominator}}</td></tr></table>
-                        </td></tr><tr><td align="right">
-                        <table cellpadding="1"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
-                        <tr><td>&nbsp;</td></tr></table>
-                        </td></tr></table>
-
-              </div>
-
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 176">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-              
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
                   <table><tr><td align="right">
-                    <table cellpadding="1"><tr><td rowspan="2">{{problem.wholeAddend1}}</td><td class="numerator" align="center">{{problem.numAddend1}}</td></tr>
-                    <tr><td>{{problem.denominator}}</td></tr></table>
-                    </td></tr><tr><td class="numerator" align="right">
-                    <table cellpadding="1"><tr><td rowspan="2">+&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
-                    <tr><td>{{problem.denominator}}</td></tr></table>
-                    </td></tr>
-                    <tr>
-                      <td align="right">
-                    <!-- if (numSum != 0) { -->
-                        <table *ngIf="problem.numSum != 0" cellpadding="1"><tr><td rowspan="2"><span class="math-answer">{{problem.wholeSum}}</span></td><td class="numerator" align="center"><span class="math-answer">{{problem.numSum}}</span></td>
-                        </tr><tr><td><span class="math-answer">{{problem.denomSum}}</span></td></tr></table>
+                      <table cellpadding="1"><tr><td rowspan="2">{{problem.wholeAddend1}}</td><td class="numerator" align="center">{{problem.numAddend1}}</td></tr>
+                      <tr><td>{{problem.denominator}}</td></tr></table>
+                      </td></tr><tr><td class="numerator" align="right">
+                      <table cellpadding="1"><tr><td rowspan="2">+&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
+                      <tr><td>{{problem.denominator}}</td></tr></table>
+                      </td></tr><tr><td align="right">
+                      <table cellpadding="1"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
+                      <tr><td>&nbsp;</td></tr></table>
+                      </td></tr></table>
+
+            </div>
+
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 176">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            
+                <table><tr><td align="right">
+                  <table cellpadding="1"><tr><td rowspan="2">{{problem.wholeAddend1}}</td><td class="numerator" align="center">{{problem.numAddend1}}</td></tr>
+                  <tr><td>{{problem.denominator}}</td></tr></table>
+                  </td></tr><tr><td class="numerator" align="right">
+                  <table cellpadding="1"><tr><td rowspan="2">+&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
+                  <tr><td>{{problem.denominator}}</td></tr></table>
+                  </td></tr>
+                  <tr>
+                    <td align="right">
+                  <!-- if (numSum != 0) { -->
+                      <table *ngIf="problem.numSum != 0" cellpadding="1"><tr><td rowspan="2"><span class="math-answer">{{problem.wholeSum}}</span></td><td class="numerator" align="center"><span class="math-answer">{{problem.numSum}}</span></td>
+                      </tr><tr><td><span class="math-answer">{{problem.denomSum}}</span></td></tr></table>
+                      
+                  <!-- }else{ -->
+                      <table *ngIf="problem.numSum == 0" cellpadding="1"><tr><td><span class="math-answer">{{problem.wholeSum}}</span></td><td>&nbsp;&nbsp;&nbsp;</td></tr></table> 
                         
-                    <!-- }else{ -->
-                        <table *ngIf="problem.numSum == 0" cellpadding="1"><tr><td><span class="math-answer">{{problem.wholeSum}}</span></td><td>&nbsp;&nbsp;&nbsp;</td></tr></table> 
-                          
-                      </td>
-                    </tr>
-                  </table>
-                 <br> 
-              </div>
+                    </td>
+                  </tr>
+                </table>
+                <br> 
+            </div>
 
 
-              <!-- /E18 -->
+            <!-- /E18 -->
 
 
-              <!-- Epsilon Lesson 19 177 -->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 177">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            <!-- Epsilon Lesson 19 177 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 177">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table><tr><td align="right">
+                <table cellpadding="1"><tr><td rowspan="2">{{problem.wholeSum}}</td><td class="numerator" align="center">{{problem.numSum}}</td></tr>
+                <tr><td>{{problem.denominator}}</td></tr></table>
+                </td></tr><tr><td class="numerator" align="right">
+                <table cellpadding="1"><tr><td rowspan="2">-&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
+                <tr><td>{{problem.denominator}}</td></tr></table>
+                </td></tr><tr><td align="right">
+                <table cellpadding="1"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
+                <tr><td>&nbsp;</td></tr></table>
+                </td></tr></table>
+            
+            </div>
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 177">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
                   <table><tr><td align="right">
                   <table cellpadding="1"><tr><td rowspan="2">{{problem.wholeSum}}</td><td class="numerator" align="center">{{problem.numSum}}</td></tr>
                   <tr><td>{{problem.denominator}}</td></tr></table>
@@ -980,759 +1091,641 @@
                   <table cellpadding="1"><tr><td rowspan="2">-&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
                   <tr><td>{{problem.denominator}}</td></tr></table>
                   </td></tr><tr><td align="right">
-                  <table cellpadding="1"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
-                  <tr><td>&nbsp;</td></tr></table>
-                  </td></tr></table>
-              
-              </div>
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 177">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table><tr><td align="right">
-                    <table cellpadding="1"><tr><td rowspan="2">{{problem.wholeSum}}</td><td class="numerator" align="center">{{problem.numSum}}</td></tr>
-                    <tr><td>{{problem.denominator}}</td></tr></table>
-                    </td></tr><tr><td class="numerator" align="right">
-                    <table cellpadding="1"><tr><td rowspan="2">-&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
-                    <tr><td>{{problem.denominator}}</td></tr></table>
-                    </td></tr><tr><td align="right">
-                    <table cellpadding="1"><tr><td rowspan="2"><span class="math-answer">{{problem.wholeAddend1}}</span></td><td class="numerator" align="center"><span class="math-answer">{{problem.numAddend1}}</span></td></tr>
-                    <tr><td><span class="math-answer">{{problem.denomDiff}}</span></td></tr></table>
-                    </td></tr></table><br>
-              </div>
+                  <table cellpadding="1"><tr><td rowspan="2"><span class="math-answer">{{problem.wholeAddend1}}</span></td><td class="numerator" align="center"><span class="math-answer">{{problem.numAddend1}}</span></td></tr>
+                  <tr><td><span class="math-answer">{{problem.denomDiff}}</span></td></tr></table>
+                  </td></tr></table><br>
+            </div>
 
-              <!-- E19 -->
+            <!-- E19 -->
 
 
-              <!-- Epsilon Lesson 21 179 -->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 179">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            <!-- Epsilon Lesson 21 179 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 179">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
-                  <table><tr><td align="right">
-                      <table cellpadding="1" align="right"><tr><td rowspan="2">{{problem.wholeAddend1}}</td><td class="numerator" align="center">{{problem.numAddend1}}</td></tr>
-                      <tr><td>{{problem.denominator1}}</td></tr></table>
-                      </td></tr><tr><td class="numerator" align="right">
-                      <table cellpadding="1"><tr><td rowspan="2">+&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
-                      <tr><td>{{problem.denominator2}}</td></tr></table>
-                      </td></tr><tr><td align="right">
-                      <table cellpadding="1" align="right"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
-                      <tr><td>&nbsp;</td></tr></table>
-                      </td></tr></table>
-                  
-              </div>
-
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 179">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                     <table><tr><td align="right">
-                     <table cellpadding="1" align="right"><tr><td rowspan="2">{{problem.wholeAddend1}}</td><td class="numerator" align="center">{{problem.numAddend1}}</td></tr>
-                     <tr><td>{{problem.denominator1}}</td></tr></table>
-                     </td></tr><tr><td class="numerator" align="right">
-                     <table cellpadding="1"><tr><td rowspan="2">+&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
-                     <tr><td>{{problem.denominator2}}</td></tr></table>
-                     </td></tr><tr><td align="right">
-                      <!-- if (numSum != 0) { -->
-                         <table *ngIf="problem.numSum != 0" cellpadding="1" align="right"><tr><td rowspan="2"><span class="math-answer">{{problem.wholeSum}}</span></td><td class="numerator" align="center"><span class="math-answer">{{problem.numSum}}</span></td></tr>
-                         <tr><td><span class="math-answer">{{problem.reducedDenom}}</span></td></tr></table>
-                      <!-- }else{ -->
-                         <table *ngIf="problem.numSum == 0" cellpadding="1" align="right"><tr><td><span class="math-answer">{{problem.wholeSum}}</span></td><td>&nbsp;&nbsp;&nbsp;</td></tr></table>
-                      <!-- } -->
-                     </td></tr></table><br>
-
-              </div>
-              <!-- /E21 -->
-
-
-              <!-- Epsilon Lesson 22 180 -->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 180">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                    <table><tr><td align="right">
-                        <table cellpadding="1" align="right"><tr><td rowspan="2">{{problem.whole1}}</td><td class="numerator" align="center">{{problem.num1}}</td></tr>
-                        <tr><td>{{problem.denominator1}}</td></tr></table>
-                        </td></tr><tr><td class="numerator" align="right">
-                        <table cellpadding="1"><tr><td rowspan="2">-&nbsp;</td><td rowspan="2">{{problem.whole2}}</td><td class="numerator" align="center">{{problem.num2}}</td></tr>
-                        <tr><td>{{problem.denominator2}}</td></tr></table>
-                        </td></tr><tr><td align="right">
-                        <table cellpadding="1"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
-                        <tr><td>&nbsp;</td></tr></table>
-                        </td></tr></table>
-              </div>
-
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 180">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                    <table><tr><td align="right">
-                    <table cellpadding="1" align="right"><tr><td rowspan="2">{{problem.whole1}}</td><td class="numerator" align="center">{{problem.num1}}</td></tr>
+                <table><tr><td align="right">
+                    <table cellpadding="1" align="right"><tr><td rowspan="2">{{problem.wholeAddend1}}</td><td class="numerator" align="center">{{problem.numAddend1}}</td></tr>
                     <tr><td>{{problem.denominator1}}</td></tr></table>
                     </td></tr><tr><td class="numerator" align="right">
-                    <table cellpadding="1"><tr><td rowspan="2">-&nbsp;</td><td rowspan="2">{{problem.whole2}}</td><td class="numerator" align="center">{{problem.num2}}</td></tr>
+                    <table cellpadding="1"><tr><td rowspan="2">+&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
                     <tr><td>{{problem.denominator2}}</td></tr></table>
                     </td></tr><tr><td align="right">
-                    <table cellpadding="1"><tr><td rowspan="2"><span class="math-answer">{{problem.wholeDiff}}</span></td><td class="numerator" align="center"><span class="math-answer">{{problem.numDiff}}</span></td></tr>
-                    <tr><td><span class="math-answer">{{problem.reducedDenom}}</span></td></tr></table>
+                    <table cellpadding="1" align="right"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>&nbsp;</td></tr></table>
                     </td></tr></table>
-
-                  </div>
-
-              <!-- /E22 -->
-
-
-              <!-- Epsilon Lesson 23 181 -->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 181">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                  <table cellpadding="1"><tr><td rowspan="2">{{problem.whole1}}</td><td class="numerator">{{problem.num1}}</td>
-                    <td rowspan="2">&nbsp;&divide;&nbsp;{{problem.whole2}}</td><td class="numerator">{{problem.num2}}</td><td rowspan="2">&nbsp;=</td></tr>
-                    <tr><td>{{problem.denom1}}</td><td>{{problem.denom2}}</td></tr></table>
                 
-                    
+            </div>
 
-              </div>
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 179">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 181">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                 <table cellpadding="1"><tr><td rowspan="2">{{problem.whole1}}</td><td class="numerator">{{problem.num1}}</td>
-                   <td rowspan="2">&nbsp;&divide;&nbsp;{{problem.whole2}}</td><td class="numerator">{{problem.num2}}</td><td rowspan="2">&nbsp;=&nbsp;</td>
-                    <!-- if (wholeAnswer != 0) { -->
-                       <td *ngIf="problem.wholeAnswer != 0" rowspan="2"><span class="math-answer">{{problem.wholeAnswer}}</span></td>
+                    <table><tr><td align="right">
+                    <table cellpadding="1" align="right"><tr><td rowspan="2">{{problem.wholeAddend1}}</td><td class="numerator" align="center">{{problem.numAddend1}}</td></tr>
+                    <tr><td>{{problem.denominator1}}</td></tr></table>
+                    </td></tr><tr><td class="numerator" align="right">
+                    <table cellpadding="1"><tr><td rowspan="2">+&nbsp;</td><td rowspan="2">{{problem.wholeAddend2}}</td><td class="numerator" align="center">{{problem.numAddend2}}</td></tr>
+                    <tr><td>{{problem.denominator2}}</td></tr></table>
+                    </td></tr><tr><td align="right">
+                    <!-- if (numSum != 0) { -->
+                        <table *ngIf="problem.numSum != 0" cellpadding="1" align="right"><tr><td rowspan="2"><span class="math-answer">{{problem.wholeSum}}</span></td><td class="numerator" align="center"><span class="math-answer">{{problem.numSum}}</span></td></tr>
+                        <tr><td><span class="math-answer">{{problem.reducedDenom}}</span></td></tr></table>
+                    <!-- }else{ -->
+                        <table *ngIf="problem.numSum == 0" cellpadding="1" align="right"><tr><td><span class="math-answer">{{problem.wholeSum}}</span></td><td>&nbsp;&nbsp;&nbsp;</td></tr></table>
                     <!-- } -->
-                    <!-- if(numAnswer != 0) { -->
-                       <td *ngIf="problem.numAnswer != 0" class="numerator"><span class="math-answer">{{problem.numAnswer}}</span></td>
-                    <!-- } -->
-                   </tr>
-                   <tr><td>{{problem.denom1}}</td><td>{{problem.denom2}}</td>
-                    <!-- if(numAnswer != 0) { -->
-                       <td *ngIf="problem.numAnswer != 0"><span class="math-answer">{{problem.denomAnswer}}</span></td>
-                    <!-- } -->
-                   </tr></table>&nbsp;&nbsp;
-
-              </div>
-              <!-- /E23 -->
-
-
-              <!-- Epsilon Lesson 25 183 -->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 183">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <table cellpadding="1"><tr><td rowspan="2">{{problem.swhole1}}</td><td class="numerator">{{problem.num1}}</td>
-                    <td rowspan="2">&nbsp;x&nbsp; <span *ngIf="problem.whole2 != 0">{{problem.whole2}}</span>
-                    <!-- if (whole2 != 0) { -->
-                        <!-- display += whole2; //make this conditional -->
-                    <!-- } -->
-                 </td><td class="numerator"> {{problem.num2}}</td><td rowspan="2">&nbsp;x&nbsp; {{problem.whole3}}</td>
-                 <td class="numerator"> {{problem.num3}}</td><td rowspan="2">&nbsp;=&nbsp;</td></tr>
-                 <tr><td> {{problem.denom1}}</td><td> {{problem.denom2}}</td><td> {{problem.denom3}}</td></tr></table>
-
-              </div>
-              
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 183">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                 <table cellpadding="1"><tr><td rowspan="2"> {{problem.whole1}}</td><td class="numerator"> {{problem.num1}}</td>
-                   <td rowspan="2">&nbsp;x&nbsp; <span *ngIf="problem.whole2 != 0">{{problem.whole2}}</span>
-                    <!-- if (whole2 != 0) {
-                        answerKey += whole2;
-                    } -->
-                   </td><td class="numerator"> {{problem.num2}}</td><td rowspan="2">&nbsp;x&nbsp; {{problem.whole3}}</td>
-                   <td class="numerator"> {{problem.num3}}</td><td rowspan="2">&nbsp;=&nbsp; <span *ngIf="problem.wholeAnswer != 0"><span class="math-answer">{{problem.wholeAnswer}}</span></span>
-                    <!-- if (wholeAnswer != 0) {
-                        answerKey += wholeAnswer;
-                    } -->
-                   </td>
-                    <!-- if (numAnswer != 0) { -->
-                       <td *ngIf="problem.numAnswer != 0" class="numerator"> <span class="math-answer">{{problem.numAnswer}}</span></td>
-                    <!-- } -->
-                   </tr>
-                   <tr><td> {{problem.denom1}}</td><td> {{problem.denom2}}</td><td> {{problem.denom3}}</td>
-                    <!-- if (numAnswer != 0) { -->
-                       <td *ngIf="problem.numAnswer != 0"> <span class="math-answer">{{problem.denomAnswer}}</span></td>
-                    <!-- } -->
-                   </tr></table>
-
-              </div>
-
-
-              <!-- /E25 -->
-
-
-              <!-- Epsilon Lesson 29 187 -->
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 187">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                <table cellpadding="0"><tr><td class="numerator">{{problem.num}}</td>
-                  <td rowspan="2">&nbsp;=&nbsp;</td>
-                  <td class="numerator">&nbsp;</td>
-                  <td rowspan="2">&nbsp;=&nbsp;</td>
-                  <td rowspan="2" class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>%</td></tr>
-                  <tr><td>{{problem.denom}}</td><td>100</td></tr></table>
-              </div>
-
-              <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 187">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                <table cellpadding="0"><tr><td class="numerator">{{problem.num}}</td>
-                <td rowspan="2">&nbsp;=&nbsp;</td>
-                <td class="numerator"><span class="math-answer">{{problem.decimal}}</span></td>
-                <td rowspan="2">&nbsp;=&nbsp;</td>
-                <td rowspan="2"><span class="math-answer">{{problem.decimal}}%</span></td></tr>
-                <tr><td>{{problem.denom}}</td><td>100</td></tr></table>
-
-              </div>
-
-              <!-- /E29 -->
-
-
-              
-              <!--  ZETA LEVEL -->
-
-              <!-- Zeta Lesson 4 -->
-
-                <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 193">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <table cellpadding="0"><tr><td align="right">{{problem.addend1}} </td></tr>
-                    <tr><td align="right" class="numerator">+&nbsp;{{problem.addend2}} </td></tr></table>
-                    
-                </div>
-                <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 193">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="0"><tr><td align="right">{{problem.addend1}} </td></tr>
-                    <tr><td align="right" class="numerator">+&nbsp;{{problem.addend2}} </td></tr>
-                    <tr><td align="right"> <span class="math-answer">{{problem.sum}}</span> </td></tr></table>
-                </div>
-
-
-              <!-- /Z4 -->
-              <!-- Zeta Lesson 5 -->
-                <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 194">
-                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    
-                      <table cellpadding="0"><tr><td align="right">{{problem.sum}}</td></tr>
-                      <tr><td align="right" class="numerator">- {{problem.addend2}}</td></tr></table>
-
-                </div>
-                <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 194">
-                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                      <table cellpadding="0"><tr><td align="right">{{problem.sum}}</td></tr>
-                      <tr><td align="right" class="numerator">- {{problem.addend2}}</td></tr>
-                      <tr><td align="right"><span class="math-answer">{{problem.addend1}}</span></td></tr></table>
-
-                </div>
-              <!-- /Z5 -->
-
-              <!-- Zeta Lesson 8 -->
-                <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 197">
-                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    
-                    <table cellpadding="0"><tr><td align="left">{{problem.quantity}} {{problem.prefix_1}}{{problem.unit_abbrev}} = _____ {{problem.prefix_2}}{{problem.unit_abbrev}}<br><br><br></td></tr></table>
-
-                </div>
-
-                <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 197">
-                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    
-                    <table cellpadding="0"><tr><td align="left">{{problem.quantity}} {{problem.prefix_1}}{{problem.unit_abbrev}} = <span class="math-answer">{{problem.unitMultr}} {{problem.prefix_2}}{{problem.unit_abbrev}}</span><br><br><br></td></tr></table>
-
-                </div>
-
-              <!-- /Z8 -->
-
-              <!-- Zeta Lesson 9 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 198">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="0"><tr><td align="right">{{problem.factor1D}}</td></tr>
-                    <tr><td align="right" class="numerator">x {{problem.factor2D}}</td></tr></table>
-                
-                  </div>
-                  
-                  <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 198">
-                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    
-                    <table cellpadding="0"><tr><td align="right">{{problem.factor1D}}</td></tr>
-                    <tr><td align="right" class="numerator">x {{problem.factor2D}}</td></tr>
-                    <tr><td align="right"><span class="math-answer">{{problem.productD}}</span></td></tr></table>
-
-              </div>
-
-              <!-- /Z9 -->
-
-              <!-- Zeta Lesson 10 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 199">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="0"><tr><td></td><td>{{problem.factor1D}}</td></tr>
-                    <tr><td>x&nbsp;</td><td class="numerator">{{problem.factor2D}}</td></tr></table>
-                
-              </div>
-                  
-              <!-- /Z10 -->
-                  
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 199">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                
-               <table cellpadding="0"><tr><td></td><td>{{problem.factor1D}}</td></tr>
-                 <tr><td>x&nbsp;</td><td class="numerator">{{problem.factor2D}}</td></tr>
-                 <tr><td></td><td><span class="math-answer"><span class="math-answer">{{problem.productD}}</span></span></td></tr></table>
-              </div>
-
-
-
-              <!-- Zeta Lesson 14 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 203">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="0"><tr><td></td><td align="right">{{problem.factor1D}}</td></tr>
-                    <tr><td>x&nbsp;</td><td class="baseline">{{problem.factor2D}}</td></tr></table>
-                  </div>
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 203">
-                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="0"><tr><td></td><td align="right">{{problem.factor1D}}</td></tr>
-                    <tr><td>x&nbsp;</td><td class="baseline">{{problem.factor2D}}</td></tr>
-                    <tr><td></td><td align="right"><span class="math-answer">{{problem.productD}}</span></td></tr></table>
-              </div>
-              <!-- /Z14 -->
-
-              <!-- Zeta Lesson 15 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 204">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="0"><tr><td align="left">{{problem.quantity}} {{problem.prefix_1}}{{problem.unit_abbrev}} = _____ {{problem.prefix_2}}{{problem.unit_abbrev}}<br><br><br></td></tr></table>
-
-              </div>
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 204">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="0"><tr><td align="left">{{problem.quantity}} {{problem.prefix_1}}{{problem.unit_abbrev}} = <span class="math-answer">{{problem.unitMultr}} {{problem.prefix_2}}{{problem.unit_abbrev}}</span><br><br><br></td></tr></table>
-                  
-              </div>
-
-
-              <!-- /Z15 -->
-
-              <!-- Zeta Lesson 17 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 206">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="1"><tr><td></td><td></td></tr>
-                    <tr><td>{{problem.divisor}}</td><td class="divsign"> {{problem.dividend}}</td></tr></table>
-                
-              </div>
-
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 206">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient}}</span></td></tr>
-                    <tr><td>{{problem.divisor}}</td><td class="divsign"> {{problem.dividend}}</td></tr></table>
-              </div>
-
-
-              <!-- /Z17 -->
-
-              <!-- Zeta Lesson 18 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 207">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="1"><tr><td></td><td></td></tr>
-                    <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
-                
-                  </div>
-                  
-                  <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 207">
-                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    
-                      <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient}}</span></td></tr>
-                      <tr><td>{{problem.divisor1}} </td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
-              </div>
-
-
-              <!-- /Z18 -->
-              <!-- Zeta Lesson 19 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 208">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <table cellpadding="1"><tr><td>{{problem.factor1}}{{problem.letter}} = {{problem.product}}</td></tr></table>
-
-                </div>
-                
-                <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 208">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="1"><tr><td align="center">{{problem.factor1}}{{problem.letter}} = {{problem.product}}</td></tr>
-                    <tr><td align="center"><span class="math-answer">{{problem.letter}} = {{problem.product}} &divide; {{problem.factor1}}</span></td></tr>
-                    <tr><td align="center"><span class="math-answer">{{problem.letter}} = {{problem.factor2}}</span></td></tr></table>
-                  
-              </div>
-
-              <!-- /Z19 -->
-              <!-- Zeta Lesson 20 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 209">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="1"><tr><td></td><td></td></tr>
-                    <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
-                
-              </div>
-                  
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 209">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient}}</span></td></tr>
-                <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
-                  
-              </div>
-
-              <!-- /Z20 -->
-              <!-- Zeta Lesson 21.1 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 2101">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  
-                 <table cellpadding="1"><tr><td></td><td></td></tr>
-                   <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
-                
-              </div>
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 2101">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient}}</span></td></tr>
-                    <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
-
-              </div>
-                  
-              <!-- /Z21.1 -->
-              <!-- Zeta Lesson 21.2 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 2102">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <table cellpadding="1"><tr><td></td><td></td></tr>
-                    <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
-              
-                </div>
-                
-                <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 2102">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  
-                  <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient}}</span></td></tr>
-                  <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
-              </div>
-
-              <!-- /Z21.2 -->
-
-               <!-- Zeta Lesson 21.3 -->
-               <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 2103">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="1"><tr><td></td><td></td></tr>
-                      <tr><td>{{problem.divisor1}} </td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
-            
-                    </div>
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 2103">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient1}}<span style="text-decoration:overline">{{problem.repeatedDigits}}</span></span></td></tr>
-                  <tr><td>{{problem.divisor1}} </td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
-            
-              </div>
-
-              <!-- /Z21.3 -->
-
-               <!-- Zeta Lesson 21.4 -->
-               <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 2104">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="1"><tr><td></td><td></td><td></td></tr>
-                    <tr><td>{{problem.divisor}} </td><td class="divsign"> {{problem.dividend1}}</td><td></td></tr></table>
-              </div>
-
-               <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 2104">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient}}</span></td><td>
-                      <table class="smallfraction"><tr><td class="numerator">{{problem.numerator}}</td></tr>
-                      <tr><td>{{problem.denominator}}</td></tr></table>
-                      </td></tr>
-                      <tr><td>{{problem.preDivisor}} </td><td class="divsign"> {{problem.preDividend}}</td><td></td></tr></table>
-              </div>
-
-              <!-- /Z21.4 -->
-
-               <!-- Zeta Lesson 22 -->
-               <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 211">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                 <table cellpadding="1"><tr><td>{{problem.factor1}} {{problem.letter}} +  {{problem.addedNumber}}  = {{problem.productPlusAddedNumber}}</td></tr></table>
-              </div>
-               
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 211">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <table cellpadding="1"><tr><td align="center">{{problem.factor1}}  {{problem.letter}} +  {{problem.addedNumber}} = {{problem.productPlusAddedNumber}} </td></tr>
-                      <tr><td align="center"> <span class="math-answer">{{problem.factor1}} {{problem.letter}} +  {{problem.addedNumber}} - {{problem.addedNumber}} = {{problem.productPlusAddedNumber}} - {{problem.addedNumber}}</span> </td></tr>
-                      <tr><td align="center"> <span class="math-answer">{{problem.factor1}} {{problem.letter}} = {{problem.product}}</span> </td></tr>
-                      <tr><td align="center"> <span class="math-answer">{{problem.letter}}  = {{problem.product}} &divide;  {{problem.factor1}}</span></td></tr>
-                      <tr><td align="center"> <span class="math-answer">{{problem.letter}} = {{problem.factor2}}</span> </td></tr></table>
-              </div>
-
-              <!-- /Z22 -->
-
-              <!-- Zeta Lesson 23 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 212">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <table cellpadding="1"><tr><td></td><td colspan="2"></td><td></td></tr>
-                    <tr><td rowspan="2"></td><td class="numerator">{{problem.numerator}}</td><td rowspan="2"> =</td></tr>
-                    <tr><td>{{problem.denominator}}</td></tr></table>
-              </div>
-              
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 212">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  
-                  <table *ngIf="problem.remainder == 0" cellpadding="1"><tr><td align="center" class="numerator">{{problem.numerator}}</td><td rowspan="2"> = <span class="math-answer"> .{{problem.quotient}} {{problem.numeratorCode}} </span>=  <span class="math-answer">{{problem.quotient}} {{ problem.numeratorCode }}%</span></td></tr>
-                    <tr><td align="center">{{problem.denominator}}</td><span class="math-answer">{{problem.denominatorCode}} {{problem.denominatorCode}}</span></tr>
-                  </table>
-
-                  <table *ngIf="problem.remainder != 0" cellpadding="1">
-                    <tr><td align="center" class="numerator">{{problem.numerator}}</td><td rowspan="2"> =  <span class="math-answer">.{{problem.quotient}}</span></td><td class="numerator" align="center"> <span class="math-answer">{{problem.reducedRemainder}}</span></td><td rowspan="2"> =  <span class="math-answer">{{problem.quotient}}</span> </td><td class="numerator" align="center"> <span class="math-answer">{{problem.reducedRemainder}}</span></td><td rowspan="2"> <span class="math-answer">%</span></td></tr>
-                    <tr><td align="center">{{problem.denominator}}</td><td align="center"> <span class="math-answer">{{problem.reducedDenominator}}</span></td><td align="center"> <span class="math-answer">{{problem.reducedDenominator}}</span></td></tr>
-                  </table>
-
-              </div>
-
-              <!-- /Z23 -->
-
-              <!-- Zeta Lesson 24 -->
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 213">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  
-                    <table cellpadding="1"><tr><td></td><td></td></tr>
-                      <tr><td></td><td>.{{problem.problemAsText}}  =</td></tr></table>
-
-              </div>
-              <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 213">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  
-                  <table *ngIf="problem.reduced != true" cellpadding="1"><tr><td rowspan="2">.{{problem.problemAsText}} =</td><td class="numerator"> <span class="math-answer">{{problem.roundNumerator}}</span></td> <span class="math-answer">{{problem.reducedNumeratorCode}}</span></tr>
-                    <tr><td align="center"> <span class="math-answer">{{problem.denominator}}</span></td> <span class="math-answer">{{problem.reducedDenominatorCode}}</span></tr></table>
-
-                    <!-- if (reduced == true) {
-                      reducedNumeratorCode = '<td rowspan="2"> = </td><td class="numerator">{{problem.reducedNumerator}}</td>
-                      reducedDenominatorCode = '<td align="center">{{problem.reducedDenominator}}</td>
-                    } -->
-
-                  <table *ngIf="problem.reduced == true" cellpadding="1"><tr><td rowspan="2">.{{problem.problemAsText}} =</td><td class="numerator"> <span class="math-answer">{{problem.roundNumerator}}</span></td><td rowspan="2"> = </td><td class="numerator"> <span class="math-answer">{{problem.reducedNumerator}}</span></td></tr>
-                    <tr><td align="center"> <span class="math-answer">{{problem.denominator}}</span></td><td align="center"> <span class="math-answer">{{problem.reducedDenominator}}</span></td></tr></table>
-
-              </div>
-
-              <!-- /Z24 -->
-
-              <!-- 
-
-                PRE_ALGEBRA
-
-               -->
-
-              <!-- Lesson 5 -->
-              <!-- <div class="math-problem__problem" *ngIf="problem.prealgebraProblem && !worksheetService.options.showAnswers && problem.lessonNo == 225">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                
-                 <table *ngIf="problem.type == 'whole'" cellpadding="1"><tr><td>{{problem.base}}<sup>{{problem.exponent}}</sup> = </td></tr></table>
-
-
-                 <table *ngIf="problem.type != 'whole'" cellpadding="1"><tr><td rowspan="2">(</td><td class="numerator">{{problem.numerator}}</td><td rowspan="2">)</td><td rowspan="2"><sup>{{problem.exponent}}</sup> = </td></tr>
-                  <tr><td align="center">{{problem.denominator}}</td></tr></table>
-              </div>
-
-              <div class="math-problem__problem" *ngIf="problem.prealgebraProblem && !worksheetService.options.showAnswers && problem.lessonNo == 225">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                <table cellpadding="1"><tr><td> {{problem.base}} <sup> {{problem.exponent}} </sup> = {{problem.mathPow}}</td></tr></table>
-               <table cellpadding="1"><tr><td rowspan="2">(</td><td class="numerator">{{problem.numerator}}</td><td rowspan="2">)</td><td rowspan="2"><sup>{{problem.exponent}}</sup> = </td><td class="numerator">{{problem.numEx}}</td></tr>
-                 <tr><td align="center">{{problem.denominator}}</td><td>{{problem.deEx}}</td></tr></table>
-
-              </div> -->
-               <!-- /5 -->
-
-
-               <!-- PreAlgebra Lesson 7-->
-
-              <!-- <div class="math-problem__problem" *ngIf="problem.prealgebraProblem && !worksheetService.options.showAnswers && problem.lessonNo == 226">
-                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                <table *ngIf="problem.type == 'whole'" cellpadding="1"><tr><td> {{problem.opener}}  {{problem.base}}  {{problem.closer}}  <sup>  {{problem.exponent}} </sup> = </td></tr></table>
-                <table *ngIf="problem.type != 'whole'" cellpadding="1"><tr><td rowspan="2">{{problem.opener}} </td><td class="numerator"> {{problem.numerator}} </td><td rowspan="2"> {{problenm.closer}} </td><td rowspan="2"><sup> {{problem.exponent}}</sup> = </td></tr>
-                  <tr><td align="center">{{problem.denominator}} </td></tr></table>
- 
-              </div>
-
-
-              <div class="math-problem__problem" *ngIf="problem.prealgebraProblem && worksheetService.options.showAnswers && problem.lessonNo == 226">
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-
-                  <table *ngIf="problem.type == 'whole'" cellpadding="1"><tr><td>{{problem.opener}} + {{problem.base}} + {{problem.closer}}<sup>{{problem.exponent}}</sup> = {{problem.correctEx}}</td></tr></table>
-
-                
-                  <!-- <table *ngIf="problem.type == 'fraction'" cellpadding="1"><tr><td rowspan="2">{{problem.opener}}</td><td class="numerator">{{problem.numerator}}</td><td rowspan="2">{{problem.closer}}</td><td rowspan="2"><sup>{{problem.exponent}}</sup><sub>&nbsp;</sub>= {{problem.answerSign}}</td><td class="numerator">{{problem.numEx}}</td></tr>
-                  <tr><td align="center">{{problem.denominator}}</td><td>{{problem.deEx}}</td></tr></table>
-
-              </div> -->
-
-                <!--  /7 -->
-
-               
-               <!-- Lesson 8 -->
-              
-               <!-- /8 -->
-
-               <!-- Lesson 9 -->
-              
-               <!-- /9 -->
-
-               <!-- Lesson 13 -->
-              
-               <!-- /13 -->
-
-               <!-- Lesson 14 -->
-              
-               <!-- /14 -->
-
-               <!-- Lesson 16 -->
-              
-               <!-- /16 -->
-
-               <!-- Lesson 17 -->
-              
-
-               <!-- /17 -->
-
-               
-
-                <!-- HORIZONTAL : DIVISION PROBLEMS  -->
-                <div class="math-problem__problem" *ngIf="isDivisionProblem(problem) && !worksheetService.options.Fractions">
-      
-                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <div class="math-problem__symbol"></div>
-                    <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as n">
-                      <span>{{ value }}&nbsp;</span>
-                      <span *ngIf="n == 1">&nbsp;=</span>
-                      <span class="math-answer" *ngIf="worksheetService.options.showAnswers && n == 1" style="position:relative; left:10px;">&nbsp;{{ problem.divAnswer }}&nbsp; <span *ngIf="problem.divRemainder"><span *ngIf="problem.lessonNo !== 147">R&nbsp;</span>{{problem.divRemainder}}</span></span>
-                      <span *ngIf="n == 0">÷</span>
-                    </div>
-
-                </div>
-                <!-- End Division problems -->
-
-               <!-- Inequalities for Beta -->
-               <div class="math-problem__problem" *ngIf="problem.isInequality == true">
-
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <div class="math-problem__symbol"></div>
-                  <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">
-                      <span>{{ value }}&nbsp;</span>
-                      <span *ngIf="!worksheetService.options.showAnswers  && j === 0">&nbsp;_&nbsp;</span>
-                      <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 0">{{ problem.answer_inequality }}&nbsp;</span>
-                      <!-- <span>{{ value }}&nbsp;</span> -->
-                  </div>
-   
-                </div>
-
-                <!-- Rounding 10 -->
-                <div class="math-problem__problem" *ngIf="problem.roundingTen == true">
-                    
-                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <div class="math-problem__symbol"></div>
-                    <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">
-
-                        <span>{{ value }}&nbsp;&rarr;</span>
-                        <span *ngIf="!worksheetService.options.showAnswers  && j === 0">&nbsp;_&nbsp;</span>
-                        <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 0">{{ problem.answer_roundingTen }}&nbsp;</span>
-
-                    </div>
-
-                </div>
-                <!-- End Beta Inequalities -->
-
-
-
-                <!-- Non Division Problems -->
-                <div class="math-problem__problem" *ngIf="!isDivisionProblem(problem) && !problem.isInequality && !problem.roundingTen && !worksheetService.options.Fractions && !problem.zetaProblem && !problem.epsilonProblem && !problem.override && !problem.numerals">
-                  <!-- ÷ -->
-                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                  <div class="math-problem__symbol"></div>
-                  <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">
-                    
-                    <!-- ADDITION  -->
-                    <span *ngIf="problem.problemType === 1 && !worksheetService.options.Fractions">
-                        
-                      <span *ngIf="!problem.solveForUnknown || value != '_'">
-                      <span *ngIf="problem.containsNegative">(</span>{{ value }}<span *ngIf="problem.containsNegative">)</span>&nbsp;
-                      </span>
-                      <span *ngIf="problem.solveForUnknown && value == '_'">
-                        <span *ngIf="!worksheetService.options.showAnswers">{{ value }}&nbsp;</span>
-                        <span class="math-answer" *ngIf="worksheetService.options.showAnswers">{{ problem.answer }}&nbsp;</span>
-                      </span>
-                    </span>
-
-                    <span *ngIf="problem.problemType === 2 && !worksheetService.options.Fractions">
-                        
-                        <span *ngIf="!problem.solveForUnknown || value != '_'">
-                        <span *ngIf="problem.containsNegative">(</span>{{ value }}<span *ngIf="problem.containsNegative">)</span>&nbsp;
-                        </span>
-                        <span *ngIf="problem.solveForUnknown && value == '_'">
-                          <span *ngIf="!worksheetService.options.showAnswers">{{ value }}&nbsp;</span>
-                          <span class="math-answer" *ngIf="worksheetService.options.showAnswers">{{ problem.answer }}&nbsp;</span>
-                        </span>
-                    </span>
-
-                    <!-- MULTIPLICATION -->
-                    <span *ngIf="problem.problemType === 8 && !worksheetService.options.Fractions && !problem.lessonNo">
-                        
-                        <span *ngIf="!problem.solveForUnknown || value != '_'">
-                        <span *ngIf="problem.containsNegative">(</span>{{ value }}<span *ngIf="problem.containsNegative">)</span>&nbsp;
-                        </span>
-                        <span *ngIf="problem.solveForUnknown && value == '_'">
-                          <span *ngIf="!worksheetService.options.showAnswers">{{ value }}&nbsp;</span>
-                          <span class="math-answer" *ngIf="worksheetService.options.showAnswers">{{ problem.answer }}&nbsp;</span>
-                        </span>
-                      </span>
-
-                    <!--  Solve for Unknown Mult : Gamma Lesson 8 -->
-                      <span *ngIf="problem.problemType === 8 && problem.lessonNo === 104">
-
-                          <span *ngIf="!worksheetService.options.showAnswers && problem.solveForUnknown">{{ value }}</span>
-                          <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 1">{{problem.lhs}} x {{ problem.answer }}&nbsp;</span>
-
-                      </span>
-                      <!--  Solve for Unknown Mult -->
-                      <!-- Solve for unknown AddMult symbols -->
-                      <span *ngIf="j == problem.values.length - 1"> = </span><span *ngIf="j < problem.values.length - 1">{{ problem.symbol }}</span>
-
-                  </div>
-
-                  <!-- Any addition answer sans fractions -->
-                  <div class="math-problem__answer-HOR" *ngIf="worksheetService.options.showAnswers && !problem.solveForUnknown">
-                    <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.answer }}</ng-container> 
-                  </div>
-
-                  <!--  Any solve For Unknown Answers -->
-                  <div class="math-problem__value-HOR" *ngIf="problem.solveForUnknown == true">
-                      <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.sfu_answer }}</ng-container> 
-                  </div>
-
-                  <div class="math-problem__answer-HOR" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
-                </div>
-              <!-- ENd non division problems -->
-
-                <!-- Horizontal Division Problems -->
-                <!-- <div class="math-problem__problem" *ngIf="isDivisionProblem(problem) && !problem.isInequality">
-                    <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
-                    <div class="math-problem__symbol"></div>
-                    <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">{{ value }}&nbsp;<span *ngIf="j == problem.values.length - 1"> = </span><span *ngIf="j < problem.values.length - 1">{{ problem.symbol }}</span></div>
-                    <div class="math-problem__answer-HOR" *ngIf="worksheetService.options.showAnswers">
-                      <ng-container *ngIf="isDivisionProblem(problem)">
-                        <ng-container *ngIf="worksheetService.options.divisionOptions.showRemainders">{{problem.answerFloored}}<strong>r</strong>{{problem.remainder}}</ng-container>
-                        <ng-container *ngIf="!worksheetService.options.divisionOptions.showRemainders">{{problem.answer | number:getDivisionNumberFormat()}}</ng-container>
-                      </ng-container>
-                      <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.answer }}</ng-container> 
-                    </div>
-                    <div class="math-problem__answer-HOR" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
-                </div> -->
+                    </td></tr></table><br>
 
             </div>
-          <!-- </div> -->
-
-          <!-- NOT HORIZONTAL -->
-          <div *ngIf="!worksheetService.options.showHorizontal">
-            <div class="math-problem" *ngFor="let problem of worksheetService.problems; index as i">
-
-              <!--  Add non-horizontal here -->
+            <!-- /E21 -->
 
 
-              <!--  -->
-              <div class="math-problem__problem" *ngIf="!isDivisionProblem(problem)">
+            <!-- Epsilon Lesson 22 180 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 180">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                  <table><tr><td align="right">
+                      <table cellpadding="1" align="right"><tr><td rowspan="2">{{problem.whole1}}</td><td class="numerator" align="center">{{problem.num1}}</td></tr>
+                      <tr><td>{{problem.denominator1}}</td></tr></table>
+                      </td></tr><tr><td class="numerator" align="right">
+                      <table cellpadding="1"><tr><td rowspan="2">-&nbsp;</td><td rowspan="2">{{problem.whole2}}</td><td class="numerator" align="center">{{problem.num2}}</td></tr>
+                      <tr><td>{{problem.denominator2}}</td></tr></table>
+                      </td></tr><tr><td align="right">
+                      <table cellpadding="1"><tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
+                      <tr><td>&nbsp;</td></tr></table>
+                      </td></tr></table>
+            </div>
+
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 180">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                  <table><tr><td align="right">
+                  <table cellpadding="1" align="right"><tr><td rowspan="2">{{problem.whole1}}</td><td class="numerator" align="center">{{problem.num1}}</td></tr>
+                  <tr><td>{{problem.denominator1}}</td></tr></table>
+                  </td></tr><tr><td class="numerator" align="right">
+                  <table cellpadding="1"><tr><td rowspan="2">-&nbsp;</td><td rowspan="2">{{problem.whole2}}</td><td class="numerator" align="center">{{problem.num2}}</td></tr>
+                  <tr><td>{{problem.denominator2}}</td></tr></table>
+                  </td></tr><tr><td align="right">
+                  <table cellpadding="1"><tr><td rowspan="2"><span class="math-answer">{{problem.wholeDiff}}</span></td><td class="numerator" align="center"><span class="math-answer">{{problem.numDiff}}</span></td></tr>
+                  <tr><td><span class="math-answer">{{problem.reducedDenom}}</span></td></tr></table>
+                  </td></tr></table>
+
+                </div>
+
+            <!-- /E22 -->
+
+
+            <!-- Epsilon Lesson 23 181 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 181">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                <table cellpadding="1"><tr><td rowspan="2">{{problem.whole1}}</td><td class="numerator">{{problem.num1}}</td>
+                  <td rowspan="2">&nbsp;&divide;&nbsp;{{problem.whole2}}</td><td class="numerator">{{problem.num2}}</td><td rowspan="2">&nbsp;=</td></tr>
+                  <tr><td>{{problem.denom1}}</td><td>{{problem.denom2}}</td></tr></table>
+              
+                  
+
+            </div>
+
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 181">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                <table cellpadding="1"><tr><td rowspan="2">{{problem.whole1}}</td><td class="numerator">{{problem.num1}}</td>
+                  <td rowspan="2">&nbsp;&divide;&nbsp;{{problem.whole2}}</td><td class="numerator">{{problem.num2}}</td><td rowspan="2">&nbsp;=&nbsp;</td>
+                  <!-- if (wholeAnswer != 0) { -->
+                      <td *ngIf="problem.wholeAnswer != 0" rowspan="2"><span class="math-answer">{{problem.wholeAnswer}}</span></td>
+                  <!-- } -->
+                  <!-- if(numAnswer != 0) { -->
+                      <td *ngIf="problem.numAnswer != 0" class="numerator"><span class="math-answer">{{problem.numAnswer}}</span></td>
+                  <!-- } -->
+                  </tr>
+                  <tr><td>{{problem.denom1}}</td><td>{{problem.denom2}}</td>
+                  <!-- if(numAnswer != 0) { -->
+                      <td *ngIf="problem.numAnswer != 0"><span class="math-answer">{{problem.denomAnswer}}</span></td>
+                  <!-- } -->
+                  </tr></table>&nbsp;&nbsp;
+
+            </div>
+            <!-- /E23 -->
+
+
+            <!-- Epsilon Lesson 25 183 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 183">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1"><tr><td rowspan="2">{{problem.swhole1}}</td><td class="numerator">{{problem.num1}}</td>
+                  <td rowspan="2">&nbsp;x&nbsp; <span *ngIf="problem.whole2 != 0">{{problem.whole2}}</span>
+                  <!-- if (whole2 != 0) { -->
+                      <!-- display += whole2; //make this conditional -->
+                  <!-- } -->
+                </td><td class="numerator"> {{problem.num2}}</td><td rowspan="2">&nbsp;x&nbsp; {{problem.whole3}}</td>
+                <td class="numerator"> {{problem.num3}}</td><td rowspan="2">&nbsp;=&nbsp;</td></tr>
+                <tr><td> {{problem.denom1}}</td><td> {{problem.denom2}}</td><td> {{problem.denom3}}</td></tr></table>
+
+            </div>
+            
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 183">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+              <table cellpadding="1"><tr><td rowspan="2"> {{problem.whole1}}</td><td class="numerator"> {{problem.num1}}</td>
+                <td rowspan="2">&nbsp;x&nbsp; <span *ngIf="problem.whole2 != 0">{{problem.whole2}}</span>
+                <!-- if (whole2 != 0) {
+                    answerKey += whole2;
+                } -->
+                </td><td class="numerator"> {{problem.num2}}</td><td rowspan="2">&nbsp;x&nbsp; {{problem.whole3}}</td>
+                <td class="numerator"> {{problem.num3}}</td><td rowspan="2">&nbsp;=&nbsp; <span *ngIf="problem.wholeAnswer != 0"><span class="math-answer">{{problem.wholeAnswer}}</span></span>
+                <!-- if (wholeAnswer != 0) {
+                    answerKey += wholeAnswer;
+                } -->
+                </td>
+                <!-- if (numAnswer != 0) { -->
+                    <td *ngIf="problem.numAnswer != 0" class="numerator"> <span class="math-answer">{{problem.numAnswer}}</span></td>
+                <!-- } -->
+                </tr>
+                <tr><td> {{problem.denom1}}</td><td> {{problem.denom2}}</td><td> {{problem.denom3}}</td>
+                <!-- if (numAnswer != 0) { -->
+                    <td *ngIf="problem.numAnswer != 0"> <span class="math-answer">{{problem.denomAnswer}}</span></td>
+                <!-- } -->
+                </tr>
+              </table>
+
+            </div>
+
+            <!-- /E25 -->
+
+            <!-- Epsilon Lesson 29 187 -->
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && !worksheetService.options.showAnswers && problem.lessonNo == 187">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+              <table cellpadding="0"><tr><td class="numerator">{{problem.num}}</td>
+                <td rowspan="2">&nbsp;=&nbsp;</td>
+                <td class="numerator">&nbsp;</td>
+                <td rowspan="2">&nbsp;=&nbsp;</td>
+                <td rowspan="2" class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>%</td></tr>
+                <tr><td>{{problem.denom}}</td><td>100</td></tr></table>
+            </div>
+
+            <div class="math-problem__problem" *ngIf="problem.epsilonProblem && worksheetService.options.showAnswers && problem.lessonNo == 187">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+              <table cellpadding="0"><tr><td class="numerator">{{problem.num}}</td>
+              <td rowspan="2">&nbsp;=&nbsp;</td>
+              <td class="numerator"><span class="math-answer">{{problem.decimal}}</span></td>
+              <td rowspan="2">&nbsp;=&nbsp;</td>
+              <td rowspan="2"><span class="math-answer">{{problem.decimal}}%</span></td></tr>
+              <tr><td>{{problem.denom}}</td><td>100</td></tr></table>
+
+            </div>
+
+            <!-- /E29 -->
+
+            <!--  ZETA LEVEL -->
+
+            <!-- Zeta Lesson 4 -->
+
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 193">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <table cellpadding="0"><tr><td align="right">{{problem.addend1}} </td></tr>
+                <tr><td align="right" class="numerator">+&nbsp;{{problem.addend2}} </td></tr></table>
+                
+            </div>
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 193">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="0"><tr><td align="right">{{problem.addend1}} </td></tr>
+                <tr><td align="right" class="numerator">+&nbsp;{{problem.addend2}} </td></tr>
+                <tr><td align="right"> <span class="math-answer">{{problem.sum}}</span> </td></tr></table>
+            </div>
+
+            <!-- /Z4 -->
+            <!-- Zeta Lesson 5 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 194">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                
+                  <table cellpadding="0"><tr><td align="right">{{problem.sum}}</td></tr>
+                  <tr><td align="right" class="numerator">- {{problem.addend2}}</td></tr></table>
+
+            </div>
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 194">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                  <table cellpadding="0"><tr><td align="right">{{problem.sum}}</td></tr>
+                  <tr><td align="right" class="numerator">- {{problem.addend2}}</td></tr>
+                  <tr><td align="right"><span class="math-answer">{{problem.addend1}}</span></td></tr></table>
+
+            </div>
+            <!-- /Z5 -->
+
+            <!-- Zeta Lesson 8 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 197">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                
+                <table cellpadding="0"><tr><td align="left">{{problem.quantity}} {{problem.prefix_1}}{{problem.unit_abbrev}} = _____ {{problem.prefix_2}}{{problem.unit_abbrev}}<br><br><br></td></tr></table>
+
+            </div>
+
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 197">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                
+                <table cellpadding="0"><tr><td align="left">{{problem.quantity}} {{problem.prefix_1}}{{problem.unit_abbrev}} = <span class="math-answer">{{problem.unitMultr}} {{problem.prefix_2}}{{problem.unit_abbrev}}</span><br><br><br></td></tr></table>
+
+            </div>
+
+            <!-- /Z8 -->
+
+            <!-- Zeta Lesson 9 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 198">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="0"><tr><td align="right">{{problem.factor1D}}</td></tr>
+                  <tr><td align="right" class="numerator">x {{problem.factor2D}}</td></tr></table>
+              
+            </div>
+                
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 198">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              
+              <table cellpadding="0"><tr><td align="right">{{problem.factor1D}}</td></tr>
+              <tr><td align="right" class="numerator">x {{problem.factor2D}}</td></tr>
+              <tr><td align="right"><span class="math-answer">{{problem.productD}}</span></td></tr></table>
+
+            </div>
+
+            <!-- /Z9 -->
+
+            <!-- Zeta Lesson 10 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 199">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="0"><tr><td></td><td>{{problem.factor1D}}</td></tr>
+                  <tr><td>x&nbsp;</td><td class="numerator">{{problem.factor2D}}</td></tr></table>
+              
+            </div>
+                
+            <!-- /Z10 -->
+                
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 199">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              
+              <table cellpadding="0"><tr><td></td><td>{{problem.factor1D}}</td></tr>
+                <tr><td>x&nbsp;</td><td class="numerator">{{problem.factor2D}}</td></tr>
+                <tr><td></td><td><span class="math-answer"><span class="math-answer">{{problem.productD}}</span></span></td></tr></table>
+            </div>
+
+
+
+            <!-- Zeta Lesson 14 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 203">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="0"><tr><td></td><td align="right">{{problem.factor1D}}</td></tr>
+                  <tr><td>x&nbsp;</td><td class="baseline">{{problem.factor2D}}</td></tr></table>
+            </div>
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 203">
+                  <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="0"><tr><td></td><td align="right">{{problem.factor1D}}</td></tr>
+                  <tr><td>x&nbsp;</td><td class="baseline">{{problem.factor2D}}</td></tr>
+                  <tr><td></td><td align="right"><span class="math-answer">{{problem.productD}}</span></td></tr></table>
+            </div>
+            <!-- /Z14 -->
+
+            <!-- Zeta Lesson 15 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 204">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="0"><tr><td align="left">{{problem.quantity}} {{problem.prefix_1}}{{problem.unit_abbrev}} = _____ {{problem.prefix_2}}{{problem.unit_abbrev}}<br><br><br></td></tr></table>
+
+            </div>
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 204">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="0"><tr><td align="left">{{problem.quantity}} {{problem.prefix_1}}{{problem.unit_abbrev}} = <span class="math-answer">{{problem.unitMultr}} {{problem.prefix_2}}{{problem.unit_abbrev}}</span><br><br><br></td></tr></table>
+                
+            </div>
+
+            <!-- /Z15 -->
+
+            <!-- Zeta Lesson 17 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 206">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="1"><tr><td></td><td></td></tr>
+                  <tr><td>{{problem.divisor}}</td><td class="divsign"> {{problem.dividend}}</td></tr></table>
+              
+            </div>
+
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 206">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient}}</span></td></tr>
+                  <tr><td>{{problem.divisor}}</td><td class="divsign"> {{problem.dividend}}</td></tr></table>
+            </div>
+
+
+            <!-- /Z17 -->
+
+            <!-- Zeta Lesson 18 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 207">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="1"><tr><td></td><td></td></tr>
+                  <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
+              
+            </div>
+                
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 207">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              
+              <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient}}</span></td></tr>
+                <tr><td>{{problem.divisor1}} </td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr>
+              </table>
+            </div>
+
+            <!-- /Z18 -->
+            <!-- Zeta Lesson 19 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 208">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1"><tr><td>{{problem.factor1}}{{problem.letter}} = {{problem.product}}</td></tr></table>
+
+            </div>
+              
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 208">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1"><tr><td align="center">{{problem.factor1}}{{problem.letter}} = {{problem.product}}</td></tr>
+                <tr><td align="center"><span class="math-answer">{{problem.letter}} = {{problem.product}} &divide; {{problem.factor1}}</span></td></tr>
+                <tr><td align="center"><span class="math-answer">{{problem.letter}} = {{problem.factor2}}</span></td></tr></table>
+                
+            </div>
+
+            <!-- /Z19 -->
+            <!-- Zeta Lesson 20 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 209">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="1"><tr><td></td><td></td></tr>
+                  <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
+              
+            </div>
+                
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 209">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient}}</span></td></tr>
+              <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
+                
+            </div>
+
+            <!-- /Z20 -->
+            <!-- Zeta Lesson 21.1 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 2101">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                
+                <table cellpadding="1"><tr><td></td><td></td></tr>
+                  <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
+              
+            </div>
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 2101">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient}}</span></td></tr>
+                  <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
+
+            </div>
+                
+            <!-- /Z21.1 -->
+            <!-- Zeta Lesson 21.2 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 2102">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1"><tr><td></td><td></td></tr>
+                  <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
+            
+            </div>
+              
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 2102">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                
+                <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient}}</span></td></tr>
+                <tr><td>{{problem.divisor1}}</td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
+            </div>
+
+            <!-- /Z21.2 -->
+
+              <!-- Zeta Lesson 21.3 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 2103">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1"><tr><td></td><td></td></tr>
+                  <tr><td>{{problem.divisor1}} </td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
+          
+            </div>
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 2103">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1"><tr><td></td><td align="right"><span class="math-answer">{{problem.quotient1}}<span style="text-decoration:overline">{{problem.repeatedDigits}}</span></span></td></tr>
+                <tr><td>{{problem.divisor1}} </td><td class="divsign" align="right"> {{problem.dividend1}}</td></tr></table>
+          
+            </div>
+
+            <!-- /Z21.3 -->
+
+              <!-- Zeta Lesson 21.4 -->
+              <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 2104">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="1"><tr><td></td><td></td><td></td></tr>
+                  <tr><td>{{problem.divisor}} </td><td class="divsign"> {{problem.dividend1}}</td><td></td></tr></table>
+            </div>
+
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 2104">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1">
+                  <tr>
+                    <td></td>
+                    <td align="right"><span class="math-answer">{{problem.quotient}}</span>
+                    </td>
+                    <td>
+                      <table class="smallfraction"><tr><td class="numerator">{{problem.numerator}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{problem.denominator}}</td>
+                  </tr>
+                      </table>
+                  </td>
+                </tr>
+                    <tr><td>{{problem.preDivisor}} </td><td class="divsign"> {{problem.preDividend}}</td><td></td></tr>
+                </table>
+            </div>
+
+            <!-- /Z21.4 -->
+
+              <!-- Zeta Lesson 22 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 211">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <table cellpadding="1"><tr><td>{{problem.factor1}} {{problem.letter}} +  {{problem.addedNumber}}  = {{problem.productPlusAddedNumber}}</td></tr></table>
+            </div>
+              
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 211">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                  <table cellpadding="1"><tr><td align="center">{{problem.factor1}}  {{problem.letter}} +  {{problem.addedNumber}} = {{problem.productPlusAddedNumber}} </td></tr>
+                    <tr><td align="center"> <span class="math-answer">{{problem.factor1}} {{problem.letter}} +  {{problem.addedNumber}} - {{problem.addedNumber}} = {{problem.productPlusAddedNumber}} - {{problem.addedNumber}}</span> </td></tr>
+                    <tr><td align="center"> <span class="math-answer">{{problem.factor1}} {{problem.letter}} = {{problem.product}}</span> </td></tr>
+                    <tr><td align="center"> <span class="math-answer">{{problem.letter}}  = {{problem.product}} &divide;  {{problem.factor1}}</span></td></tr>
+                    <tr><td align="center"> <span class="math-answer">{{problem.letter}} = {{problem.factor2}}</span> </td></tr></table>
+            </div>
+
+            <!-- /Z22 -->
+
+            <!-- Zeta Lesson 23 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 212">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1"><tr><td></td><td colspan="2"></td><td></td></tr>
+                  <tr><td rowspan="2"></td><td class="numerator">{{problem.numerator}}</td><td rowspan="2"> =</td></tr>
+                  <tr><td>{{problem.denominator}}</td></tr></table>
+            </div>
+            
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 212">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                
+                <table *ngIf="problem.remainder == 0" cellpadding="1"><tr><td align="center" class="numerator">{{problem.numerator}}</td><td rowspan="2"> = <span class="math-answer"> .{{problem.quotient}} {{problem.numeratorCode}} </span>=  <span class="math-answer">{{problem.quotient}} {{ problem.numeratorCode }}%</span></td></tr>
+                  <tr><td align="center">{{problem.denominator}}</td><span class="math-answer">{{problem.denominatorCode}} {{problem.denominatorCode}}</span></tr>
+                </table>
+
+                <table *ngIf="problem.remainder != 0" cellpadding="1">
+                  <tr><td align="center" class="numerator">{{problem.numerator}}</td><td rowspan="2"> =  <span class="math-answer">.{{problem.quotient}}</span></td><td class="numerator" align="center"> <span class="math-answer">{{problem.reducedRemainder}}</span></td><td rowspan="2"> =  <span class="math-answer">{{problem.quotient}}</span> </td><td class="numerator" align="center"> <span class="math-answer">{{problem.reducedRemainder}}</span></td><td rowspan="2"> <span class="math-answer">%</span></td></tr>
+                  <tr><td align="center">{{problem.denominator}}</td><td align="center"> <span class="math-answer">{{problem.reducedDenominator}}</span></td><td align="center"> <span class="math-answer">{{problem.reducedDenominator}}</span></td></tr>
+                </table>
+
+            </div>
+
+            <!-- /Z23 -->
+
+            <!-- Zeta Lesson 24 -->
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 213">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                
+                  <table cellpadding="1"><tr><td></td><td></td></tr>
+                    <tr><td></td><td>.{{problem.problemAsText}}  =</td></tr></table>
+
+            </div>
+            <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 213">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                
+                <table *ngIf="problem.reduced != true" cellpadding="1"><tr><td rowspan="2">.{{problem.problemAsText}} =</td><td class="numerator"> <span class="math-answer">{{problem.roundNumerator}}</span></td> <span class="math-answer">{{problem.reducedNumeratorCode}}</span></tr>
+                  <tr><td align="center"> <span class="math-answer">{{problem.denominator}}</span></td> <span class="math-answer">{{problem.reducedDenominatorCode}}</span></tr></table>
+
+                  <!-- if (reduced == true) {
+                    reducedNumeratorCode = '<td rowspan="2"> = </td><td class="numerator">{{problem.reducedNumerator}}</td>
+                    reducedDenominatorCode = '<td align="center">{{problem.reducedDenominator}}</td>
+                  } -->
+
+                <table *ngIf="problem.reduced == true" cellpadding="1"><tr><td rowspan="2">.{{problem.problemAsText}} =</td><td class="numerator"> <span class="math-answer">{{problem.roundNumerator}}</span></td><td rowspan="2"> = </td><td class="numerator"> <span class="math-answer">{{problem.reducedNumerator}}</span></td></tr>
+                  <tr><td align="center"> <span class="math-answer">{{problem.denominator}}</span></td><td align="center"> <span class="math-answer">{{problem.reducedDenominator}}</span></td></tr></table>
+
+            </div>
+
+            <!-- /Z24 -->
+
+          </div>
+
+          <!-- NON CUSTOM -->
+          <div *ngIf="problem.custom === false">
+
+            <!-- HORIZONTAL : DIVISION PROBLEMS  -->
+            <div class="math-problem__problem" *ngIf="isDivisionProblem(problem) && !worksheetService.options.Fractions">
+  
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <div class="math-problem__symbol"></div>
+                <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as n">
+                  <span>{{ value }}&nbsp;</span>
+                  <span *ngIf="n == 1">&nbsp;=</span>
+                  <span class="math-answer" *ngIf="worksheetService.options.showAnswers && n == 1" style="position:relative; left:10px;">&nbsp;{{ problem.divAnswer }}&nbsp; <span *ngIf="problem.divRemainder"><span *ngIf="problem.lessonNo !== 147">R&nbsp;</span>{{problem.divRemainder}}</span></span>
+                  <span *ngIf="n == 0">÷</span>
+                </div>
+
+            </div>
+            <!-- End Division problems -->
+
+            <!-- Non Division Problems -->
+            <!-- <div class="math-problem__problem" *ngIf="!isDivisionProblem(problem) && !problem.custom && !problem.override && !problem.numerals"> -->
+            <div class="math-problem__problem" *ngIf="!isDivisionProblem(problem) && !problem.override && !problem.numerals">
+              CU
+              <!-- ÷ -->
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <div class="math-problem__symbol"></div>
+              <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">
+                
+                <!-- GENERAL HORIZONTAL ADDITION  -->
+                <span *ngIf="problem.problemType === 1 && !worksheetService.options.Fractions">
+                    
+                  <span *ngIf="!problem.solveForUnknown || value != '_'">
+                  <span *ngIf="problem.containsNegative">(</span>{{ value }}<span *ngIf="problem.containsNegative">)</span>&nbsp;
+                  </span>
+                  <span *ngIf="problem.solveForUnknown && value == '_'">
+                    <span *ngIf="!worksheetService.options.showAnswers">{{ value }}&nbsp;</span>
+                    <span class="math-answer" *ngIf="worksheetService.options.showAnswers">{{ problem.answer }}&nbsp;</span>
+                  </span>
+                </span>
+
+                <!-- GENERAL HORIZONTAL SUBTRACTION -->
+                <span *ngIf="problem.problemType === 2 && !worksheetService.options.Fractions">
+                    
+                    <span *ngIf="!problem.solveForUnknown || value != '_'">
+                    <span *ngIf="problem.containsNegative">(</span>{{ value }}<span *ngIf="problem.containsNegative">)</span>&nbsp;
+                    </span>
+                    <span *ngIf="problem.solveForUnknown && value == '_'">
+                      <span *ngIf="!worksheetService.options.showAnswers">{{ value }}&nbsp;</span>
+                      <span class="math-answer" *ngIf="worksheetService.options.showAnswers">{{ problem.answer }}&nbsp;</span>
+                    </span>
+                </span>
+
+                <!-- GENERAL HORIZONTAL MULTIPLICATION -->
+                <span *ngIf="problem.problemType === 8 && !worksheetService.options.Fractions && !problem.lessonNo">
+                    
+                    <span *ngIf="!problem.solveForUnknown || value != '_'">
+                    <span *ngIf="problem.containsNegative">(</span>{{ value }}<span *ngIf="problem.containsNegative">)</span>&nbsp;
+                    </span>
+                    <span *ngIf="problem.solveForUnknown && value == '_'">
+                      <span *ngIf="!worksheetService.options.showAnswers">{{ value }}&nbsp;</span>
+                      <span class="math-answer" *ngIf="worksheetService.options.showAnswers">{{ problem.answer }}&nbsp;</span>
+                    </span>
+                  </span>
+
+                <!--  Solve for Unknown Mult : Gamma Lesson 8  HORIZONTAL -->
+                  <span *ngIf="problem.problemType === 8 && problem.lessonNo === 104">
+                      <span *ngIf="!worksheetService.options.showAnswers && problem.solveForUnknown">{{ value }}</span>
+                      <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 1">{{problem.lhs}} x {{ problem.answer }}&nbsp;</span>
+                  </span>
+                  <span *ngIf="j == problem.values.length - 1"> = </span><span *ngIf="j < problem.values.length - 1">{{ problem.symbol }}</span>
 
               </div>
 
-              <div class="math-problem__problem" *ngIf="isDivisionProblem(problem) && !problem.zetaProblem && !problem.epsilonProblem">
+              <!-- Any addition answer sans fractions -->
+              <div class="math-problem__answer-HOR" *ngIf="worksheetService.options.showAnswers && !problem.solveForUnknown">
+                <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.answer }}</ng-container> 
+              </div>
 
+              <!--  Any solve For Unknown Answers -->
+              <div class="math-problem__value-HOR" *ngIf="problem.solveForUnknown == true">
+                  <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.sfu_answer }}</ng-container> 
+              </div>
+
+              <div class="math-problem__answer-HOR" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
+
+            </div>
+                <!-- ENd non division problems -->
+
+                  <!-- Horizontal Division Problems -->
+                  <!-- <div class="math-problem__problem" *ngIf="isDivisionProblem(problem) && !problem.isInequality">
+                      <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                      <div class="math-problem__symbol"></div>
+                      <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">{{ value }}&nbsp;<span *ngIf="j == problem.values.length - 1"> = </span><span *ngIf="j < problem.values.length - 1">{{ problem.symbol }}</span></div>
+                      <div class="math-problem__answer-HOR" *ngIf="worksheetService.options.showAnswers">
+                        <ng-container *ngIf="isDivisionProblem(problem)">
+                          <ng-container *ngIf="worksheetService.options.divisionOptions.showRemainders">{{problem.answerFloored}}<strong>r</strong>{{problem.remainder}}</ng-container>
+                          <ng-container *ngIf="!worksheetService.options.divisionOptions.showRemainders">{{problem.answer | number:getDivisionNumberFormat()}}</ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.answer }}</ng-container> 
+                      </div>
+                      <div class="math-problem__answer-HOR" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
+                  </div> -->
+
+              <!-- </div> -->
+            <!-- </div> -->
+
+            <!-- GENERAL VERTICAL -->
+            <div *ngIf="!worksheetService.options.showHorizontal">
+              <div class="math-problem" *ngFor="let problem of worksheetService.problems; index as i">
+
+                <div class="math-problem__problem" *ngIf="!isDivisionProblem(problem)">
+
+                </div>
+
+              <!-- <div class="math-problem__problem" *ngIf="isDivisionProblem(problem) && !problem.zetaProblem && !problem.epsilonProblem"> -->
+              <div class="math-problem__problem" *ngIf="isDivisionProblem(problem)"> 
+                
                 <div class="math-problem__number" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
                 <!-- VERTICAL DIVISION PROBLEMS -->
@@ -1747,34 +1740,34 @@
 
                     <div style="display: inline-block;position:relative;left:7px;" class="math-problem__answer-HOR divide divide-2"> 
                       <span *ngIf="worksheetService.options.showAnswers">{{ problem.divAnswer }} &nbsp; 
-                        <span *ngIf="problem.divRemainder"><span *ngIf="problem.lessonNo !== 147">R&nbsp;</span>{{ problem.divRemainder }}
+                      <span *ngIf="problem.divRemainder"><span *ngIf="problem.lessonNo !== 147">R&nbsp;</span>{{ problem.divRemainder }}
                       </span>
-                    </span> 
+                      </span> 
                     </div>
 
-                </div>
+                  </div>
 
-                <div>
+                  <div>
                   <!-- LONG DIVISION TABLES -->
-                  <div style="display: inline-block; min-width: 30px; text-align:center;"  class="divide-3">
+                    <div style="display: inline-block; min-width: 30px; text-align:center;"  class="divide-3">
 
-                    <span class='numbers' >
-                      {{problem.values[1]}}
-                    </span>
+                      <span class='numbers' >
+                        {{problem.values[1]}}
+                      </span>
+                    </div>
+
+                    <div class="divide-4" style="display: inline-block;border-left: 1px black solid; border-top: 1px black solid;min-width: 27px;text-align: center;">
+                      <span class='numbers'>
+                        {{problem.values[0]}}
+                      </span>
+                    </div>
+
                   </div>
-
-                  <div class="divide-4" style="display: inline-block;border-left: 1px black solid; border-top: 1px black solid;min-width: 27px;text-align: center;">
-                    <span class='numbers'>
-                      {{problem.values[0]}}
-                    </span>
-                  </div>
-
-                </div>
 
                 </div>
 
               </div>
-              <!-- Non Division Problems -->
+                <!-- Non Division Problems -->
               <div class="math-problem__problem" *ngIf="!isDivisionProblem(problem) && problem.problemType != 4096 && !problem.zetaProblem && !problem.epsilonProblem">
                 <div class="math-problem__number" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
 
@@ -1789,12 +1782,19 @@
                 </div>
                 <div class="math-problem__answer" *ngIf="!worksheetService.options.showAnswers">&nbsp;</div>
               </div>
+              </div>
             </div>
-          </div>
 
-          <!-- End Loop -->
-        </div>
+
+          </div>  <!-- END CUSTOM == FALSE -->
+         
+          
+        </div> <!-- End Loop -->
+
+
         <div class="worksheet__id" *ngIf="worksheetService.id">Worksheet Id: {{worksheetService.id}}</div>
+
+
       </md-card-content>
  
     </md-card>
@@ -1815,10 +1815,7 @@
       <md-icon class="md-24" aria-label="Save the worksheet" (click)="save()">save</md-icon>
     </button> -->
 
-    
   </div>
-
-
 
 </div>
 <!-- <div class="worksheet__generate mat-elevation-z5 d-print-none">

@@ -1,6 +1,7 @@
 import { ProblemType } from './problem-type.enum';
 
 export class AlphaProblems {
+  custom : boolean;
   problemType: ProblemType;
   symbol: string;
   values;
@@ -14,6 +15,7 @@ export class AlphaProblems {
   problemNo : any;
 
   constructor() {
+    this.custom = true;
     this.problemNo = 0;
     this.problemType = null;
     this.requiresHorizontal = false;
