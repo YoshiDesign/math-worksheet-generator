@@ -399,9 +399,15 @@
                   </md-panel-title>
                 </md-expansion-panel-header>
                 <div>
-                  <p><strong>Thank you for using the Demme Learning Worksheet Generator!</strong></p>
-                  <p>If your equations are running into each other or falling to the next line, simply adjust the settings under <i>Display Options</i>.</p>
-                  <p>Not every equation is meant to be displayed both vertically and horizontally. The <i>Show horizontal</i> display option will toggle between these two formats if the equation is able.</p>
+                  <p><strong>Thank you for using <i>Version 1.0</i> of the new Demme Learning Worksheet Generator!</strong></p>
+                  <p>Choose any set of equations from the available curriculum. You can mix and match lessons from our available curriculum to be generated in ascending order of each level.</p>
+                  <p>If your equations are running into each other or falling to the next line, simply adjust the visual settings in the<i>Display Options</i> menu.</p>
+                  <p>Not every equation is meant to be displayed both vertically and horizontally. The <i>Show Horizontal</i> display option will toggle between these two formats. If the equation is able to be displayed both ways, it will toggle between vertical and horizontal orientations.</p>
+                  <h3>Page Breaks</h3>
+                  <p>Clicking on <i>Print</i> will allow you to preview your worksheet and view where your page breaks will occur.</p>
+                  <h3>Printing</h3>
+                  <p>If you have enabled the landscape display option, you will have to make sure the landscape option is also selected from the print preview.</p>
+                  <p>If you are unable to print the worksheet, you can save it as a PDF from the print preview screen. This way you can save it to your PC or print it at any other time!</p>
                 </div>
               </md-expansion-panel>
 
@@ -1386,7 +1392,7 @@
               <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
               
               <table cellpadding="0"><tr><td align="right">{{problem.factor1D}}</td></tr>
-              <tr><td align="right" class="numerator">x {{problem.factor2D}}</td></tr>
+              <tr><td align="right" style="text-align:right;" class="numerator">x {{problem.factor2D}}</td></tr>
               <tr><td align="right"><span class="math-answer">{{problem.productD}}</span></td></tr></table>
 
             </div>
@@ -1397,7 +1403,7 @@
             <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 199">
                 <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
                   <table cellpadding="0"><tr><td></td><td>{{problem.factor1D}}</td></tr>
-                  <tr><td>x&nbsp;</td><td class="numerator">{{problem.factor2D}}</td></tr></table>
+                  <tr><td>x&nbsp;</td><td style="text-align:right;" class="numerator">{{problem.factor2D}}</td></tr></table>
               
             </div>
                 
@@ -1410,7 +1416,6 @@
                 <tr><td>x&nbsp;</td><td class="numerator">{{problem.factor2D}}</td></tr>
                 <tr><td></td><td><span class="math-answer"><span class="math-answer">{{problem.productD}}</span></span></td></tr></table>
             </div>
-
 
 
             <!-- Zeta Lesson 14 -->
