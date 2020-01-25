@@ -41,9 +41,14 @@ app-worksheet-generator {
     cursor:pointer;
     
 }
+i.lg-size {
+  font-size: 22px; 
+  cursor:pointer; 
+  color:#256eb7;
+}
 .lg-size:hover{
   background-color:rgb(243, 243, 243);
-  color:#ffa600;
+  color:#ffa600 !important;
 }
 .add-button:hover {
   background-color:rgb(243, 243, 243);
@@ -66,6 +71,10 @@ app-worksheet-generator {
 
 .select-lesson {
     width:80%;
+    height: 30px;
+    margin: 5px;
+    border: 2px solid #0094e245;
+    color: black;
 }
 
 .message-block {

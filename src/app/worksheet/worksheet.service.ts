@@ -301,6 +301,7 @@ export class WorksheetService {
     // Math.floor is a safety mechanism to ensure this is never a float.
     var extra_mod : number = Math.floor(this.options.problemCount % this.options.lessonsCount);
     var levels : Array <string> = Object.keys(this.all_selected_lessons);
+    var track = 0;
 
     // Gather lesson id's in ascending orders
     for (let i = 0; i < levels.length; i++) { // Current level to get problems
@@ -310,6 +311,9 @@ export class WorksheetService {
       for (let j = 0; j < this.all_selected_lessons[String(levels[i])].length; j++) { // loop through lessons of current level
         
         current_lesson = this.all_selected_lessons[String(levels[i])][j]; // INT - The current lesson id we're looking at
+
+        track++;
+        console.log(`Problem No. ${track} -- [${current_lesson}]`);
           
         for (let n = 0; n < min_problems; n++) {
           this.options.problemCount--;
@@ -501,6 +505,9 @@ export class WorksheetService {
         this.options.showHorizontal = true;
         problem.requiresHorizontal = true;
         problem.solveForUnknown = true;
+
+        problem.lessonNo = 40;
+        problem.custom = true;
 
         problem.lhs = lhs;
         problem.rhs = rhs;
@@ -914,7 +921,8 @@ export class WorksheetService {
           x = this.getRandomInt(999);
           y = this.getRandomInt(999);
 
-        } while ((x < 100) || (y < 100))
+        } while ((x < 100) || (y < 100));
+        problem.custom = false;
         problem.problemType = ProblemType.Addition;
         problem.values[0] = x;
         problem.values[1] = y;
@@ -936,11 +944,13 @@ export class WorksheetService {
           var str_x_split = str_x.split("");
           var str_y_split = str_y.split("");
 
-        } while ((Number(str_x_split) + Number(str_y_split) < 10))
+        } while ((Number(str_x_split) + Number(str_y_split) < 10));
+        problem.custom = false;
         problem.problemType = ProblemType.Addition;
         problem.values[0] = x;
         problem.values[1] = y;
         problem.symbol = "+";
+        problem.lessonNo = 72;
 
         break;
       case 76 : // Sum < 1000
@@ -958,11 +968,13 @@ export class WorksheetService {
           var str_x_split = str_x.split("");
           var str_y_split = str_y.split("");
 
-        } while ((Number(str_x_split) + Number(str_y_split) < 10))
+        } while ((Number(str_x_split) + Number(str_y_split) < 10));
+        problem.custom = false;
         problem.problemType = ProblemType.Addition;
         problem.values[0] = x;
         problem.values[1] = y;
         problem.symbol = "+";
+        problem.lessonNo = 76;
         break;
       case 78 : // Lesson 13
 
@@ -978,11 +990,12 @@ export class WorksheetService {
 
         break;
       case 81 : 
-
+        problem.custom = false;
         problem.problemType = ProblemType.Addition;
         problem.values[0] = this.pickFromRange(501, 1000);
         problem.values[1] = this.pickFromRange(501, 1000);
         problem.symbol = "+";
+        problem.lessonNo = 81;
 
         this.options.showHorizontal = false;
 
@@ -994,6 +1007,7 @@ export class WorksheetService {
         problem.values[2] = this.pickFromRange(1000, 101);
         problem.values[3] = this.pickFromRange(1000, 101);
         problem.symbol = "+";
+        problem.lessonNo = 83;
 
         this.options.showHorizontal = false;
         
@@ -1005,6 +1019,7 @@ export class WorksheetService {
         problem.values[2] = this.pickFromRange(9999, 350);
         problem.values[3] = this.pickFromRange(9999, 350);
         problem.symbol = "+";
+        problem.lessonNo = 84;
 
         this.options.showHorizontal = false;
         break;
@@ -1038,6 +1053,7 @@ export class WorksheetService {
         problem.values[1] = bottomNumber;
         
         problem.symbol = "-";
+        problem.lessonNo = 85;
 
         this.options.showHorizontal = false;
         
@@ -1070,6 +1086,7 @@ export class WorksheetService {
         problem.symbol = "-";
         problem.problemType = ProblemType.Subtraction;
         this.options.showHorizontal = false;
+        problem.lessonNo = 87;
 
         break;
       case 89 : // Lesson 2-Digit Subtraction with Regrouping
@@ -1081,6 +1098,7 @@ export class WorksheetService {
         problem.symbol = "-";
         problem.problemType = ProblemType.Subtraction;
         this.options.showHorizontal = false;
+        problem.lessonNo = 89;
         break;
       case 91 : // Lesson
         var topNumber = Math.floor(Math.random() * 9000) + 1000;
@@ -1091,6 +1109,7 @@ export class WorksheetService {
         problem.symbol = "-";
         problem.problemType = ProblemType.Subtraction;
         this.options.showHorizontal = false;
+        problem.lessonNo = 91;
         break;
       case 93 : // Lesson
         var topNumber = Math.floor(Math.random() * 90000) + 10000;
@@ -1098,6 +1117,7 @@ export class WorksheetService {
         problem.problemType = ProblemType.Subtraction;
         problem.values[0] = topNumber;
         problem.values[1] = bottomNumber;
+        problem.lessonNo = 93;
 
         problem.symbol = "-";
         problem.problemType = ProblemType.Subtraction;
@@ -1115,6 +1135,7 @@ export class WorksheetService {
     switch (Number(lessonNo)) {
     
       case 98 : // Lesson 2 - Multiply By 1 And 0, Commutative Property
+        problem.custom = false;
         problem.problemType = ProblemType.Multiplication;
         problem.values[0] = this.getRandomInt(10);
         problem.values[1] = problem.values[0] === (0 || 1) ? this.getRandomInt(10) : this.getRandomInt(2);
@@ -1178,6 +1199,7 @@ export class WorksheetService {
         problem.values[0] = problem.firstPosition;
         problem.values[1] = problem.secondPosition; 
         problem.sfu_answer = nn;
+        problem.custom = true;
 
         problem.symbol = "";
 
@@ -1369,6 +1391,7 @@ export class WorksheetService {
     switch (Number(lessonNo)) {
 
       case 129 : // Lesson 2
+        problem.custom = false;
         var y : any;
         var x : any; 
         var ans = 0;
@@ -1391,6 +1414,7 @@ export class WorksheetService {
 
         break;
       case 130 : // Lesson 3
+        problem.custom = false;
         var y : any;
         var x : any; 
         var ans = 0;
@@ -1411,6 +1435,7 @@ export class WorksheetService {
         problem.divAnswer = ans;
         break;
       case 131 : // Lesson 4 - Division by 3 or 5
+        problem.custom = false;
         var y : any;
         var x : any; 
         var ans = 0;
@@ -1429,6 +1454,7 @@ export class WorksheetService {
         problem.divAnswer = ans;
         break;
       case 133 : // Lesson 6 - Divide by 9
+        problem.custom = false;
         var y : any;
         var x : any; 
         var ans = 0;
@@ -1449,6 +1475,7 @@ export class WorksheetService {
         problem.divAnswer = ans;
         break;
       case 135 : // Lesson 8
+        problem.custom = false;
         var y : any;
         var x : any; 
         var ans = 0;
@@ -1470,6 +1497,7 @@ export class WorksheetService {
 
         break;
       case 137 : // Lesson 10 - Division by 4
+        problem.custom = false;
         var y : any;
         var x : any; 
         var ans = 0;
@@ -1490,6 +1518,7 @@ export class WorksheetService {
         problem.divAnswer = ans;
         break;
       case 139 : // Lesson 12 Div by 7 or 8
+        problem.custom = false;
         var y : any;
         var x : any; 
         var ans = 0;
@@ -1508,6 +1537,7 @@ export class WorksheetService {
         problem.divAnswer = ans;
         break;
       case 143 :// Lesson 16 - Div with a 1 dig remainder
+        problem.custom = false;
         var y : any;
         var x : any; 
         var ans = 0;
@@ -1523,6 +1553,7 @@ export class WorksheetService {
         problem.values[0] = dividend;
         problem.divAnswer = quotient;
         problem.divRemainder = remainder;
+        problem.symbol = "÷";
 
         break;
       case 145 : // Lesson 18
@@ -1532,6 +1563,7 @@ export class WorksheetService {
         var quotient = Math.floor(Math.random() * (Math.floor(100/divisor) - 9)) + 10;
         var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
         var dividend = (divisor * quotient) + remainder;
+        problem.custom = false;
         problem.values[1] = divisor;
         problem.values[0] = dividend;
         problem.divAnswer = quotient;
@@ -1544,6 +1576,8 @@ export class WorksheetService {
         var quotient = Math.floor(Math.random() * (Math.floor(999/divisor) - 109)) + 100;
         var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
         var dividend = (divisor * quotient) + remainder;
+
+        problem.custom = false;
         problem.problemType = ProblemType.Division;
         problem.values[1] = divisor;
         problem.values[0] = dividend;
@@ -1557,6 +1591,7 @@ export class WorksheetService {
         var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
         var dividend = (divisor * quotient) + remainder;
 
+        problem.custom = false;
         problem.lessonNo = 147;
         problem.problemType = ProblemType.Division;
         problem.values[1] = divisor;
@@ -1571,6 +1606,8 @@ export class WorksheetService {
         var quotient = Math.floor(Math.random() * 31) + 20;
         var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
         var dividend = (divisor * quotient) + remainder;
+
+        problem.custom = false;
         problem.problemType = ProblemType.Division;
         problem.values[1] = divisor;
         problem.values[0] = dividend;
@@ -1584,6 +1621,7 @@ export class WorksheetService {
         var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
         var dividend = (divisor * quotient) + remainder;
 
+        problem.custom = false;
         problem.problemType = ProblemType.Division;
         problem.values[1] = divisor;
         problem.values[0] = dividend;
@@ -1597,6 +1635,9 @@ export class WorksheetService {
         var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
         var dividend = (divisor * quotient) + remainder;
 
+
+        problem.custom = false;
+        problem.symbol = "÷";
         problem.problemType = ProblemType.Division;
         problem.values[1] = divisor;
         problem.values[0] = dividend;
@@ -1609,12 +1650,27 @@ export class WorksheetService {
         var quotient = Math.floor(Math.random() * (100000/divisor));
         var remainder = Math.floor(Math.random() * (divisor - 1)) + 1;
         var dividend = (divisor * quotient) + remainder;
+        
 
+        problem.custom = false;
+        problem.symbol = "÷";
         problem.problemType = ProblemType.Division;
         problem.values[1] = divisor;
         problem.values[0] = dividend;
         problem.divAnswer = quotient;
         problem.divRemainder = remainder;
+        
+        // TODO DIVISION ALIGNMENT FUNCTION
+        // Division quotient alignment
+        // var shift = 0;
+        // var quo_ln = String(quotient).length;
+        // var div_ln = String(divisor).length;
+        // if (quo_ln == 2) {
+          
+        // }
+        // if (quo_ln == 3) {
+          
+        // }
 
         break;
       case 154 : // Lesson 27 TODO
@@ -1682,6 +1738,7 @@ export class WorksheetService {
   private getEpsilonProblem(lessonNo){
 
     const problem = new EpsilonProblems();
+    problem.isFraction = true; // Since all Epsilon problems are fractions
 
     switch (Number(lessonNo)) {
 
@@ -1689,10 +1746,7 @@ export class WorksheetService {
         
         problem.lessonNo = 161;
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
-
-        var display = "";
-        var answerKey = "";
+        
         var operator = new Array("+", "-");
         var thisOperator = operator[Math.floor(Math.random() * 2)]
         var denominator = Math.floor(Math.random() * 5) + 2;
@@ -1713,6 +1767,7 @@ export class WorksheetService {
             numerator3 = addend2;
         }
 
+        
         problem.numerator1 = numerator1;
         problem.numerator2 = numerator2;
         problem.numerator3 = numerator3;
@@ -1777,7 +1832,7 @@ export class WorksheetService {
         }
         
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
 
         problem.numerator1 = numerator1;
         problem.numerator2 = numerator2;
@@ -1837,7 +1892,7 @@ export class WorksheetService {
             numerator3 = (numerator1 * denominator2) - (numerator2 * denominator1);
           }
           this.options.showHorizontal = true;
-          this.options.Fractions = true;
+          
           problem.numerator1 = numerator1;
           problem.numerator2 = numerator2;
           problem.numerator3 = numerator3;
@@ -1888,7 +1943,7 @@ export class WorksheetService {
             }
         }
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
         problem.numerator1 = numerator1;
         problem.numerator2 = numerator2;
         problem.numerator3 = numerator3;
@@ -1926,7 +1981,7 @@ export class WorksheetService {
         var productNumerator = numerator1 * numerator2;
 
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
         problem.numerator1 = numerator1;
         problem.numerator2 = numerator2;
 
@@ -1963,7 +2018,7 @@ export class WorksheetService {
         var quotientDenominator = denominator1 * numerator2;
 
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
         problem.numerator1 = numerator1;
         problem.numerator2 = numerator2;
 
@@ -1996,7 +2051,7 @@ export class WorksheetService {
             }
         }
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
 
         problem.problemDenominator = problemDenominator;
         problem.problemNumerator = problemNumerator;
@@ -2023,7 +2078,7 @@ export class WorksheetService {
             }
         }
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
 
         problem.problemDenominator = problemDenominator;
         problem.problemNumerator = problemNumerator;
@@ -2049,7 +2104,7 @@ export class WorksheetService {
         problem.mainSwitch = ((Math.floor(Math.random() * 2) + 1) == 1)
 
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
 
         problem.wholeNumber = wholeNumber;
         problem.mixNumerator = mixNumerator;
@@ -2071,7 +2126,7 @@ export class WorksheetService {
         var numSum = numAddend1 + numAddend2;
 
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
 
         problem.mainSwitch = ((Math.floor(Math.random() * 2) + 1) == 1);
         problem.wholeAddend1 = wholeAddend1;
@@ -2103,7 +2158,7 @@ export class WorksheetService {
         }
 
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
 
         problem.wholeAddend1 = wholeAddend1;
         problem.wholeAddend2 = wholeAddend2;
@@ -2135,7 +2190,7 @@ export class WorksheetService {
             }
         }
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
 
         problem.wholeAddend1 = wholeAddend1;
         problem.wholeAddend2 = wholeAddend2;
@@ -2169,7 +2224,7 @@ export class WorksheetService {
         }
 
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
         problem.wholeAddend1 =  wholeAddend1;
         problem.wholeAddend2 =  wholeAddend2;
         problem.denominator1 =  denominator1;
@@ -2202,7 +2257,7 @@ export class WorksheetService {
             }
         }
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
 
         problem.whole1 = whole1;
         problem.whole2 = whole2;
@@ -2250,7 +2305,7 @@ export class WorksheetService {
             }
         }	
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
 
         problem.whole1 = whole1;
         problem.whole2 = whole2;
@@ -2306,7 +2361,7 @@ export class WorksheetService {
         var numAnswer = (numProduct % denomProduct);
         var denomAnswer = denomProduct;
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
 
 
         problem.whole1 = whole1
@@ -2334,7 +2389,7 @@ export class WorksheetService {
         var num = Math.floor(Math.random() * denom) + 1;
         var decimal = (100 / denom) * num;
         this.options.showHorizontal = true;
-        this.options.Fractions = true;
+        
 
         problem.denomChoices = denomChoices;
         problem.denom = denom;

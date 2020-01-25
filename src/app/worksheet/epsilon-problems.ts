@@ -15,6 +15,7 @@ export class EpsilonProblems {
   answerKey : any;
   operator : any;
   thisOperator : any;
+  isFraction : boolean;
 
   wholeAddend1 : any;
   numAddend1 : any;
@@ -93,6 +94,7 @@ num : any;
 decimal : any;
 problemNo : any;
   constructor() {
+    this.isFraction = false;
     this.custom = true;
     this.problemNo = 0;
     this.fraction = false;

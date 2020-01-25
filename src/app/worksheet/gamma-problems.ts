@@ -16,7 +16,7 @@ export class GammaProblems {
   problemNo : any;
 
   constructor() {
-    this.custom = true;
+    this.custom = false;
     this.problemNo = 0;
     this.problemType = null;
     this.requiresHorizontal = false;

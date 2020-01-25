@@ -15,7 +15,7 @@ export class AimProblems {
   rhs;
 
   constructor() {
-    this.custom = true;
+    this.custom = false;
     this.problemType = null;
     this.requiresHorizontal = false;
     this.solveForUnknown = false;

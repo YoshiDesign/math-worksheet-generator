@@ -22,7 +22,7 @@ export class WorksheetOptions {
   letterSpacing = 3;
   lineSpacing = 3;
   problemCount = 20;
-  Fractions = false;
+
   lessonsCount = 0;  // How many different levels were selected
   problemFontSize = 2;
   problemsPerRow = 3;

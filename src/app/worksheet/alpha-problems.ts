@@ -12,11 +12,11 @@ export class AlphaProblems {
   secondPosition;
   lhs;
   rhs;
-  problemNo : any;
+  lessonNo : any;
 
   constructor() {
-    this.custom = true;
-    this.problemNo = 0;
+    this.custom = false;
+    this.lessonNo = 0;
     this.problemType = null;
     this.requiresHorizontal = false;
     this.solveForUnknown = false;
