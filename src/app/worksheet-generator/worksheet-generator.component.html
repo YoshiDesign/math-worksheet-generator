@@ -1,6 +1,6 @@
 <div id="messaging" class="message-block" *ngIf="worksheetService.problems.length">
     <p>
-        This worksheeet will become scrollable.<br>Problems will be printed on additional pages.
+        This worksheet will become scrollable.<br>Problems will be printed on additional pages.
     </p>
 
   </div>
@@ -247,10 +247,11 @@
 
               </div>
 
-              <!-- <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.prealgebraOptions.enabled">
+             <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.prealgebraOptions.enabled">
                 <md-slide-toggle color="primary" name="prealgebraEnabled" [(ngModel)]="worksheetService.options.prealgebraOptions.enabled">Pre-Algebra</md-slide-toggle>
                 <div id="prealgebra-selector" class="level-selector" *ngIf="worksheetService.options.prealgebraOptions.enabled">
-
+                  <p>Please visit our <a target="_blank" href="https://mathusee.com/e-learning/worksheets/">Legacy Worksheet Generator</a> while we develop our new Pre-Algebra worksheets.</p>
+ <!-- 
                     <select id="prealgebra-select" name="" class="select-lesson select-prealgebra-lesson">
                         <option value="default">Please Select a Lesson</option>
                         <option value="221">Lesson 1 - Negative Numbers, Addition</option>
@@ -266,8 +267,9 @@
                         <option value="236">Lesson 16 - Transform Celsius To Fahrenheit</option>
                         <option value="237">Lesson 17 - Transform Fahrenheit To Celsius</option>
                       </select>
+                    -->
                     </div>
-
+                <!--
                     <div *ngIf="worksheetService.options.prealgebraOptions.enabled" (click)="addLessonList('prealgebra')" class="add-lesson">
                       <div data-level="alpha" class="add-button">
                           +
@@ -276,8 +278,9 @@
                           Add Another Lesson
                       </div>
                   </div>
+                -->
 
-              </div> -->
+              </div> 
 
               <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.aimOptions.enabled">
                 <md-slide-toggle color="primary" name="aimEnabled" [(ngModel)]="worksheetService.options.aimOptions.enabled">A.I.M.</md-slide-toggle>
@@ -401,7 +404,7 @@
                 <div>
                   <p><strong>Thank you for using <i>Version 1.0</i> of the new Demme Learning Worksheet Generator!</strong></p>
                   <p>Choose any set of equations from the available curriculum. You can mix and match lessons from our available curriculum to be generated in ascending order of each level.</p>
-                  <p>If your equations are running into each other or falling to the next line, simply adjust the visual settings in the<i>Display Options</i> menu.</p>
+                  <p>If your equations are running into each other or falling to the next line, simply adjust the visual settings in the <i>Display Options</i> menu.</p>
                   <p>Not every equation is meant to be displayed both vertically and horizontally. The <i>Show Horizontal</i> display option will toggle between these two formats. If the equation is able to be displayed both ways, it will toggle between vertical and horizontal orientations.</p>
                   <h3>Page Breaks</h3>
                   <p>Clicking on <i>Print</i> will allow you to preview your worksheet and view where your page breaks will occur.</p>
