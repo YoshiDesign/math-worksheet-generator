@@ -42,26 +42,26 @@ export class WorksheetGeneratorComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
 
-      if (id) {
-        this.worksheetService.getById(id).subscribe(worksheetService => {
-          this.worksheetService.id = id;
-          this.worksheetService.updateFromJson(worksheetService);
-          this.initialize();
-        });
-      } else {
+      // if (id) {
+      //   this.worksheetService.getById(id).subscribe(worksheetService => {
+      //     this.worksheetService.id = id;
+      //     this.worksheetService.updateFromJson(worksheetService);
+      //     this.initialize();
+      //   });
+      // } else {
         this.initialize();
-      }
+      // }
     });
 
-    this.authService.user.subscribe(user => {
-      // console.log(`authService.user.subscribe`, user);
+    // this.authService.user.subscribe(user => {
+    //   // console.log(`authService.user.subscribe`, user);
 
-      if (user) {
-        this.isLoggedIn = true;
-      } else {
-        this.isLoggedIn = false;
-      }
-    });
+    //   if (user) {
+    //     this.isLoggedIn = true;
+    //   } else {
+    //     this.isLoggedIn = false;
+    //   }
+    // });
   }
 
   isNoN(value) {
@@ -81,9 +81,9 @@ export class WorksheetGeneratorComponent implements OnInit {
     this.worksheetService.generateProblems();   // 1
     this.problemsPerRow = this.worksheetService.options.problemsPerRow;
 
-    if (!this.isLoggedIn) {
-      this.authService.loginAnonymous();
-    }
+    // if (!this.isLoggedIn) {
+    //   this.authService.loginAnonymous();
+    // }
   }
 
   getDivisionNumberFormat() {
@@ -171,11 +171,11 @@ export class WorksheetGeneratorComponent implements OnInit {
     this.mathProblemsClasses[`math-problems--columns-${this.problemsPerRow}`] = true;
   }
 
-  save() {
-    this.analytics.trackEventWithCategory('worksheet', 'save');
+  // save() {
+  //   this.analytics.trackEventWithCategory('worksheet', 'save');
 
-    this.worksheetService.save();
-  }
+  //   this.worksheetService.save();
+  // }
 
   showDecimalsChange(event) {
     if (event.checked) {

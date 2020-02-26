@@ -3,52 +3,52 @@ import { CommonModule } from '@angular/common';
 // import { NgModel } from '@angular/forms';
 
 import {
-  MdButtonModule,
-  MdButtonToggleModule,
-  MdCardModule,
-  MdCoreModule,
-  MdExpansionModule,
-  MdFormFieldModule,
-  MdGridListModule,
-  MdIconModule,
-  MdInputModule,
-  MdRippleModule,
-  MdSliderModule,
-  MdSlideToggleModule,
-  MdTooltipModule
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  // MatCoreModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatRippleModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatTooltipModule
 } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
-    MdButtonModule,
-    MdButtonToggleModule,
-    MdCardModule,
-    MdCoreModule,
-    MdExpansionModule,
-    MdFormFieldModule,
-    MdGridListModule,
-    MdIconModule,
-    MdInputModule,
-    MdRippleModule,
-    MdSliderModule,
-    MdSlideToggleModule,
-    MdTooltipModule
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    // MatCoreModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatRippleModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatTooltipModule
   ],
   exports: [
-    MdButtonModule,
-    MdButtonToggleModule,
-    MdCardModule,
-    MdCoreModule,
-    MdExpansionModule,
-    MdFormFieldModule,
-    MdGridListModule,
-    MdIconModule,
-    MdInputModule,
-    MdRippleModule,
-    MdSliderModule,
-    MdSlideToggleModule,
-    MdTooltipModule
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    // MatCoreModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatRippleModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatTooltipModule
   ]
 })
 export class MaterialComponentModule { }

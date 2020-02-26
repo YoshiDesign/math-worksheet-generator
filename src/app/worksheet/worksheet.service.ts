@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+// import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 
 import { MathProblem } from './math-problem';
 import { AlphaProblems } from './alpha-problems';
@@ -40,14 +40,16 @@ export class WorksheetService {
   lessons_selected : Array <Number>;
   all_selected_lessons : Array <Object>;
 
-  constructor(private db : AngularFireDatabase) {
+  constructor(/*private db : AngularFireDatabase*/) {
     this.options = new WorksheetOptions();
     this.problems = new Array<MathProblem>();
     this.lessons_selected = [];
     this.all_selected_lessons = [];
+
   }
 
   addProblem(problem) {
+     // console.log ('push problem');
     this.problems.push(problem);
   }
 
@@ -59,6 +61,7 @@ export class WorksheetService {
   }
 
   generateProblems() {  // 1
+     // console.log ('Generate Problem');
     const availableProblemTypes: ProblemType[] = [];
 
     // since we are generating new problems, we should consider this a new worksheet
@@ -66,7 +69,7 @@ export class WorksheetService {
 
     this.clearProblems();
 
-    console.log("Generating ...");
+     // console.log ("Generating ...");
 
     /**
      * Add the enumerator value to the list of availableProblemTYpes
@@ -76,17 +79,21 @@ export class WorksheetService {
     if (this.options.alphaOptions.enabled) {
       
       // Get lesson numbers
-      let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-alpha-lesson');
-      console.log(`-A- found ${lesson_elements.length} alpha lessons.`);
+      let lesson_elements : HTMLCollection =  document.getElementsByClassName('select-alpha-lesson');
+       // console.log (`-A- found ${lesson_elements.length} alpha lessons.`);
       let adding_lesson = false;
 
       // Array of lesson ID's
       for (var i = 0; i < lesson_elements.length; i++) {
-        if (lesson_elements[i].value !== "default") {
+
+        let test_el = <HTMLSelectElement> lesson_elements[i];
+
+        if (test_el.value !== "default") {
           this.options.lessonsCount += 1;
-          this.lessons_selected.push(lesson_elements[i].value);
+          this.lessons_selected.push(Number(test_el.value));
           adding_lesson = true;
         }
+
       }
 
       // Organize selections into the main selections obj
@@ -104,18 +111,22 @@ export class WorksheetService {
     // Beta Selections
     if (this.options.betaOptions.enabled) {
       
+      let lesson_elements : HTMLCollection = document.getElementsByClassName('select-beta-lesson');
 
-      let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-beta-lesson');
       let adding_lesson = false;
 
-      console.log(`-B- found ${lesson_elements.length} beta lessons.`);
+      //  // console.log (`-B- found ${lesson_elements.length} beta lessons.`);
 
       for (var i = 0; i < lesson_elements.length; i++) {
-        if (lesson_elements[i].value !== "default") {
+
+        let test_el = <HTMLSelectElement> lesson_elements[i];
+
+        if (test_el.value !== "default") {
           this.options.lessonsCount += 1;
-          this.lessons_selected.push(lesson_elements[i].value);
+          this.lessons_selected.push(Number(test_el.value));
           adding_lesson = true;
         }
+
       }
 
       if (adding_lesson){
@@ -132,18 +143,22 @@ export class WorksheetService {
     // Gamma Selections
     if (this.options.gammaOptions.enabled) {
       
-
-      let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-gamma-lesson');
+      let lesson_elements : HTMLCollection = document.getElementsByClassName('select-gamma-lesson');
       let adding_lesson = false;
 
-      console.log(`-G- found ${lesson_elements.length} gamma lessons.`);
+       // console.log (`-G- found ${lesson_elements.length} gamma lessons.`);
 
       for (var i = 0; i < lesson_elements.length; i++) {
-        if (lesson_elements[i].value !== "default") {
+
+        let test_el = <HTMLSelectElement> lesson_elements[i];
+
+        if (lesson_elements[i].getAttribute('value') !== "default") {
+
           this.options.lessonsCount += 1;
-          this.lessons_selected.push(lesson_elements[i].value);
+          this.lessons_selected.push(Number(test_el.value));
           adding_lesson = true;
         }
+
       }
 
       if (adding_lesson){
@@ -160,17 +175,21 @@ export class WorksheetService {
     // Delta Selections
     if (this.options.deltaOptions.enabled) {
       
-      let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-delta-lesson');
+      let lesson_elements : HTMLCollection = document.getElementsByClassName('select-delta-lesson');
       let adding_lesson = false;
 
-      console.log(`-D- found ${lesson_elements.length} delta lessons.`);
+       // console.log (`-D- found ${lesson_elements.length} delta lessons.`);
 
       for (var i = 0; i < lesson_elements.length; i++) {
-        if (lesson_elements[i].value !== "default") {
+
+        let test_el = <HTMLSelectElement> lesson_elements[i];
+
+        if (test_el.value !== "default") {
           this.options.lessonsCount += 1;
-          this.lessons_selected.push(lesson_elements[i].value);
+          this.lessons_selected.push(Number(test_el.value));
           adding_lesson = true;
         }
+
       }
 
       if (adding_lesson){
@@ -187,18 +206,21 @@ export class WorksheetService {
     // Epsilon Selection
     if (this.options.epsilonOptions.enabled) {
       
-      let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-epsilon-lesson');
+      let lesson_elements : HTMLCollection = document.getElementsByClassName('select-epsilon-lesson');
       let adding_lesson = false;
 
-      console.log(`-E- found ${lesson_elements.length} epsilon lessons.`);
+       // console.log (`-E- found ${lesson_elements.length} epsilon lessons.`);
 
       for (var i = 0; i < lesson_elements.length; i++) {
-        
-        if (lesson_elements[i].value !== "default") {
+
+        let test_el = <HTMLSelectElement> lesson_elements[i];
+
+        if (test_el.value !== "default") {
           this.options.lessonsCount += 1;
-          this.lessons_selected.push(lesson_elements[i].value);
+          this.lessons_selected.push(Number(test_el.value));
           adding_lesson = true;
         }
+
       }
 
       if (adding_lesson){
@@ -215,17 +237,22 @@ export class WorksheetService {
     // Zeta Selections
     if (this.options.zetaOptions.enabled) {
       
-      let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-zeta-lesson');
+      let lesson_elements : HTMLCollection = document.getElementsByClassName('select-zeta-lesson');
       let adding_lesson = false;
 
-      console.log(`-Z- found ${lesson_elements.length} zeta lessons.`);
+       // console.log (`-Z- found ${lesson_elements.length} zeta lessons.`);
 
       for (var i = 0; i < lesson_elements.length; i++) {
-        if (lesson_elements[i].value !== "default") {
+
+        let test_el = <HTMLSelectElement> lesson_elements[i];
+
+        if (test_el.value !== "default") {
+
           this.options.lessonsCount += 1;
-          this.lessons_selected.push(lesson_elements[i].value);
+          this.lessons_selected.push(Number(test_el.value));
           adding_lesson = true;
         }
+
       }
 
       if (adding_lesson){
@@ -242,17 +269,21 @@ export class WorksheetService {
     if (this.options.prealgebraOptions.enabled) {
       
 
-      let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-prealgebra-lesson');
+      let lesson_elements : HTMLCollection = document.getElementsByClassName('select-prealgebra-lesson');
       let adding_lesson = false;
 
-      console.log(`-PA- found ${lesson_elements.length} prealgebra lessons.`);
+       // console.log (`-PA- found ${lesson_elements.length} prealgebra lessons.`);
 
       for (var i = 0; i < lesson_elements.length; i++) {
-        if (lesson_elements[i].value !== "default") {
+
+        let test_el = <HTMLSelectElement> lesson_elements[i];
+
+        if (test_el.value !== "default") {
           this.options.lessonsCount += 1;
-          this.lessons_selected.push(lesson_elements[i].value);
+          this.lessons_selected.push(Number(test_el.value));
           adding_lesson = true;
         }
+
       }
 
       if (adding_lesson){
@@ -269,17 +300,21 @@ export class WorksheetService {
     // AIM Selections
     if (this.options.aimOptions.enabled) {
       
-      let lesson_elements = <HTMLSelectElement> document.getElementsByClassName('select-aim-lesson');
+      let lesson_elements :HTMLCollection = document.getElementsByClassName('select-aim-lesson');
       let adding_lesson = false;
 
-      console.log(`-AIM- found ${lesson_elements.length} AIM lessons.`);
+       // console.log (`-AIM- found ${lesson_elements.length} AIM lessons.`);
 
       for (var i = 0; i < lesson_elements.length; i++) {
-        if (lesson_elements[i].value !== "default") {
+
+        let test_el = <HTMLSelectElement> lesson_elements[i];
+
+        if (test_el.value !== "default") {
           this.options.lessonsCount += 1;
-          this.lessons_selected.push(lesson_elements[i].value);
+          this.lessons_selected.push(Number(test_el.value));
           adding_lesson = true;
         }
+
       }
 
       if (adding_lesson){
@@ -291,7 +326,7 @@ export class WorksheetService {
         
       }
     }
-    console.log(`Modulus of lessons per level = ${String(Math.floor(this.options.problemCount % this.options.lessonsCount))}`);
+     // console.log (`Modulus of lessons per level = ${String(Math.floor(this.options.problemCount % this.options.lessonsCount))}`);
 
     // DEMME METHOD
     var current_level : string;
@@ -313,7 +348,7 @@ export class WorksheetService {
         current_lesson = this.all_selected_lessons[String(levels[i])][j]; // INT - The current lesson id we're looking at
 
         track++;
-        console.log(`Problem No. ${track} -- [${current_lesson}]`);
+         // console.log (`Problem No. ${track} -- [${current_lesson}]`);
           
         for (let n = 0; n < min_problems; n++) {
           this.options.problemCount--;
@@ -332,7 +367,7 @@ export class WorksheetService {
   private generateProblemFrom(current_level, current_lesson) : void {
     switch (current_level) {
       case 'alpha' :
-        // console.log("Getting Alpha");
+        //  // console.log ("Getting Alpha");
         this.addProblem(this.getAlphaProblem(current_lesson));
         break;
       case 'beta' :
@@ -360,28 +395,28 @@ export class WorksheetService {
     }
   }
 
-  getById(id: string): FirebaseObjectObservable<WorksheetService> {
-    return this.db.object(`/worksheets/${id}`);
-  }
+  // getById(id: string): FirebaseObjectObservable<WorksheetService> {
+  //   return this.db.object(`/worksheets/${id}`);
+  // }
 
-  save() {
-    const worksheets = this.db.list('/worksheets');
-    const savePayload = {
-      options: this.options,
-      problems: this.problems
-    };
+  // save() {
+  //   const worksheets = this.db.list('/worksheets');
+  //   const savePayload = {
+  //     options: this.options,
+  //     problems: this.problems
+  //   };
 
-    if (this.id) {
-      worksheets.update(this.id, savePayload).then(result => {
-        console.log('Updated worksheet');
-      });
-    } else {
-      worksheets.push(savePayload).then(result => {
-        this.id = result.key;
-        console.log('Saved worksheet');
-      });
-    }
-  }
+  //   if (this.id) {
+  //     worksheets.update(this.id, savePayload).then(result => {
+  //        // console.log ('Updated worksheet');
+  //     });
+  //   } else {
+  //     worksheets.push(savePayload).then(result => {
+  //       this.id = result.key;
+  //        // console.log ('Saved worksheet');
+  //     });
+  //   }
+  // }
 
   updateFromJson(jsonObject: WorksheetService) {
     this.options.updateFromJson(jsonObject.options);
@@ -467,7 +502,7 @@ export class WorksheetService {
   // MUS Functions
   private getAlphaProblem(lessonNo){
 
-    // console.log("ALPHA LESSON" + String(lessonNo));
+    //  // console.log ("ALPHA LESSON" + String(lessonNo));
     const problem = new AlphaProblems();
 
     switch (Number(lessonNo)) {
@@ -598,18 +633,18 @@ export class WorksheetService {
         problem.values[1] = y;
         problem.symbol = "+";
         break;
-      case 51 : 
+      case 51 : // Subtracting 0 and 1
         var x = 0;
         var y = 0;
         var inspect = false;
         do {
           x = this.getRandomInt(11);
           y = this.getRandomInt(11);
-          if (y == 1 || y == 0 && x > 0) {
+          if ((y == 1 || y == 0) && x > 0) {
             inspect = true;
           }
           if (!inspect) {
-            if ((x - y) === 0)
+            if (((x - y) >= 0) && ((x == 1 || x == 0) || (y==1 || y==0)))
               inspect = true;
             if ((x-y) === 1)
               inspect = true;
@@ -818,7 +853,7 @@ export class WorksheetService {
   private getBetaProblem(lessonNo){
 
     const problem = new BetaProblems();
-    // console.log("Beta LESSON" + String(lessonNo));
+    //  // console.log ("Beta LESSON" + String(lessonNo));
 
     switch (Number(lessonNo)) {
 
@@ -954,6 +989,7 @@ export class WorksheetService {
 
         break;
       case 76 : // Sum < 1000
+         // console.log ('IN BETA PROBLEM');
         var x = 0;
         var y = 0;
         var str_x = "";
@@ -975,6 +1011,8 @@ export class WorksheetService {
         problem.values[1] = y;
         problem.symbol = "+";
         problem.lessonNo = 76;
+         // console.log ("PROBLEM");
+         // console.log (problem);
         break;
       case 78 : // Lesson 13
 
@@ -2685,9 +2723,9 @@ export class WorksheetService {
             quotient1 = "" + quotient1 + "q";
         }
         var possibleRepeats = new Array();
-        for (var p = 0; p < possibleRepeats.length; p++) { //
-            possibleRepeats[p] == null;                      // reset array
-        }                                                    //
+        for (var p = 0; p < possibleRepeats.length; p++) {
+            possibleRepeats[p] == null;
+        }
         possibleRepeats.length = 0;
         if (Math.pow(10, divisorPlaces) * divisor1 == 3) {
             possibleRepeats.length = 3;

@@ -1,36 +1,38 @@
-<div id="messaging" class="message-block" *ngIf="worksheetService.problems.length">
+<!-- <div id="messaging" class="message-block" *ngIf="worksheetService.problems.length">
     <p>
         This worksheet will become scrollable.<br>Problems will be printed on additional pages.
     </p>
 
-  </div>
+  </div> -->
 <div class="worksheet">
   <div class="worksheet-sidebar mat-elevation-z5 d-print-none">
     <form #optionsForm="ngForm">
-      <md-card class="worksheet-options mat-elevation-z0">
-        <md-card-title>
+      <mat-card class="worksheet-options mat-elevation-z0">
+        <mat-card-title>
           Worksheet Options
-        </md-card-title>
-        <md-card-subtitle>
+        </mat-card-title>
+        <mat-card-subtitle>
           Adjust the options for the worksheet
-        </md-card-subtitle>
-        <md-card-content>
-          <md-accordion>
-            <md-expansion-panel class="worksheet-options__panel-problem-options mat-elevation-z0" expanded="true">
-              <md-expansion-panel-header>
-                <md-panel-title>
+        </mat-card-subtitle>
+        <mat-card-content>
+          <mat-accordion>
+            <mat-expansion-panel class="worksheet-options__panel-problem-options mat-elevation-z0" expanded="true">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
                    Levels and Lessons
-                </md-panel-title>
-              </md-expansion-panel-header>
-              <md-form-field>
-                <input mdInput #problemCount="ngModel" type="number" placeholder="Number of Problems" name="problemCount" value="20" required [(ngModel)]="worksheetService.options.problemCount">
-                <md-error [hidden]="problemCount.valid || problemCount.pristine">
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-form-field>
+                <label for="problemCount" style="bottom: 8px; position: relative;">Number Of Problems</label>
+                
+                <input matInput #problemCount="ngModel" type="number" name="problemCount" required [(ngModel)]="worksheetService.options.problemCount">
+                <mat-error [hidden]="problemCount.valid || problemCount.pristine">
                   Number of Problems must be provided
-                </md-error>
-              </md-form-field>
+                </mat-error>
+              </mat-form-field>
 
               <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.alphaOptions.enabled">
-                <md-slide-toggle color="primary" name="alphaEnabled" [(ngModel)]="worksheetService.options.alphaOptions.enabled">Alpha</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="alphaEnabled" [(ngModel)]="worksheetService.options.alphaOptions.enabled">Alpha</mat-slide-toggle>
                 <div id="alpha-selector" class="level-selector" *ngIf="worksheetService.options.alphaOptions.enabled">
 
                     <!-- SELECT YOUR LESSON -->
@@ -72,7 +74,7 @@
               </div>
 
               <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.betaOptions.enabled">
-                <md-slide-toggle color="primary" name="betaEnabled" [(ngModel)]="worksheetService.options.betaOptions.enabled">Beta</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="betaEnabled" [(ngModel)]="worksheetService.options.betaOptions.enabled">Beta</mat-slide-toggle>
                 <div id="beta-selector" class="level-selector" *ngIf="worksheetService.options.betaOptions.enabled">
   
                     <select id="beta-select" name="" class="select-lesson select-beta-lesson">
@@ -106,7 +108,7 @@
               </div>
 
               <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.gammaOptions.enabled">
-                <md-slide-toggle color="primary" name="gammaEnabled" [(ngModel)]="worksheetService.options.gammaOptions.enabled">Gamma</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="gammaEnabled" [(ngModel)]="worksheetService.options.gammaOptions.enabled">Gamma</mat-slide-toggle>
                 <div id="gamma-selector" class="level-selector" *ngIf="worksheetService.options.gammaOptions.enabled">
 
                     <select id="gamma-select" name="" class="select-lesson select-gamma-lesson">
@@ -141,7 +143,7 @@
               </div>
 
               <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.deltaOptions.enabled">
-                <md-slide-toggle color="primary" name="deltaEnabled" [(ngModel)]="worksheetService.options.deltaOptions.enabled">Delta</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="deltaEnabled" [(ngModel)]="worksheetService.options.deltaOptions.enabled">Delta</mat-slide-toggle>
                 <div id="delta-selector" class="level-selector" *ngIf="worksheetService.options.deltaOptions.enabled">
 
                     <select id="delta-select" name="" class="select-lesson select-delta-lesson">
@@ -177,7 +179,7 @@
               </div>
 
               <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.epsilonOptions.enabled">
-                <md-slide-toggle color="primary" name="epsilonEnabled" [(ngModel)]="worksheetService.options.epsilonOptions.enabled">Epsilon</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="epsilonEnabled" [(ngModel)]="worksheetService.options.epsilonOptions.enabled">Epsilon</mat-slide-toggle>
                 <div id="epsilon-selector" class="level-selector" *ngIf="worksheetService.options.epsilonOptions.enabled">
 
                         <select id="epsilon-select" name="" class="select-lesson select-epsilon-lesson">
@@ -212,7 +214,7 @@
               </div>
 
               <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.zetaOptions.enabled">
-                <md-slide-toggle color="primary" name="zetaEnabled" [(ngModel)]="worksheetService.options.zetaOptions.enabled">Zeta</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="zetaEnabled" [(ngModel)]="worksheetService.options.zetaOptions.enabled">Zeta</mat-slide-toggle>
                 <div id="zeta-selector" class="level-selector" *ngIf="worksheetService.options.zetaOptions.enabled">
 
                     <select id="zeta-select" name="" class="select-lesson select-zeta-lesson">
@@ -248,7 +250,7 @@
               </div>
 
              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.prealgebraOptions.enabled">
-                <md-slide-toggle color="primary" name="prealgebraEnabled" [(ngModel)]="worksheetService.options.prealgebraOptions.enabled">Pre-Algebra</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="prealgebraEnabled" [(ngModel)]="worksheetService.options.prealgebraOptions.enabled">Pre-Algebra</mat-slide-toggle>
                 <div id="prealgebra-selector" class="level-selector" *ngIf="worksheetService.options.prealgebraOptions.enabled">
                   <p>Please visit our <a target="_blank" href="https://mathusee.com/e-learning/worksheets/">Legacy Worksheet Generator</a> while we develop our new Pre-Algebra worksheets.</p>
  <!-- 
@@ -283,7 +285,7 @@
               </div> 
 
               <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.aimOptions.enabled">
-                <md-slide-toggle color="primary" name="aimEnabled" [(ngModel)]="worksheetService.options.aimOptions.enabled">A.I.M.</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="aimEnabled" [(ngModel)]="worksheetService.options.aimOptions.enabled">A.I.M.</mat-slide-toggle>
                 <div id="aim-selector" class="level-selector" *ngIf="worksheetService.options.aimOptions.enabled">
                 
                     <select id="aim-select" name="" class="select-lesson select-aim-lesson">
@@ -322,85 +324,87 @@
 
               </div>
 
-            </md-expansion-panel>
-            <md-expansion-panel class="worksheet-options__panel-display-options mat-elevation-z0">
-              <md-expansion-panel-header>
-                <md-panel-title>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="worksheet-options__panel-display-options mat-elevation-z0">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
                   Display Options
-                </md-panel-title>
-              </md-expansion-panel-header>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
               <div>
                 Problems per row
                 <br>
-                <md-slider color="primary" min="1" max="4" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></md-slider> {{problemsPerRow}}
+                <mat-slider color="primary" min="1" max="4" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></mat-slider> {{problemsPerRow}}
               </div>
               <!-- <div *ngIf="worksheetService.options.containsInequality == true">
                 Problems per row
                 <br>
-                <md-slider color="primary" min="1" max="3" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></md-slider> {{problemsPerRow}}
+                <mat-slider color="primary" min="1" max="3" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></mat-slider> {{problemsPerRow}}
               </div> -->
               <div>
                 Problem font size
                 <br>
-                <md-slider color="primary" min="1" max="6" [value]="problemFontSize" (input)="problemFontSizeSliderChange($event)"></md-slider> {{problemFontSize}}
+                <mat-slider color="primary" min="1" max="6" [value]="problemFontSize" (input)="problemFontSizeSliderChange($event)"></mat-slider> {{problemFontSize}}
               </div>
               <!-- <div *ngIf="!worksheetService.options.showHorizontal">
                 Problem letter spacing
                 <br>
-                <md-slider color="primary" min="1" max="10" [value]="letterSpacing" (input)="letterSpacingSliderChange($event)"></md-slider> {{letterSpacing}}
+                <mat-slider color="primary" min="1" max="10" [value]="letterSpacing" (input)="letterSpacingSliderChange($event)"></mat-slider> {{letterSpacing}}
               </div> -->
               <div>
                 Line spacing
                 <br>
-                <md-slider color="primary" min="1" max="10" [value]="lineSpacing" (input)="lineSpacingSliderChange($event)"></md-slider> {{lineSpacing}}
+                <mat-slider color="primary" min="1" max="10" [value]="lineSpacing" (input)="lineSpacingSliderChange($event)"></mat-slider> {{lineSpacing}}
               </div>
               <div>
-                <md-slide-toggle color="primary" name="showNameLine" [(ngModel)]="worksheetService.options.showNameLine">Show name line</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="showNameLine" [(ngModel)]="worksheetService.options.showNameLine">Show name line</mat-slide-toggle>
               </div>
               <div>
-                <md-slide-toggle color="primary" name="showDateLine" [(ngModel)]="worksheetService.options.showDateLine">Show date line</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="showDateLine" [(ngModel)]="worksheetService.options.showDateLine">Show date line</mat-slide-toggle>
               </div>
               <div>
-                <md-slide-toggle color="primary" name="showTitle" [(ngModel)]="worksheetService.options.showTitle">Show title</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="showTitle" [(ngModel)]="worksheetService.options.showTitle">Show title</mat-slide-toggle>
                 <br>
-                <md-form-field *ngIf="worksheetService.options.showTitle">
-                  <input mdInput #title="ngModel" type="text" placeholder="Title" name="title" required [(ngModel)]="worksheetService.options.title">
-                  <md-error [hidden]="title.valid || title.pristine">
+                <mat-form-field *ngIf="worksheetService.options.showTitle">
+                    <label for="title" style="bottom: 8px; position: relative;">Title:</label>
+                  <input matInput #title="ngModel" type="text" name="title" required [(ngModel)]="worksheetService.options.title">
+                  <mat-error [hidden]="title.valid || title.pristine">
                     A title must be provided
-                  </md-error>
-                </md-form-field>
+                  </mat-error>
+                </mat-form-field>
               </div>
               <div>
-                <md-slide-toggle color="primary" name="showInstructions" [(ngModel)]="worksheetService.options.showInstructions">Show instructions</md-slide-toggle>
+                  
+                <mat-slide-toggle color="primary" name="showInstructions" [(ngModel)]="worksheetService.options.showInstructions">Show instructions</mat-slide-toggle>
                 <br>
-                <md-form-field *ngIf="worksheetService.options.showInstructions">
-                  <input mdInput #instructions="ngModel" type="text" placeholder="Instructions" name="instructions" required [(ngModel)]="worksheetService.options.instructions">
-                  <md-error [hidden]="instructions.valid || instructions.pristine">
+                <mat-form-field *ngIf="worksheetService.options.showInstructions">
+                    <label for="showInstructions" style="bottom: 8px; position: relative;">Instructions:</label>
+                  <input matInput #instructions="ngModel" type="text" name="instructions" required [(ngModel)]="worksheetService.options.instructions">
+                  <mat-error [hidden]="instructions.valid || instructions.pristine">
                     Instructions must be provided
-                  </md-error>
-                </md-form-field>
+                  </mat-error>
+                </mat-form-field>
               </div>
               <div>
-                <md-slide-toggle color="primary" name="showProblemNumbers" [(ngModel)]="worksheetService.options.showProblemNumbers">Show problem numbers</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="showProblemNumbers" [(ngModel)]="worksheetService.options.showProblemNumbers">Show problem numbers</mat-slide-toggle>
               </div>
               <div>
-                <md-slide-toggle color="primary" name="showAnswers" [(ngModel)]="worksheetService.options.showAnswers">Show answers</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="showAnswers" [(ngModel)]="worksheetService.options.showAnswers">Show answers</mat-slide-toggle>
               </div>
               <div>
-                <md-slide-toggle color="primary" name="landscape" [(ngModel)]="worksheetService.options.landscape" mdTooltip="This is a preview only. You will have to adjust your printer settings to print in landscape mode." mdTooltipPosition="right">Landscape preview</md-slide-toggle>
+                <mat-slide-toggle color="primary" name="landscape" [(ngModel)]="worksheetService.options.landscape" matTooltip="This is a preview only. You will have to adjust your printer settings to print in landscape mode." matTooltipPosition="right">Landscape preview</mat-slide-toggle>
               </div>
               <div>
-                  <md-slide-toggle color="primary" name="showHorizontal" [(ngModel)]="worksheetService.options.showHorizontal" (click)="setHorizontal()" >Horizontal equations</md-slide-toggle>
+                  <mat-slide-toggle color="primary" name="showHorizontal" [(ngModel)]="worksheetService.options.showHorizontal" (click)="setHorizontal()" >Horizontal equations</mat-slide-toggle>
               </div>
-            </md-expansion-panel>
+            </mat-expansion-panel>
 
-
-            <md-expansion-panel class="worksheet-options__panel-display-options mat-elevation-z0">
-                <md-expansion-panel-header>
-                  <md-panel-title>
+            <mat-expansion-panel class="worksheet-options__panel-display-options mat-elevation-z0">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
                     Help
-                  </md-panel-title>
-                </md-expansion-panel-header>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
                 <div>
                   <p><strong>Thank you for using <i>Version 1.0</i> of the new Demme Learning Worksheet Generator!</strong></p>
                   <p>Choose any set of equations from the available curriculum. You can mix and match lessons from our available curriculum to be generated in ascending order of each level.</p>
@@ -412,22 +416,22 @@
                   <p>If you have enabled the landscape display option, you will have to make sure the landscape option is also selected from the print preview.</p>
                   <p>If you are unable to print the worksheet, you can save it as a PDF from the print preview screen. This way you can save it to your PC or print it at any other time!</p>
                 </div>
-              </md-expansion-panel>
+              </mat-expansion-panel>
 
-          </md-accordion>
-        </md-card-content>
-      </md-card>
+          </mat-accordion>
+        </mat-card-content>
+      </mat-card>
     </form>
 
     <!-- Generate, Reset, Print buttons -->
     <div class="worksheet__generate mat-elevation-z5 d-print-none">
 
-      <button type="button" style="background:#256eb7;" md-raised-button color="primary" (click)="generateWorksheet()" [disabled]="!optionsForm.form.valid">Generate Worksheet</button>
+      <button type="button" style="background:#256eb7;" mat-raised-button color="primary" (click)="generateWorksheet()" [disabled]="!optionsForm.form.valid">Generate Worksheet</button>
       <br><br>
 
-      <button type="button" style="background:#f37c21;" md-raised-button color="primary" (click)="reset()" [disabled]="!optionsForm.form.valid">Reset</button>
+      <button type="button" style="background:#f37c21;" mat-raised-button color="primary" (click)="reset()" [disabled]="!optionsForm.form.valid">Reset</button>
       <br><br>
-      <button *ngIf="worksheetService.problems.length" type="button" style="background:#042065; " md-raised-button color="primary" (click)="print()" [disabled]="!optionsForm.form.valid">Print</button>
+      <button *ngIf="worksheetService.problems.length" type="button" style="background:#042065; " mat-raised-button color="primary" (click)="print()" [disabled]="!optionsForm.form.valid">Print</button>
 
     </div>
 
@@ -437,9 +441,9 @@
   <div id="main-sheet" class="worksheet-content">
 
     <!-- Global Entry -->
-    <md-card style='overflow: scroll;' class="worksheet__card" [class.worksheet__card--landscape]="worksheetService.options.landscape" *ngIf="worksheetService.problems.length">
+    <mat-card style='overflow: scroll;' class="worksheet__card" [class.worksheet__card--landscape]="worksheetService.options.landscape" *ngIf="worksheetService.problems.length">
 
-      <md-card-content>
+      <mat-card-content>
         <h2 class="worksheet__name-date clearfix" *ngIf="worksheetService.options.showNameLine || worksheetService.options.showDateLine">
           <span class="worksheet__name" *ngIf="worksheetService.options.showNameLine">Name:</span>
           <span class="worksheet__date" *ngIf="worksheetService.options.showDateLine">Date:</span>
@@ -1814,14 +1818,6 @@
             <!-- GENERAL VERTICAL -->
             <div *ngIf="!worksheetService.options.showHorizontal">
 
-              <!-- DISABLED THIS LOOP  -->
-              <!-- <div class="math-problem" *ngFor="let problem of worksheetService.problems; index as i"> -->
-
-                <!-- <div class="math-problem__problem" *ngIf="!isDivisionProblem(problem)">
-
-                </div> -->
-
-                <!-- <div class="math-problem__problem" *ngIf="isDivisionProblem(problem) && !problem.zetaProblem && !problem.epsilonProblem"> -->
                 <!-- VERTICAL DIVISION PROBLEMS -->
                 <div class="math-problem__problem" *ngIf="isDivisionProblem(problem)"> 
                 
@@ -1891,9 +1887,9 @@
 
       <div class="worksheet__id" *ngIf="worksheetService.id">Worksheet Id: {{worksheetService.id}}</div>
 
-    </md-card-content>
+    </mat-card-content>
  
-  </md-card>
+  </mat-card>
 
     <!-- <div class="worksheet-display-disclaimer mat-elevation-z5 d-print-none" *ngIf="worksheetService.problems.length">
       The view shown here is meant to simulate a printed page (8.5x11 inch standard US paper size).
@@ -1902,20 +1898,20 @@
     </div> -->
 
 
-    <!-- <button class="worksheet__print-button d-print-none" md-fab color="accent" *ngIf="worksheetService.problems.length">
-      <md-icon class="md-24" aria-label="Print the worksheet" (click)="print()">print</md-icon>
+    <!-- <button class="worksheet__print-button d-print-none" mat-fab color="accent" *ngIf="worksheetService.problems.length">
+      <mat-icon class="mat-24" aria-label="Print the worksheet" (click)="print()">print</mat-icon>
     </button> -->
 
 
-    <!-- <button class="worksheet__save-button d-print-none" md-fab color="primary" *ngIf="worksheetService.problems.length && (authService.user | async)?.uid">
-      <md-icon class="md-24" aria-label="Save the worksheet" (click)="save()">save</md-icon>
+    <!-- <button class="worksheet__save-button d-print-none" mat-fab color="primary" *ngIf="worksheetService.problems.length && (authService.user | async)?.uid">
+      <mat-icon class="mat-24" aria-label="Save the worksheet" (click)="save()">save</mat-icon>
     </button> -->
 
   </div>
 
 </div>
 <!-- <div class="worksheet__generate mat-elevation-z5 d-print-none">
-  <button type="button" style="background:#001f69;" md-raised-button color="primary" (click)="generateWorksheet()" [disabled]="!optionsForm.form.valid">Generate Worksheet</button>
+  <button type="button" style="background:#001f69;" mat-raised-button color="primary" (click)="generateWorksheet()" [disabled]="!optionsForm.form.valid">Generate Worksheet</button>
   <br><br>
-  <button type="button" style="background:#d37a1a;" md-raised-button color="primary" (click)="reset()" [disabled]="!optionsForm.form.valid">Reset</button>
+  <button type="button" style="background:#d37a1a;" mat-raised-button color="primary" (click)="reset()" [disabled]="!optionsForm.form.valid">Reset</button>
 </div> -->
