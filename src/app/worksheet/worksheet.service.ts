@@ -1480,7 +1480,7 @@ export class WorksheetService {
 
         do {
           y = this.getRandomInt(2) === 0 ? 3 : 5;
-          x = this.getRandomInt(101);
+          x = this.getRandomInt(31);
 
         } while(x !== 0 && (Math.ceil((x / y)) !== (x / y) || Math.floor((x / y)) !== (x / y)))
         ans = (x / y);
@@ -1563,7 +1563,7 @@ export class WorksheetService {
 
         do {
           y = this.getRandomInt(2) === 0 ? 7 : 8;
-          x = this.getRandomInt(101);
+          x = this.getRandomInt(41);
 
         } while(x !== 0 && (Math.ceil((x / y)) !== (x / y) || Math.floor((x / y)) !== (x / y)))
         ans = (x / y);
@@ -2944,12 +2944,17 @@ export class WorksheetService {
     return problem;
   }
 
+  /**
+   * Pre Algebra
+   * @param lessonNo 
+   */
   private getPrealgebraProblem(lessonNo){
 
     const problem = new PrealgebraProblems();
 
     switch (Number(lessonNo)) {
 
+      // Lesson 1 Addition with Negative numbers
       case 221:
         var addends = new Array();
         addends.length = 2;
@@ -2965,6 +2970,7 @@ export class WorksheetService {
             addends[addendToChange] = (addends[addendToChange] * -1);
         }
         problem.problemType = ProblemType.Addition;
+        problem.custom = true;
         this.options.showHorizontal = true;
         problem.containsNegative = true;
         problem.values[0] = addends[0];
