@@ -13,3 +13,4 @@ export * from './epsilon-options';
 export * from './zeta-options';
 export * from './prealgebra-options';
 export * from './aim-options';
+export * from './aim-md-options'

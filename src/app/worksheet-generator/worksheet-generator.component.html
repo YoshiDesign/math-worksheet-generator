@@ -16,6 +16,77 @@
         </mat-card-subtitle>
         <mat-card-content>
           <mat-accordion>
+                <mat-expansion-panel class="worksheet-options__panel-display-options mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Help
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div>
+                          <p><strong>Thank you for using <i>Version 1.0</i> of the new Demme Learning Worksheet Generator!</strong></p>
+        
+        <strong>To generate a worksheet: </strong>
+        <ul class="dl-ul">
+            <li>Select the Levels and Lessons dropdown. </li>
+            <li>Enter the desired number of problems, then select the toggle button for the chosen level(s). </li>
+            <li>Choose a lesson from the lesson dropdown, then click the Generate Worksheet button at the bottom of the sidebar. </li>
+        </ul>
+        <strong>To generate an answer key for your worksheet: </strong>
+        <ul class="dl-ul">
+            <li>Select the Display Options dropdown. </li>
+            <li>Select the Show answers toggle near the bottom of the dropdown.  </li>
+        </ul>
+        <strong>
+        What if I want to include multiple lessons from one level on a worksheet?
+        </strong>
+        <ul class="dl-ul">
+            <li>Select Add Another Lesson under the lessons dropdown. </li>
+            <li>Select the toggle button for the additional level and choose the lesson from the lesson dropdown. </li>
+        </ul>
+        <strong>
+        How do I adjust the appearance of the worksheet? 
+        </strong>
+        <ul class="dl-ul">
+            <li>Use the sliders under the Display Options dropdown.</li>
+        <li>The number of problems per row, problem font size, and problem spacing can all be adjusted. </li>
+        <li>There are also toggles to turn on or off the name line, date line, worksheet instructions, and problem numbers. </li>
+        <li>A toggle to switch between horizontal and vertical equations is also included. </li>
+        <li>Note not all equations are made to be displayed both horizontally and vertically.   </li>
+        </ul>
+        <strong>
+        How do I make changes to a worksheet I already generated?
+        </strong>
+        <ul class="dl-ul">
+        
+            <li>Select the desired settings, then click the Generate Worksheet button to apply them. Adjustments made using toggles or sliders will automatically apply.</li>
+            <li>To reset the worksheet, click the Reset button at the bottom of the sidebar. </li>
+        </ul>
+        
+        <strong>
+        How do I print a worksheet? 
+        </strong>
+        <ul class="dl-ul">
+        
+        <li>Select Print at the bottom of the sidebar. This will open the print preview window. </li>
+        <li>The Landscape preview toggle under Display Options only gives a preview of landscape orientation. </li>
+        <li>To print in landscape mode, landscape orientation must be selected within the print preview window.  </li>
+        <li>If you would like to save a worksheet to print at a later time, select Save as PDF from the dropdown within the print preview window. </li>
+        </ul>
+        
+                          <!-- <p>Choose any set of equations from the available curriculum. You can mix and match lessons from our available curriculum to be generated in ascending order of each level.</p>
+                          <p>If your equations are running into each other or falling to the next line, simply adjust the visual settings in the <i>Display Options</i> menu.</p>
+                          <p>Not every equation is meant to be displayed both vertically and horizontally. The <i>Show Horizontal</i> display option will toggle between these two formats. If the equation is able to be displayed both ways, it will toggle between vertical and horizontal orientations.</p>
+                          <h3>Page Breaks</h3>
+                          <p>Clicking on <i>Print</i> will allow you to preview your worksheet and view where your page breaks will occur.</p>
+                          <h3>Printing</h3>
+                          <p>If you have enabled the landscape display option, you will have to make sure the landscape option is also selected from the print preview.</p>
+                          <p>If you are unable to print the worksheet, you can save it as a PDF from the print preview screen. This way you can save it to your PC or print it at any other time!</p> -->
+        
+        
+        
+        
+                        </div>
+                      </mat-expansion-panel>
             <mat-expansion-panel class="worksheet-options__panel-problem-options mat-elevation-z0" expanded="true">
               <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -115,6 +186,7 @@
                         <option value="default">Please Select a Lesson</option>
                         <option value="98">Lesson 2 - Multiply By 1 And 0, Commutative Property</option>
                         <option value="100">Lesson 4 - Multiply By 2, 1 Quart = 2 Pints</option>
+                        <option value="101">Lesson 5 - Multiply by 10, 10¢ = 1 Dime </option>
                         <option value="102">Lesson 6 - Multiply By 5, 5¢ = 1 Nickel</option>
                         <option value="104">Lesson 8 - Solve for an Unknown</option>
                         <option value="106">Lesson 10 - Multiply By 9</option>
@@ -252,8 +324,8 @@
              <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.prealgebraOptions.enabled">
                 <mat-slide-toggle color="primary" name="prealgebraEnabled" [(ngModel)]="worksheetService.options.prealgebraOptions.enabled">Pre-Algebra</mat-slide-toggle>
                 <div id="prealgebra-selector" class="level-selector" *ngIf="worksheetService.options.prealgebraOptions.enabled">
-                  <p>Please visit our <a target="_blank" href="https://mathusee.com/e-learning/worksheets/">Legacy Worksheet Generator</a> while we develop our new Pre-Algebra worksheets.</p>
- <!-- 
+                  <!-- <p>Please visit our <a target="_blank" href="https://mathusee.com/e-learning/worksheets/">Legacy Worksheet Generator</a> while we develop our new Pre-Algebra worksheets.</p> -->
+ 
                     <select id="prealgebra-select" name="" class="select-lesson select-prealgebra-lesson">
                         <option value="default">Please Select a Lesson</option>
                         <option value="221">Lesson 1 - Negative Numbers, Addition</option>
@@ -261,17 +333,17 @@
                         <option value="223">Lesson 3 - Negative Numbers, Multiplication</option>
                         <option value="224">Lesson 4 - Negative Numbers, Division</option>
                         <option value="225">Lesson 5 - Exponents</option>
-                        <option value="226">Lesson 7 - Negative Numbers With Exponents</option>
-                        <option value="227">Lesson 8 - Roots And Radicals</option>
-                        <option value="228">Lesson 9 - Solve For An Unknown</option>
+                        <option value="227">Lesson 7 - Negative Numbers With Exponents</option>
+                        <option value="228">Lesson 8 - Roots And Radicals</option>
+                        <option value="229">Lesson 9 - Solve For An Unknown</option>
                         <option value="233">Lesson 13 - Solve For An Unknown</option>
                         <option value="234">Lesson 14 - Solve For An Unknown</option>
                         <option value="236">Lesson 16 - Transform Celsius To Fahrenheit</option>
                         <option value="237">Lesson 17 - Transform Fahrenheit To Celsius</option>
                       </select>
-                    -->
+                   
                     </div>
-                <!--
+                
                     <div *ngIf="worksheetService.options.prealgebraOptions.enabled" (click)="addLessonList('prealgebra')" class="add-lesson">
                       <div data-level="alpha" class="add-button">
                           +
@@ -280,12 +352,11 @@
                           Add Another Lesson
                       </div>
                   </div>
-                -->
-
+               
               </div> 
 
               <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.aimOptions.enabled">
-                <mat-slide-toggle color="primary" name="aimEnabled" [(ngModel)]="worksheetService.options.aimOptions.enabled">A.I.M.</mat-slide-toggle>
+                <mat-slide-toggle color="primary" name="aimEnabled" [(ngModel)]="worksheetService.options.aimOptions.enabled">AIM - Addition &amp; Subtraction</mat-slide-toggle>
                 <div id="aim-selector" class="level-selector" *ngIf="worksheetService.options.aimOptions.enabled">
                 
                     <select id="aim-select" name="" class="select-lesson select-aim-lesson">
@@ -323,6 +394,42 @@
                   </div>
 
               </div>
+            <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.aimMdOptions.enabled">
+                <mat-slide-toggle color="primary" name="aimMdEnabled" [(ngModel)]="worksheetService.options.aimMdOptions.enabled">AIM - Multiplication &amp; Division</mat-slide-toggle>
+                <div id="aimMD-selector" class="level-selector" *ngIf="worksheetService.options.aimMdOptions.enabled">
+                
+                    <select id="aimMD-select" name="" class="select-lesson select-aimMD-lesson">
+                        <option value="default">Please Select a Lesson</option>
+                        <!-- <option value="524">Lesson 1 - Integer Blocks</option> -->
+                        <option value="546">Lesson 3 - Doubles and The Commutative Property of Multiplication </option>
+                        <option value="547">Lesson 4 - Tens Facts Increase Place Value by One Place</option>
+                        <option value="548">Lesson 5 - Fives Facts Use a Tens Fact, Take Half of the Product</option>
+                        <option value="549">Lesson 6 - Nines Facts Use a Tens Fact, Subtract One Group</option>
+                        <option value="550">Lesson 7 - Multiplication by 3 Double, Add One More Group</option>
+                        <option value="551">Lesson 8 - Multiplication by 4 Double, Doubles</option>
+                        <option value="552">Lesson 9 - Multiplication by 6 Use a Fives Fact, Add One More Group</option>
+                        <option value="553">Lesson 10 - Multiplication: Extras Facts Known and The Distributive Property </option>
+                        <option value="554">Lesson 11 - Solve for an Unknown</option>
+
+                        <option value="556">AIM Lesson 12(a) - Division Doubles </option>
+                        <option value="557">AIM Lesson 12(b) - Divison by 10</option>
+                        <option value="558">AIM Lesson 12(c) - Division by 5</option>
+                        <option value="559">AIM Lesson 12(d) - Division by 9</option>
+                        <option value="560">AIM Lesson 12(e) - Division by 3</option>
+                        <option value="561">AIM Lesson 12(f) - Division by 4 Double, Doubles</option>
+                        <option value="562">AIM Lesson 12(g) - Division by 6</option>
+                        <option value="563">AIM Lesson 12(h) - Division: Extras</option>
+                    </select>
+                </div>
+
+                    <div *ngIf="worksheetService.options.aimMdOptions.enabled" (click)="addLessonList('aimMD')" class="add-lesson">
+                        <i class="fa fa-plus-square lg-size"></i>
+                      <div class="add-text">
+                          Add Another Lesson
+                      </div>
+                  </div>
+
+            </div>
 
             </mat-expansion-panel>
             <mat-expansion-panel class="worksheet-options__panel-display-options mat-elevation-z0">
@@ -334,7 +441,7 @@
               <div>
                 Problems per row
                 <br>
-                <mat-slider color="primary" min="1" max="4" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></mat-slider> {{problemsPerRow}}
+                <mat-slider color="primary" id="ppRow" min="1" max="4" [value]="problemsPerRow" (input)="problemsPerRowSliderChange($event)"></mat-slider> {{problemsPerRow}}
               </div>
               <!-- <div *ngIf="worksheetService.options.containsInequality == true">
                 Problems per row
@@ -399,24 +506,7 @@
               </div>
             </mat-expansion-panel>
 
-            <mat-expansion-panel class="worksheet-options__panel-display-options mat-elevation-z0">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Help
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div>
-                  <p><strong>Thank you for using <i>Version 1.0</i> of the new Demme Learning Worksheet Generator!</strong></p>
-                  <p>Choose any set of equations from the available curriculum. You can mix and match lessons from our available curriculum to be generated in ascending order of each level.</p>
-                  <p>If your equations are running into each other or falling to the next line, simply adjust the visual settings in the <i>Display Options</i> menu.</p>
-                  <p>Not every equation is meant to be displayed both vertically and horizontally. The <i>Show Horizontal</i> display option will toggle between these two formats. If the equation is able to be displayed both ways, it will toggle between vertical and horizontal orientations.</p>
-                  <h3>Page Breaks</h3>
-                  <p>Clicking on <i>Print</i> will allow you to preview your worksheet and view where your page breaks will occur.</p>
-                  <h3>Printing</h3>
-                  <p>If you have enabled the landscape display option, you will have to make sure the landscape option is also selected from the print preview.</p>
-                  <p>If you are unable to print the worksheet, you can save it as a PDF from the print preview screen. This way you can save it to your PC or print it at any other time!</p>
-                </div>
-              </mat-expansion-panel>
+
 
           </mat-accordion>
         </mat-card-content>
@@ -450,15 +540,21 @@
         </h2>
         <h1 class="worksheet__title" *ngIf="worksheetService.options.showTitle">{{worksheetService.options.title}}</h1>
         <h3 class="worksheet__instructions" *ngIf="worksheetService.options.showInstructions">{{worksheetService.options.instructions}}</h3>
-        <div class="math-problems" [ngClass]="mathProblemsClasses">
+        <div id="mProb" class="math-problems" [ngClass]="mathProblemsClasses">
           <!-- Begin Loop -->
 
           <!-- HORIZONTAL -->
           <!-- <div style="width:100%;" *ngIf="worksheetService.options.showHorizontal"> -->
 
-          <!-- START GENERATION -->
-
-        <div class="math-problem" *ngFor="let problem of worksheetService.problems; index as i">
+       
+       
+            <!-- START GENERATION -->
+        <div *ngFor="let problem of worksheetService.problems; index as i" 
+            [ngClass]="{
+                'math-problem-over' : (i % 4 == 0 || i % 4 == 1) && problem.lessonNo == 234, 
+                'math-problem'  : true, 
+                'math-problem-alt' :  i > 1 && (i % 4 == 3 || i % 4 == 0) && problem.lessonNo == 234
+            }">
 
               <!-- SPECIFIC PROBLEM RENDERING -->
               <!-- ALPHA VALUES
@@ -495,7 +591,25 @@
               
             -->
             
+            <!-- Aim MD Solve for unknown Lesson 11 -->
           <div *ngIf="problem.custom === true">
+                <div class="math-problem__problem" *ngIf="problem.lessonNo === 554">
+
+                        <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                        <div class="math-problem__symbol"></div>
+                        <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">
+        
+                      <!--  Solve for Unknown Mult : GAMMA Lesson 8  HORIZONTAL -->
+                      <span *ngIf="problem.problemType === 8">
+                          <span *ngIf="!worksheetService.options.showAnswers && problem.solveForUnknown">{{ value }}</span>
+                          <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 1">{{problem.lhs}} x {{ problem.rhs }}&nbsp;</span>
+                        </span>
+                      </div>
+                      <span *ngIf="j == problem.values.length - 1"> = </span><span *ngIf="j < problem.values.length - 1">{{ problem.symbol }}</span>
+                      <div class="math-problem__value-HOR" *ngIf="problem.solveForUnknown == true">=
+                          <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.sfu_answer }}</ng-container> 
+                      </div>
+                    </div>
 
             <div class="math-problem__problem" *ngIf="problem.lessonNo === 40">
 
@@ -1572,7 +1686,7 @@
               <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 2104">
                 <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
                   <table cellpadding="1"><tr><td></td><td></td><td></td></tr>
-                  <tr><td>{{problem.divisor}} </td><td class="divsign"> {{problem.dividend1}}</td><td></td></tr></table>
+                  <tr><td>{{problem.divisor1}} &nbsp;</td><td class="divsign"> {{problem.dividend1}}</td><td></td></tr></table>
             </div>
 
             <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 2104">
@@ -1592,7 +1706,7 @@
                       </table>
                   </td>
                 </tr>
-                    <tr><td>{{problem.preDivisor}} </td><td class="divsign"> {{problem.preDividend}}</td><td></td></tr>
+                    <tr><td>{{problem.preDivisor}} &nbsp;</td><td class="divsign"> {{problem.preDividend}}</td><td></td></tr>
                 </table>
             </div>
 
@@ -1665,13 +1779,334 @@
 
             <!-- /Z24 -->
 
+
+
+
+
+
+
+<!-- TEMPLATE
+
+          <div class="math-problem__problem" *ngIf="problem.zetaProblem && !worksheetService.options.showAnswers && problem.lessonNo == 213">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              
+
+          </div>
+          <div class="math-problem__problem" *ngIf="problem.zetaProblem && worksheetService.options.showAnswers && problem.lessonNo == 213">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            
+          </div>
+
+TEMPLATE --> 
+
+
+
+
             <!-- Pre-Algebra -->
 
 
-                      
 
+          <!-- LESSON 1 -->
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 221">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              
+              <table cellpadding="1"><tr><td>({{problem.addends[0]}}) + ({{problem.addends[1]}}) = </td></tr></table>
+              
+
+
+          </div>
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 221">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <table cellpadding="1"><tr><td>({{problem.addends[0]}}) + ({{problem.addends[1]}}) = <span class="math-answer">({{problem.addends[0] + problem.addends[1]}})</span></td></tr></table>
+          </div>
+
+
+
+
+          <!-- LESSON 2 -->
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 222">
+            <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            
+              <table cellpadding="1"><tr><td>({{problem.addends[0]}}) - ({{problem.addends[1]}}) = </td></tr></table>
+
+          </div>
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 222">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+              <table cellpadding="1"><tr><td>({{problem.addends[0]}}) - ({{problem.addends[1]}}) = <span class="math-answer">({{problem.addends[0] - problem.addends[1]}})</span></td></tr></table>
+
+          </div>
+
+
+
+
+          <!-- LESSON 3 -->
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 223">
+            <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            
+            <table cellpadding="1"><tr><td>({{problem.factors[0]}}) x ({{problem.factors[1]}}) = </td></tr></table>
+    
+
+          </div>
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 223">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <table cellpadding="1"><tr><td>({{problem.factors[0]}}) x ({{problem.factors[1]}}) = <span class="math-answer">({{problem.factors[0] * problem.factors[1]}})</span></td></tr></table>        
+          </div>
+
+
+
+
+
+
+          <!-- LESSON 4 -->
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 224">
+            <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <table cellpadding="1"><tr><td>({{problem.product}}) &divide; ({{problem.factors[1]}}) = </td></tr></table>
+           
+          </div>
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 224">
+            <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <table cellpadding="1"><tr><td>({{problem.product}}) &divide; ({{problem.factors[1]}}) =  <span class="math-answer">({{problem.product / problem.factors[1]}})</span></td></tr></table>
+            
+          </div>
+
+
+
+
+          <!-- LESSON 5 -->
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 225">
+            <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1"><tr><td rowspan="2">(</td><td class="numerator">{{problem.numerator}}</td><td rowspan="2">)</td><td rowspan="2"><sup>{{problem.exponent}}</sup> = </td></tr>
+                <tr><td align="center">{{problem.denominator}}</td></tr></table>
+              
+
+          </div>
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 225">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1"><tr><td rowspan="2">(</td><td class="numerator">{{problem.numerator}}</td><td rowspan="2">)</td><td rowspan="2"><sup>{{problem.exponent}}</sup> = </td><span class="math-answer"><td class="numerator-answer">{{problem.pow_1}}</td></span></tr>
+                <tr><td align="center">{{problem.denominator}}</td><td><span class="math-answer">{{problem.pow_2}}</span></td></tr></table>
+          </div>
+
+
+
+
+
+          <!-- LESSON 7 -->
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 227">
+            <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+            <div *ngIf="problem.s2">
+              <table cellpadding="1"><tr><td> {{problem.opener}}{{problem.base}}{{problem.closer}}<sup> {{problem.exponent}}</sup> = </td></tr></table>
+
+            </div>
+            <div *ngIf="problem.s1">
+              <table cellpadding="1"><tr><td rowspan="2"> {{problem.opener}}</td><td class="numerator"> {{problem.numerator}}</td><td rowspan="2"> {{problem.closer}}</td><td rowspan="2"><sup> {{problem.exponent}}</sup> = </td></tr>
+               <tr><td align="center"> {{problem.denominator}}</td></tr></table>
+            </div>
+
+          </div>
+
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 227">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+              <div *ngIf="problem.s2">
+                <table cellpadding="1"><tr><td> {{problem.opener}}{{problem.base}}{{problem.closer}}<sup> {{problem.exponent}}</sup> =  &nbsp;<span class="math-answer"> {{problem.miz1}} </span></td></tr></table>
+              </div>
+              <div *ngIf="problem.s1">
+                <table cellpadding="1"><tr><td rowspan="2"> {{problem.opener}}</td><td class="numerator"> {{problem.numerator}}</td><td rowspan="2"> {{problem.closer}}</td><td rowspan="2"><sup> {{problem.exponent}}</sup><sub>&nbsp;</sub>=  <span class="math-answer"> &nbsp;{{problem.answerSign}}&nbsp; </span></td><td class="numerator-answer"> <span class="math-answer"> {{problem.miz2}}</span></td></tr>
+                <tr><td align="center"> {{problem.denominator}} </td><td>  <span class="math-answer">{{problem.miz3}}</span></td></tr></table>
+              </div>
+
+          </div>
+
+
+
+
+
+
+          <!-- LESSON 8 -->
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 228">
+            <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+            <table cellpadding="1"><tr><td><img [src]=[problem.imageSource] /></td><td>&nbsp;=</td></tr></table>
+
+          </div>
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 228">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                <table cellpadding="1"><tr><td><img [src]=[problem.imageSource] /></td><td>&nbsp;=&nbsp;<span class="math-answer">{{problem.squareRoot}}</span> </td></tr></table>     
+
+          </div>
+
+
+
+
+          <!-- LESSON 9 -->
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 229">
+            <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            
+
+              <div *ngIf="problem.s1 == true">
+                <table cellpadding="1"><tr><td>{{problem.coP1}} {{problem.letter}} {{problem.numOperator}}  {{problem.absAdder}} </td><td>=</td><td>{{(problem.adder + problem.solution)}} {{problem.letOperator}} {{problem.absCoLett}} </td></tr></table>
+
+            
+              </div>
+              <div *ngIf="problem.s1 == false">
+                <table cellpadding="1"><tr><td>{{problem.coP1}}  {{problem.letter}} {{problem.numOperator}} {{problem.absAdder}}  </td><td>=</td><td>{{problem.absCoLett}}  {{problem.numOperator}} {{problem.absAddSol}} </td></tr></table>
+              </div>
+
+          </div>
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 229">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            
+
+
+              <div *ngIf="problem.s1 == true">
+
+                  <table cellpadding="1"><tr><td> {{problem.coP1}}{{problem.letter}}{{problem.numOperator}} {{problem.absAdder}} </td><td>=</td><td>{{(problem.adder + problem.solution)}} {{problem.letOperator}} {{problem.absCoLett}} </td></tr>
+                  <tr><td align="right"> {{problem.coP1 }} {{problem.letter}} </td><td>=</td><td>{{problem.solution}}  {{problem.letOperator}} {{problem.absCoLett}}</td><td></td></tr>
+                  <tr><td align="right"><span class="math-answer">{{problem.letter}}</span> </td><td><span class="math-answer">=</span></td><td><span class="math-answer"> {{problem.solution}}</span></td></tr></table>
+
+                
+              </div>
+              <div *ngIf="problem.s1 == false">
+
+                    <table cellpadding="1"><tr><td>{{problem.coP1}} {{problem.letter}} {{problem.numOperator}}  {{problem.absAdder}}  </td><td>=</td><td> {{problem.absCoLett}} {{problem.numOperator}} {{problem.absAddSol}} </td></tr>
+                    <tr><td align="right">{{problem.coP1}} {{problem.letter}} </td><td>=</td><td> {{problem.absCoLett}} {{problem.numOperator}} {{problem.solution}} </td><td></td></tr>
+                    <tr><td align="right"> <span class="math-answer">{{problem.letter}}</span> </td><td><span class="math-answer">=</span></td><td><span class="math-answer"> {{problem.solution}}</span> </td></tr></table>
+
+              </div>
+
+          </div>
+
+          <!-- LESSON 13 -->
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 233">
+            <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            
+            <div cellpadding="1">
+                
+
+                <div *ngIf="problem.s1 == 1">
+                <tr><td align="right"> {{problem.lastMsecAdd}}{{problem.letter}}  {{problem.additor1}} {{problem.firstAdder}} </td><td align="center">&nbsp;  = &nbsp; </td><td align="left"> {{problem.halfSolveFirstAdd}} {{problem.additor2}}{{problem.secondAdder}} {{problem.letter}}</td></tr>
+
+              </div>
+
+              <div *ngIf="problem.s1 == 0">
+                  <tr><td align="right"> {{problem.firstAdder}} {{problem.additor3}}  {{problem.lastMsecAdd}}{{problem.letter}} </td><td align="center">&nbsp;  = &nbsp; </td><td align="left">{{problem.secondAdder}} {{problem.letter}}{{problem.additor4}} {{problem.halfSolveFirstAdd}}</td></tr>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 233">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            
+              <div cellpadding="1">
+                  
+              <div *ngIf="problem.s1 == 1">
+
+                  <tr><div id="a" colspan="2" align="right"> {{problem.lastMsecAdd}} {{problem.letter}} {{problem.additor1}} {{problem.firstAdder}}</div><td align="center"> &nbsp; = &nbsp; </td><td align="left" colspan="2"> {{problem.halfSolveFirstAdd}} {{problem.additor2}} {{problem.secondAdder}} {{problem.letter}} </td></tr><tr></tr>
+                  <tr><div id="b" colspan="2" align="left"> {{problem.lastMsecAdd}} {{problem.letter}}</div><td align="center"> &nbsp; = &nbsp; </td><td align="left" colspan="2"> {{problem.halfSolved}} {{problem.additor2}}  {{problem.secondAdder}} {{problem.letter}}</td></tr><tr></tr>
+              </div>
+
+              <div *ngIf="problem.s1 == 0">
+
+                  <tr><td id="c" colspan="2" align="right"> {{problem.firstAdder}} {{problem.additor3}}{{problem.lastMsecAdd}} {{problem.letter}}</td><td align="center">&nbsp;  = &nbsp; </td><td align="left" colspan="2"> {{problem.secondAdder}} {{problem.letter}}  {{problem.additor4}}  {{problem.halfSolveFirstAdd}}</td></tr><tr></tr>
+                  <tr><td id="d"  colspan="2" align="left"> {{problem.lastMsecAdd}} {{problem.letter}}</td><td align="center"> &nbsp; = &nbsp; </td><td align="left" colspan="2"> {{problem.secondAdder}} {{problem.letter}} {{problem.additor4}} {{problem.halfSolved}} </td></tr><tr></tr>
+
+              </div>
+
+              <tr><div id="e" colspan="2" align="right"> {{problem.lastMult}} {{problem.letter}}</div><td align="center">&nbsp; = &nbsp; </td><td align="left" colspan="2"> {{problem.halfSolved}}</td></tr><tr></tr>
+              <tr><td id="f" align="center" class="numerator">1</td><td rowspan="2"> x {{problem.lastMult}} {{problem.letter}}</td><td align="right" rowspan="2">&nbsp; = &nbsp; </td><td class="numerator">1</td><td align="left" rowspan="2"> x  {{problem.halfSolved}}  </td></tr><tr><td align="center"> {{problem.lastMult}}</td><td align="center"> {{problem.lastMult}}</td></tr>
+              <tr><td id="g" align="right" colspan="2">  <span class="math-answer">{{problem.letter}}</span></td><td align="center"> <span class="math-answer"> &nbsp; = &nbsp;</span> </td><td align="left" colspan="2"> <span class="math-answer"> {{problem.solution}}</span></td></tr>
+            </div><br>
+
+          </div>
+
+          <!-- LESSON 14 -->
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 234">
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                    <table cellpadding="1" style="">
+
+
+                <div *ngIf="problem.s1 == 0">
+                        <tr><td align="right" valign="bottom"> <span [innerHTML]="problem.squareExpression1"></span> {{problem.additor3}} {{problem.lastMsecAdd}}{{problem.letter}} </td><td align="center" valign="bottom"> = </td><td align="left" valign="bottom"> {{problem.secondAdder}}{{problem.letter}}  {{problem.additor4}} <span [innerHTML]="problem.rectExpression2"></span></td></tr>
+
+                        
+                </div>
+
+                <div *ngIf="problem.s1 == 1">
+                    <tr><td align="right" valign="bottom"> {{problem.lastMsecAdd}}{{problem.letter}} {{problem.additor1}} <span [innerHTML]="problem.rectExpression1"> </span></td><td align="center" valign="bottom"> = </td><td align="left" valign="bottom"> <span [innerHTML]="problem.squareExpression2"></span>  {{problem.additor2}}  {{problem.secondAdder}}{{problem.letter}} </td></tr>
+                </div>
+
+                </table>
+
+          </div>
+
+          <div style="margin-top:50px;" class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 234">
+                
+                <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                <table  cellpadding="1">
+
+                <thead *ngIf="problem.s1 == 0">
+                        
+                        <tr><td align="right" valign="bottom" colspan="3"> <span [innerHTML]="problem.squareExpression1"></span>  {{problem.additor3}}  {{problem.lastMsecAdd}}{{problem.letter}}  </td><td align="center" valign="bottom"> = </td><td align="left" colspan="2" valign="bottom"> {{problem.secondAdder}}{{problem.letter}}  {{problem.additor4}}  <span [innerHTML]="problem.rectExpression2"></span></td></tr>
+                        <tr><td colspan="3" align="right" valign="bottom"> {{problem.firstAdder}}  {{problem.additor3}}  {{problem.lastMsecAdd}}{{problem.letter}}  </td><td align="center"> = </td><td align="left" colspan="2"> {{problem.secondAdder}}{{problem.letter}}  {{problem.additor4}}  {{problem.halfSolveFirstAdd}}</td></tr><tr></tr>
+                        <tr><td colspan="3" align="right" valign="bottom"> {{problem.lastMsecAdd}}{{problem.letter}}  </td><td align="center"> = </td><td align="left" colspan="2"> {{problem.secondAdder}}  {{problem.letter}}  {{problem.additor4}} {{problem.halfSolved}}</td></tr><tr></tr>
+
+                </thead>
+
+                <thead  *ngIf="problem.s1 == 1">
+
+                        <tr><td align="right" colspan="3" valign="bottom"> {{problem.lastMsecAdd}}{{problem.letter}}  {{problem.additor1}} <span [innerHTML]="problem.rectExpression1"></span> </td><td align="center" valign="bottom"> = </td><td align="left" colspan="2"> <span [innerHTML]="problem.squareExpression2"></span> {{problem.additor2}}  {{problem.secondAdder}}{{problem.letter}} </td></tr>
+                        <tr><td colspan="3" align="right" valign="bottom"> {{problem.lastMsecAdd}}{{problem.letter}}  {{problem.additor1}}  {{problem.firstAdder}}  </td><td align="center"> = </td><td align="left" colspan="2"> {{problem.halfSolveFirstAdd}}  {{problem.additor2}}  {{problem.secondAdder}}{{problem.letter}} </td></tr><tr></tr>
+                        <tr><td colspan="3" align="right"> {{problem.lastMsecAdd}}{{problem.letter}}  </td><td align="center"> = </td><td align="left" colspan="2"> {{problem.halfSolved}}  {{problem.additor2}}  {{problem.secondAdder}}{{problem.letter}}</td></tr><tr></tr>
+                </thead>
+
+                <tbody id="print_override_PA14" style="
+                float: left;
+                position: relative;
+                left: 50px;"
+                >
+                <tr><td rowspan="2" width="100%">&nbsp;</td><td align="center" class="numerator" valign="bottom">1</td><td rowspan="2" align="right">&nbsp;x&nbsp;  {{problem.lastMult}}{{problem.letter}}  </td><td align="right" rowspan="2"> = </td><td class="numerator">1</td><td align="left" rowspan="2">&nbsp;x&nbsp;  {{problem.halfSolved}}   </td></tr><tr><td align="center">  {{problem.lastMult}}  </td><td align="center">  {{problem.lastMult}}  </td></tr>
+                <tr><td colspan="3" valign="bottom" align="right">  {{problem.lastMult}}{{problem.letter}}  </td><td align="center"> = </td><td align="left" colspan="2">  {{problem.halfSolved}}   </td></tr><tr></tr>
+                    <tr><td align="right" valign="bottom" colspan="3">    <span class="math-answer">{{problem.letter}}</span>  </td><td align="center"> <span class="math-answer"> =</span> </td><td align="left" colspan="2">  <span class="math-answer"> {{problem.solution}}</span>  </td></tr>
+                </tbody>
+            </table>
+
+            <br>
+                
+          </div>
+
+          <!-- LESSON 16 -->
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 236">
+            <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+
+                <table cellpadding="1" style="font-size:18px"><tr><td>{{problem.centigradeValue}} &deg; C = </td><td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td><td>F</td></tr></table>
+
+          </div>
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 236">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+            
+                <table cellpadding="1" style="font-size:18px"><tr><td> {{problem.centigradeValue}} &deg; C &divide; 5 = {{problem.dividedByFive}} <br> {{problem.dividedByFive}}&nbsp;x 9 = {{problem.timesNine}}<br> {{problem.timesNine}}  + 32 = <span class="math-answer">{{problem.plusThirtyTwo}} &deg; F</span> </td></tr></table>
+
+          </div>
+
+           <!-- LESSON 17 -->
+           <div class="math-problem__problem" *ngIf="problem.prealgProblem && !worksheetService.options.showAnswers && problem.lessonNo == 237">
+            <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+                <table cellpadding="1" style="font-size:18px"><tr><td>{{problem.plusThirtyTwo}} &deg; F = </td><td class="numerator">&nbsp;&nbsp;&nbsp;&nbsp;</td><td>C</td></tr></table>
+          </div>
+          <div class="math-problem__problem" *ngIf="problem.prealgProblem && worksheetService.options.showAnswers && problem.lessonNo == 237">
+              <div class="math-problem__number-HOR" *ngIf="worksheetService.options.showProblemNumbers">{{i+1}}.</div>
+              <table cellpadding="1" style="font-size:18px"><tr><td>{{problem.plusThirtyTwo}} &deg; F - 32 = {{problem.timesNine}} <br>{{problem.timesNine}}  &divide; 9 = {{problem.dividedByFive}} <br> {{problem.dividedByFive}}&nbsp; x 5 = <span class="math-answer">{{problem.centigradeValue}} &deg; C</span></td></tr></table>
+          </div>
 
             <!-- /Pre-Algebra -->
+
+
 
 
           </div>

@@ -10,6 +10,7 @@ import { EpsilonOptions } from './epsilon-options';
 import { ZetaOptions } from './zeta-options';
 import { PreAlgebraOptions } from './prealgebra-options';
 import { AimOptions } from './aim-options';
+import { AimMdOptions } from './aim-md-options'
 
 export class WorksheetOptions {
   additionOptions = new AdditionOptions();
@@ -21,7 +22,7 @@ export class WorksheetOptions {
   showHorizontal = false;
   letterSpacing = 3;
   lineSpacing = 3;
-  problemCount = 20;
+  problemCount = 10;
 
   lessonsCount = 0;  // How many different levels were selected
   problemFontSize = 2;
@@ -44,6 +45,7 @@ export class WorksheetOptions {
   zetaOptions = new ZetaOptions();
   prealgebraOptions = new PreAlgebraOptions();
   aimOptions = new AimOptions();
+  aimMdOptions = new AimMdOptions();
 
   alphaCreated = 0;
   betaCreated = 0;

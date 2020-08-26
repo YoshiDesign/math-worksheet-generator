@@ -6,6 +6,7 @@ import { AuthService } from '../auth/auth.service';
 import { MathProblem } from '../worksheet/math-problem';
 import { WorksheetService } from '../worksheet/worksheet.service';
 import { ProblemType } from '../worksheet/problem-type.enum';
+import { WorksheetOptions } from '../options';
 
 declare let window: any;
 
@@ -70,20 +71,66 @@ export class WorksheetGeneratorComponent implements OnInit {
 
   generateWorksheet() {
     // Refresh the message box
-    var messages = document.getElementById('messaging');
-    if (messages != undefined)
-      document.getElementById('messaging').style.display = "block";
+    // var messages = document.getElementById('messaging');
+
+    let lessons_returned : Array <number>;
+
+    // if (messages != undefined)
+    //   document.getElementById('messaging').style.display = "block";
 
     this.analytics.trackEventWithCategory('worksheet', 'generate');
 
     this.worksheetService.clearProblems();      // 0
 
-    this.worksheetService.generateProblems();   // 1
-    this.problemsPerRow = this.worksheetService.options.problemsPerRow;
+    lessons_returned = this.worksheetService.generateProblems();   // 1
+    // this.problemsPerRow = this.worksheetService.options.problemsPerRow;
+    // this.manualProblemsPerRowSliderChange(2);
+    this.specifyConditions(lessons_returned);
+
 
     // if (!this.isLoggedIn) {
     //   this.authService.loginAnonymous();
     // }
+  }
+
+  // Add lessons which require specific visual overrides of defaults
+  // Warning : These conditions are bound to conflict, when this happens work with the least common visual denominators, obviously
+  specifyConditions(lessons_array) {
+
+    var acquired = [];
+
+    /*
+        This data structure is simply for note-taking.
+        I've added thee lessons to check for in the array directly below it (sp)
+    */
+    var special_cases = {
+        "PreAlgebra" : [
+            234             // PreAlgebra lesson 14 can't fit mroe than 2 problems per row
+        ]
+    }
+
+    var sp = [234];
+
+    for (var i = 0; i < lessons_array.length; i++) {
+        for (var j = 0; j < sp.length; j++) {
+            if (lessons_array[i] === sp[j]) {
+                // Found a lesson that needs to be overridden in some way
+                acquired.push(sp[j])
+            }
+        }
+    }
+
+    // Determine what we're about to do
+    for (var i = 0; i < acquired.length; i++) {
+        let check = acquired[i];
+        switch (check) {
+            case 234 : // PreAlgebra Lesson 14, 2 column default
+                this.manualProblemsPerRowSliderChange(2);
+                break;
+
+        }
+    }
+
   }
 
   getDivisionNumberFormat() {
@@ -152,7 +199,7 @@ export class WorksheetGeneratorComponent implements OnInit {
 
   print() {
 
-    document.getElementById('messaging').style.display = "none";
+    // document.getElementById('messaging').style.display = "none";
     window.print();
 
     // this.analytics.trackEventWithCategory('worksheet', 'print');
@@ -168,6 +215,13 @@ export class WorksheetGeneratorComponent implements OnInit {
 
     this.mathProblemsClasses[`math-problems--columns-${this.problemsPerRow}`] = false;
     this.problemsPerRow = this.worksheetService.options.problemsPerRow = event.value;
+    this.mathProblemsClasses[`math-problems--columns-${this.problemsPerRow}`] = true;
+  }
+
+  manualProblemsPerRowSliderChange(n) {
+    console.log("manual override");
+    this.mathProblemsClasses[`math-problems--columns-${this.problemsPerRow}`] = false;
+    this.problemsPerRow = this.worksheetService.options.problemsPerRow = n;
     this.mathProblemsClasses[`math-problems--columns-${this.problemsPerRow}`] = true;
   }
 

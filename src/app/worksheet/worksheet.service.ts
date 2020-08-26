@@ -11,6 +11,9 @@ import { EpsilonProblems } from './epsilon-problems';
 import { ZetaProblems } from './zeta-problems';
 import { PrealgebraProblems } from './prealgebra-problems';
 import { AimProblems } from './aim-problems';
+import { AimMDProblems } from './aim-md-problems';
+
+import {WorksheetGeneratorComponent} from '../worksheet-generator/worksheet-generator.component';
 
 import { ProblemType } from './problem-type.enum';
 
@@ -31,6 +34,7 @@ import {
   WorksheetOptions
 } from '../options';
 import { splitAtColon } from '../../../node_modules/@angular/compiler/src/util';
+import { NonNullAssert } from '../../../node_modules/@angular/compiler';
 
 @Injectable()
 export class WorksheetService {
@@ -63,6 +67,7 @@ export class WorksheetService {
   generateProblems() {  // 1
      // console.log ('Generate Problem');
     const availableProblemTypes: ProblemType[] = [];
+    var lessons_returned : Array <number> = [];
 
     // since we are generating new problems, we should consider this a new worksheet
     this.id = null;
@@ -326,6 +331,35 @@ export class WorksheetService {
         
       }
     }
+    // AIM MD Selections
+    if (this.options.aimMdOptions.enabled) {
+      
+        let lesson_elements :HTMLCollection = document.getElementsByClassName('select-aimMD-lesson');
+        let adding_lesson = false;
+  
+         // console.log (`-AIM- found ${lesson_elements.length} AIM lessons.`);
+  
+        for (var i = 0; i < lesson_elements.length; i++) {
+  
+          let test_el = <HTMLSelectElement> lesson_elements[i];
+  
+          if (test_el.value !== "default") {
+            this.options.lessonsCount += 1;
+            this.lessons_selected.push(Number(test_el.value));
+            adding_lesson = true;
+          }
+  
+        }
+  
+        if (adding_lesson){
+  
+          // this.all_selected_lessons.push({'aim' : this.lessons_selected});
+          this.all_selected_lessons['aimMD'] = this.lessons_selected
+          this.lessons_selected = [];
+          availableProblemTypes.push(ProblemType.Aim);
+        
+        }
+      }
      // console.log (`Modulus of lessons per level = ${String(Math.floor(this.options.problemCount % this.options.lessonsCount))}`);
 
     // DEMME METHOD
@@ -352,19 +386,24 @@ export class WorksheetService {
           
         for (let n = 0; n < min_problems; n++) {
           this.options.problemCount--;
-          this.generateProblemFrom(current_level, current_lesson);
+          // Add the lesson_id to our array of lesson_ids included in this worksheet
+          lessons_returned.push(this.generateProblemFrom(current_level, current_lesson));
         }
       }
     }
     for (let i = 0; i < extra_mod; i++)
     {
-      this.generateProblemFrom(current_level, current_lesson);
+        // Add the lesson_id to our array of lesson_ids included in this worksheet
+        lessons_returned.push(this.generateProblemFrom(current_level, current_lesson));
     }
 
     this.options.problemCount = original_count;
+
+    return lessons_returned;
+
   }
 
-  private generateProblemFrom(current_level, current_lesson) : void {
+  private generateProblemFrom(current_level, current_lesson) : number {
     switch (current_level) {
       case 'alpha' :
         //  // console.log ("Getting Alpha");
@@ -391,8 +430,13 @@ export class WorksheetService {
       case 'aim' :
         this.addProblem(this.getAimProblem(current_lesson));
         break;
+      case 'aimMD' :
+        this.addProblem(this.getAimMDProblem(current_lesson));
+        break;
 
     }
+    console.log(`Adding Lesson ${current_lesson}`);
+    return Number(current_lesson);
   }
 
   // getById(id: string): FirebaseObjectObservable<WorksheetService> {
@@ -1194,6 +1238,21 @@ export class WorksheetService {
         problem.values[1] = y;
         problem.symbol = "x";
         break;
+    case 101 : // Lesson 5 - Multiply By 10, 10¢ = 1 Dime
+        var x = this.getRandomInt(10);
+        var y = 10;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
+        break;
       case 102 : // Lesson 6 - Multiply By 5, 5¢ = 1 Nickel
         var x = this.getRandomInt(10);
         var y = 5;
@@ -1480,7 +1539,14 @@ export class WorksheetService {
 
         do {
           y = this.getRandomInt(2) === 0 ? 3 : 5;
-          x = this.getRandomInt(31);
+          if (y == 3)
+            x = this.getRandomInt(31);
+          if (y == 5)
+            x = this.getRandomInt(51);
+          /**
+           * if 5 | max 50
+           * 
+           */
 
         } while(x !== 0 && (Math.ceil((x / y)) !== (x / y) || Math.floor((x / y)) !== (x / y)))
         ans = (x / y);
@@ -1499,7 +1565,7 @@ export class WorksheetService {
 
         do {
           y = 9;
-          x = this.getRandomInt(101);
+          x = this.getRandomInt(90);
           if (x === 0) {
             x = 7; // Will prompt another iteration
           }
@@ -1520,7 +1586,7 @@ export class WorksheetService {
 
         do {
           y = 6;
-          x = this.getRandomInt(101);
+          x = this.getRandomInt(60);
           if (x === 0) {
             x = 7; // Will prompt another iteration
           }
@@ -1542,7 +1608,7 @@ export class WorksheetService {
 
         do {
           y = 4;
-          x = this.getRandomInt(101);
+          x = this.getRandomInt(40);
           if (x === 0) {
             x = 7; // Will prompt another iteration
           }
@@ -1563,7 +1629,10 @@ export class WorksheetService {
 
         do {
           y = this.getRandomInt(2) === 0 ? 7 : 8;
-          x = this.getRandomInt(41);
+          if (y == 7)
+            x = this.getRandomInt(71);
+          if (y == 8)
+            x = this.getRandomInt(81);
 
         } while(x !== 0 && (Math.ceil((x / y)) !== (x / y) || Math.floor((x / y)) !== (x / y)))
         ans = (x / y);
@@ -2807,7 +2876,7 @@ export class WorksheetService {
         var preDivisor = Math.floor(Math.random() * 11) + 2;
         var remainder = Math.floor(Math.random() * (preDivisor - 1)) + 1;
         var preDividend = Math.round((preQuotient * preDivisor) + remainder);
-        var divisor1 : any = preDivisor / factor;
+        var divisor1 : any = preDivisor / factor; // TODO
         var dividend1 = preDividend / factor;
         var quotient = preQuotient;
         var numerator = remainder;
@@ -2845,9 +2914,6 @@ export class WorksheetService {
         var product = Math.round(factor1 * factor2 * tenPower) / tenPower;
         var productPlusAddedNumber = Math.round((product + addedNumber) * 1000) / 1000;
         var letter = this.pickFromList(["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "T", "U", "V", "W", "X", "Y", "Z"]);
-
-
-
 
         problem.digit = digit
         problem.tenPower = tenPower
@@ -2969,15 +3035,18 @@ export class WorksheetService {
             var addendToChange = Math.floor(Math.random() * 2);
             addends[addendToChange] = (addends[addendToChange] * -1);
         }
-        problem.problemType = ProblemType.Addition;
-        problem.custom = true;
+        // problem.problemType = ProblemType.Addition;
+
         this.options.showHorizontal = true;
         problem.containsNegative = true;
         problem.values[0] = addends[0];
         problem.values[1] = addends[1];
+        problem.lessonNo = 221;
+        problem.addends = addends;
         problem.symbol = "+";
 
         break;
+
       case 222: // Lesson 2
         var addends = new Array();
         addends.length = 2;
@@ -2992,13 +3061,16 @@ export class WorksheetService {
             var addendToChange = Math.floor(Math.random() * 2);
             addends[addendToChange] = (addends[addendToChange] * -1);
         }
-        problem.problemType = ProblemType.Subtraction;
+
+        problem.addends = addends;
+        problem.lessonNo = 222;
         this.options.showHorizontal = true;
         problem.containsNegative = true;
         problem.values[0] = addends[0];
         problem.values[1] = addends[1];
         problem.symbol = "-";
         break;
+
       case 223: // Lesson 3
         var factors = new Array();
         factors.length = 2;
@@ -3013,13 +3085,16 @@ export class WorksheetService {
             var factorToChange = Math.floor(Math.random() * 2);
             factors[factorToChange] = (factors[factorToChange] * -1);
         }
-        problem.problemType = ProblemType.Multiplication;
+
+        problem.factors = factors;
+        problem.lessonNo = 223;
         this.options.showHorizontal = true;
         problem.containsNegative = true;
         problem.values[0] = factors[0];
         problem.values[1] = factors[1];
         problem.symbol = "x";
         break;
+
       case 224: // Lesson 4
         var factors = new Array();
         factors.length = 2;
@@ -3036,7 +3111,10 @@ export class WorksheetService {
         }
         var product = (factors[0] * factors[1]);
 
-        problem.problemType = ProblemType.Division;
+        // problem.problemType = ProblemType.Division;
+        problem.product = product;
+        problem.factors = factors;
+        problem.lessonNo = 224;
         this.options.showHorizontal = true;
         problem.containsNegative = true;
         problem.values[0] = product;
@@ -3046,11 +3124,13 @@ export class WorksheetService {
         problem.divRemainder = false;
 
         break;
+
       case 225: // lesson 5
 
         problem.lessonNo = 225;
         var types = new Array("whole", "whole", "fraction");
         var type = types[Math.floor(Math.random() * 3)];
+
         if (type == "whole") {
             var base = Math.floor(Math.random() * 29) + 2;
             var exponents = new Array(5, 4, 3, 3, 3, 2, 2, 2, 2);
@@ -3075,6 +3155,26 @@ export class WorksheetService {
             
           }
 
+          var mock_sets = [[3,4,4],[5,8,2],[3,5,4],[4,5,4],[5,7,3],[3,5,3]];
+          console.log(mock_sets.length);
+
+          // This is a hot-fix
+          if (!numerator || !denominator)
+          {
+            let n = this.getRandomInt(6);
+            numerator = mock_sets[n][0]
+            denominator = mock_sets[n][1]
+            exponent = mock_sets[n][2]
+
+          }
+
+          problem.pow_1 = Math.pow(numerator, exponent);
+          problem.pow_2 = Math.pow(denominator, exponent);
+          problem.numerator = numerator;
+          problem.denominator= denominator;
+          problem.exponent = exponent;
+          problem.exponents = exponents;
+          problem.lessonNo = 225;
           this.options.showHorizontal = true;
           problem.baseEx = Math.pow(base, exponent);
           problem.numEx = Math.pow(numerator, exponent);
@@ -3083,15 +3183,13 @@ export class WorksheetService {
           problem.types = types;
           problem.type = type;
           problem.base = base;
-          problem.exponents = exponents;
-          problem.exponent = exponent;
-          problem.denominator = denominator;
-          problem.numerator = numerator;
-          problem.exponent = exponent;
         break;
-      case 226: // Lesson 7
 
-        problem.lessonNo = 226;
+      case 227: // Lesson 7
+
+        var s1 = 0;
+        var s2 = 0;
+
         var types = new Array("whole", "whole", "whole", "fraction", "fraction");
         var type = types[Math.floor(Math.random() * 5)];
         var openers = new Array("-", "(-", "-(-", "-(");
@@ -3119,14 +3217,17 @@ export class WorksheetService {
             if (opener != "(-") {
                 finalFactor = -1;
             }
+            s2 = 1;
 
         } else { //(If type is fraction...)
             var denominator = Math.floor(Math.random() * 7) + 5;
             var numerator = Math.floor(Math.random() * (denominator - 6) + 5);
             var exponent = Math.floor(Math.random() * 6) + 2;
             for (f = 12; f > 1; f--) {
-                if ((numerator % f == 0) && (denominator % f == 0)) { //reduce fraction
+                if (((numerator % f == 0) && (denominator % f == 0)) && (Math.round(denominator / f) != NaN)) { //reduce fraction
+
                     denominator = Math.round(denominator / f);
+
                     numerator = Math.round(numerator / f);
                 }// end if
             }// end for
@@ -3135,39 +3236,233 @@ export class WorksheetService {
             }
             var answerSign = "";
             if ((opener == "-(") || ((opener == "-(-") && (exponent % 2 == 0)) || ((opener == "(-") && (exponent % 2 != 0))){
-                answerSign = "&#8211"; // This is the code for an en-dash, or something along that line. I'm using it as the conditional subtraction sign.
+                answerSign = " - "; // This is the code for an en-dash, or something along that line. I'm using it as the conditional subtraction sign.
             }
+            s1 = 1;
           }
 
-            this.options.showHorizontal = true;
-            problem.types = types;
-            problem.type = type;
-            problem.openers = openers;
-            problem.opener = opener;
-            problem.closer = closer;
-            problem.base = base;
-            problem.exponents = exponents;
-            problem.exponent = exponent;
-            problem.reducer = reducer;
-            problem.correctedBase = correctedBase;
-            problem.finalFactor = finalFactor;
-            problem.denominator = denominator;
-            problem.numerator = numerator;
-            problem.exponent = exponent;
-            problem.answerSign = answerSign;
+
+          problem.miz1 = (Math.pow(correctedBase, exponent) * finalFactor);
+          problem.miz2 = Math.pow(numerator, exponent);
+          problem.miz3 = Math.pow(denominator, exponent);
+
+          problem.lessonNo = 227;
+          problem.s1 = s1;
+          problem.s2 = s2;
+          this.options.showHorizontal = true;
+          problem.types = types;
+          problem.type = type;
+          problem.openers = openers;
+          problem.opener = opener;
+          problem.closer = closer;
+          problem.base = base;
+          problem.exponents = exponents;
+          problem.exponent = exponent;
+          problem.reducer = reducer;
+          problem.correctedBase = correctedBase;
+          problem.finalFactor = finalFactor;
+          problem.denominator = denominator;
+          problem.numerator = numerator;
+          problem.answerSign = answerSign;
 
         break;
-      case 227:
+      case 228: // TODO Eliminate font size option because images dont scale? Scale Images?
+
+
+        var problemTypes = new Array("perfectSquares", "squaredNumbers", "perfectSquares", "perfectSquares", "squaredLetters", "perfectSquares");
+        var problemType = Math.floor(Math.random() * 6);
+        let imageSource;
+        let squareRoot;
+      
+        if (problemTypes[problemType] == "perfectSquares") {
+            squareRoot = Math.floor(Math.random() * 13) + 1; // Pick a number from 1 to 13
+            imageSource = '/assets/worksheets/' + squareRoot + '.gif';
+        }
+        if (problemTypes[problemType] == "squaredNumbers") {
+            squareRoot = Math.floor(Math.random() * 20) + 1; // Pick a number from 1 to 20
+            imageSource = '/assets/worksheets/' + squareRoot + 'S.gif';
+        }
+        if (problemTypes[problemType] == "squaredLetters") {
+            squareRoot = this.pickFromList(["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "T", "U", "V", "W", "X", "Y", "Z"]);
+            imageSource = '/assets/worksheets/' + squareRoot + '2.gif';
+        }
+
+        problem.lessonNo = 228;
+        problem.imageSource = imageSource;
+        problem.squareRoot = squareRoot;
+
         break;
-      case 228:
+      case 229:
+
+      do {
+        var solution = this.pickFromRange(0, 75);
+        var letter = this.pickFromList(["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "T", "U", "V", "W", "X", "Y", "Z"]);
+        var adder = this.pickFromRange(-50, 50);
+        var coefficient = this.pickFromRange(-5, 25); //coefficient of the variable, on the right side of the equation to begin with
+        var numOperator = (adder >= 0) ? " + ": " - ";
+        var letOperator = (coefficient >= 0) ? " + ": " - ";
+
+      } while ((Math.abs(coefficient) <= 2) || (Math.abs(adder) <= 2));
+        // if() {
+        //   return this.addProblem(this.getPrealgebraProblem(229));
+        //     // return(null);
+        // }
+
+        var firstAdd = this.pickFromList(["letterFirst", "numberFirst"]);
+        var numberPresented = solution + adder;
+
+        problem.lessonNo = 229;
+        problem.coefficient = coefficient;
+        problem.letter = letter; 
+        problem.adder = adder;
+        problem.solution = solution;
+        problem.letOperator = letOperator;
+        problem.numOperator = numOperator;
+        problem.absAdder = Math.abs(adder);
+        problem.absCoLett = (Math.abs(coefficient) + letter);
+        problem.absAddSol =  Math.abs(adder + solution);
+        problem.coP1 = (coefficient + 1);
+        problem.s1 = (firstAdd == "numberFirst" || 1==1) ? 1 : 0;
+
         break;
-      case 233:
+    case 233:
+
+        var s1 = 0;
+
+        do {
+          var letter = this.pickFromList(["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "T", "U", "V", "W", "X", "Y", "Z"]);
+          var solution = this.pickFromRange(-10, 16);
+          var lastMult = this.pickFromList([-5, -4, -3, -2, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+          var halfSolved = (solution * lastMult);
+          var firstAdder = this.pickFromRange(-15, 15);
+          var secondAdder = this.pickFromRange(-15, 15);
+          var additor1 = (firstAdder >= 1) ? '+' : ''; //"additor" is the sign used to signify addition. If the number is negative, it comes with its own subtraction sign.
+          var additor2 = (secondAdder >= 1) ? '+' : '';
+          var additor3 = ((lastMult+secondAdder) >= 1) ? '+' : '';
+          var additor4 = ((halfSolved+firstAdder) >= 1) ? '+' : '';
+          var additor5 = (halfSolved >= 1) ? '+' : '';
+          //alert(additor4);
+          var whichFirst = this.pickFromList(["number", "letter"]);
+        } while ((solution == 0) 
+          || (firstAdder == 0) 
+          || (secondAdder == 0) 
+          || (Math.abs(lastMult+secondAdder) <= 2) 
+          || (Math.abs(secondAdder) <= 2) 
+          || ((halfSolved+firstAdder) == 0))
+
+        // Deteremines Layout on frontend
+        if(whichFirst == "number") {
+            problem.s1 = 1;
+        } else {
+            problem.s1 = 0;
+        }
+
+        problem.lessonNo = 233;
+        problem.lastMsecAdd = lastMult+secondAdder;
+        problem.letter = letter;
+        problem.solution = solution;
+        problem.lastMult = lastMult;
+        problem.halfSolved = halfSolved;
+        problem.firstAdder = firstAdder;
+        problem.secondAdder = secondAdder;
+        problem.additor1= additor1;
+        problem.additor2= additor2;
+        problem.additor3= additor3;
+        problem.additor4= additor4;
+        problem.additor5= additor5;
+        problem.halfSolveFirstAdd = halfSolved+firstAdder;
         break;
-      case 234:
+
+    case 234: // I switched to 4-space tabs :)
+
+        do {
+            var letter = this.pickFromList(["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "T", "U", "V", "W", "X", "Y", "Z"]);
+            var solution = this.pickFromRange(-10, 16);
+            var lastMult = this.pickFromList([-5, -4, -3, -2, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+            var halfSolved = (solution * lastMult);
+            var firstAdder =this.pickFromRange(-64, 90);
+            var secondAdder =this.pickFromRange(-90, 70);
+            var additor1 = (firstAdder >= 1) ? '+' : ''; //"additor" is the sign used to signify addition. If the number is negative, it comes with its own subtraction sign.
+            var additor2 = (secondAdder >= 1) ? '+' : '';
+            var additor3 = ((lastMult+secondAdder) >= 1) ? '+' : '';
+            var additor4 = ((halfSolved+firstAdder) >= 1) ? '+' : '';
+            var additor5 = (halfSolved >= 1) ? '+' : '';
+            //alert(additor4);
+            var whichFirst = this.pickFromList(["number", "letter"]);
+        } while ((solution == 0) || (firstAdder == 0) || (secondAdder == 0) || (Math.abs(lastMult+secondAdder) <= 10) || (Math.abs(secondAdder) <= 10) || ((halfSolved+firstAdder) == 0));
+
+        problem.s1 = 0;
+        problem.lessonNo = 234;
+        problem.lastMsecAdd = lastMult+secondAdder;
+        problem.letter = letter;
+        problem.solution = solution;
+        problem.lastMult = lastMult;
+        problem.halfSolved = halfSolved;
+        problem.firstAdder = firstAdder;
+        problem.secondAdder = secondAdder;
+        problem.additor1= additor1;
+        problem.additor2= additor2;
+        problem.additor3= additor3;
+        problem.additor4= additor4;
+        problem.additor5= additor5;
+        problem.halfSolveFirstAdd = halfSolved+firstAdder;
+
+        var squareExpression1 = this.makeSquareExpression(firstAdder);
+        var squareExpression2 = this.makeSquareExpression(halfSolved+firstAdder);
+        var rectExpression1 = this.makeRectExpression(firstAdder);
+        var rectExpression2 = this.makeRectExpression(halfSolved+firstAdder)
+
+        problem.squareExpression1 = squareExpression1;
+        problem.squareExpression2 = squareExpression2;
+        problem.rectExpression1 = rectExpression1;
+        problem.rectExpression2 = rectExpression2;
+
+        if(whichFirst == "number") {
+            problem.s1 = 1;
+        } else {
+            problem.s1 = 0;
+        }
+        
+        this.options.problemsPerRow = 2;
+
         break;
-      case 236:
+      case 236: // Lesson 16
+
+        var centigradeSeed = this.pickFromRange(50, -2);
+        var centigradeValue = (centigradeSeed * 5);
+        var addMore = (this.pickFromRange(100, 0) >= 88) ? true : false;
+        if (addMore) {
+            var addend = this.pickFromRange(5, 1);
+            centigradeValue += addend;
+        }
+        var dividedByFive = centigradeValue / 5;
+        var timesNine = (dividedByFive * 10) - dividedByFive;
+        var plusThirtyTwo = timesNine + 32;
+    
+        problem.lessonNo = 236;
+        problem.centigradeValue = centigradeValue;
+        problem.dividedByFive = dividedByFive;
+        problem.timesNine = timesNine;
+        problem.plusThirtyTwo = plusThirtyTwo;
+      
+
         break;
       case 237:
+
+        var centigradeSeed = this.pickFromRange(50, -2);
+        var centigradeValue = (centigradeSeed * 5);
+        var addMore = (this.pickFromRange(100, 0) >= 88) ? true : false;
+        if (addMore) {
+            var addend = this.pickFromRange(5, 1);
+            centigradeValue += addend;
+        }
+        problem.lessonNo = 237;
+        var dividedByFive = centigradeValue / 5;
+        timesNine = (dividedByFive * 10) - dividedByFive;
+        problem.dividedByFive = centigradeValue / 5;
+        problem.plusThirtyTwo = timesNine + 32;
+        problem.timesNine = timesNine;
+
         break;
     
     }
@@ -3487,6 +3782,376 @@ export class WorksheetService {
     }
     return problem;
   }
+  private getAimMDProblem(lessonNo){
+
+    const problem = new AimMDProblems();
+
+    switch (Number(lessonNo)) {
+      
+      // case 524:
+      //   break;
+      case 546: // Lesson 3, Doubles ( Same as Gamma lesson 4 )
+        var x = this.getRandomInt(10);
+        var y = 2;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+            var tmp = x;
+            x = y;
+            y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
+        break;
+
+      case 547: // Lesson 4 - Tens Facts (Same as gamma lesson 5)
+        var x = this.getRandomInt(10);
+        var y = 10;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+            var tmp = x;
+            x = y;
+            y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
+        break;
+      case 548: // Lesson 5 (Gamma lesson 6)
+        var x = this.getRandomInt(10);
+        var y = 5;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+            var tmp = x;
+            x = y;
+            y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
+        break;
+      case 549: // Lesson 6 ( Gamma 10 )
+        var x = this.getRandomInt(10);
+        var y = 9;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+            var tmp = x;
+            x = y;
+            y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
+        break;
+
+      case 550: // Lesson 7 (Gamma 12)
+        var x = this.getRandomInt(10);
+        var y = 3;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+            var tmp = x;
+            x = y;
+            y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
+        break;
+      case 551: // Lesson 8 (Gamma 16)
+        var x = this.getRandomInt(10);
+        var y = 4;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+            var tmp = x;
+            x = y;
+            y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
+        break;
+      case 552: // Lesson 9 (gamma lesson 14)
+        var x = this.getRandomInt(10);
+        var y = 6;
+        var switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+            var tmp = x;
+            x = y;
+            y = tmp;
+        }
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
+        break;
+      case 553: // Lesson 10 (Gamma 18 && 20)
+        
+        var switcher = this.getRandomInt(2);
+        var x : number = this.pickFromRange(6,8);
+
+        if (switcher){
+            var y = 7;
+
+        } else {
+            var y = 8;
+            switcher = this.getRandomInt(2);
+            if (switcher) x = 8;
+
+        }
+
+        switcher = this.getRandomInt(2);
+        if (switcher !== 0) {
+          var tmp = x;
+          x = y;
+          y = tmp;
+        }    
+
+        problem.problemType = ProblemType.Multiplication;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "x";
+
+        break;
+
+      case 554: // Lesson 11
+        do{
+            var a = this.getRandomInt(10);
+            var c = this.getRandomInt(10);
+            var nn = a * c;
+            var switcher = this.getRandomInt(2);
+            var letters = [ // Arbitrary coefficients
+            "C", "E", "K", "F", "B", "N", "A", "L", "D", "G", "X"
+            ]
+            var letter = letters[this.getRandomInt(letters.length - 1)];
+
+            var lhs = a;
+            var rhs = c;
+        } while(a == 0);
+
+        this.options.showHorizontal = true;
+        problem.problemType = 8;
+        problem.requiresHorizontal = true;
+        problem.solveForUnknown = true;
+
+        problem.lhs = lhs;
+        problem.rhs = rhs;
+        problem.lessonNo = 554;
+        problem.firstPosition = lhs;
+        problem.secondPosition = letter;
+        problem.values[0] = problem.firstPosition;
+        problem.values[1] = problem.secondPosition; 
+        problem.sfu_answer = nn;
+        problem.custom = true;
+
+        problem.symbol = "";
+        break;
+      case 555: // Lesson 11 - Intro to Subtraction
+        var x = 0;
+        var y = 0;
+        do {
+          x = this.getRandomInt(10); // TODO repeat the randomization for either x or y, we're getting lots of repeats
+          y = this.getRandomInt(10);
+        } while (x < y)
+        problem.problemType = ProblemType.Addition;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+      case 556: // Lesson 12 - Subtraction -2
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(13);
+          y = this.getRandomInt(13);
+          if (y == 2 && x >= 3) {
+            inspect = true;
+          }
+          if (!inspect) {
+            if ((x - y) === 2)
+              inspect = true;
+          }
+        } while(!inspect)
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+      case 557: // Lesson 13 - Subtraction -9
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(21);
+          y = this.getRandomInt(21);
+          if (y == 9 && x >= 10) {
+            inspect = true;
+          }
+          if (!inspect) {
+            if ((x - y) === 9)
+              inspect = true;
+          }
+        } while(!inspect)
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+      case 558: // Lesson 14 - Subtraction -8
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(21);
+          y = this.getRandomInt(21);
+          if (y == 8 && x >= 9) {
+            inspect = true;
+          }
+          if (!inspect) {
+            if ((x - y) === 8)
+              inspect = true;
+          }
+        } while(!inspect)
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+      case 559: // Lesson 15 - Subtraction Doubles
+        var x = this.getRandomInt(10);
+        var y = x;
+        x = x * 2;
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+      case 560: // Lesson 16 - Sub Make 10
+        var x = 10;
+        var y = this.getRandomInt(10);
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+      case 561: // Lesson 17 - Sub Make 9
+        var x = 9;
+        var y = this.getRandomInt(9);
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+      case 562: // Lesson 18 - Sub Extras
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(9);
+          if (x == 7) {
+            y = this.getRandomInt(6);
+            if (y == 4 || y == 3) {
+              inspect = true; 
+            }
+          }
+          if (x == 8) {
+            y = this.getRandomInt(6);
+            if (y == 5  || y == 3) {
+              inspect = true;
+            }
+          }
+        } while (!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+      case 563: // Lesson 19 - Sub by 7 or adding up by 3
+        var x = 0;
+        var y = 7;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(15);
+          if (x >= 7)
+            inspect = true;
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+      case 564: // Lesson 20 - Sub by 6 or adding up by 4
+        var x = 0;
+        var y = 6;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(13);
+          if (x >= 6)
+            inspect = true;
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+      case 565: // Lesson 21 - Sub by 5 or adding up by 5
+        var x = 0;
+        var y = 5;
+        var inspect = false;
+        do {
+          x = this.getRandomInt(13);
+          if (x >= 5)
+            inspect = true;
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+      case 566: // Lesson 22 - Subtraction by 3 and 4
+        var x = 0;
+        var y = 0;
+        var inspect = false;
+        do {
+          
+          x = this.getRandomInt(11);
+          y = this.getRandomInt(5);
+
+          if ((y == 3 || y == 4) && x >= 5) {
+            inspect = true;
+          }
+
+        } while(!inspect)
+
+        problem.problemType = ProblemType.Subtraction;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "-";
+        break;
+
+    }
+    return problem;
+  }
 
   private getRandomNumberFromRange(range: MinimumMaximumRange) {
     return this.getRandomNumber(range.min, range.max);
@@ -3523,6 +4188,51 @@ export class WorksheetService {
 private pickFromList(hatArray) {
   var hatIndex = this.pickFromRange((hatArray.length - 1), 0);
   return(hatArray[hatIndex]);
+}
+
+private makeRectExpression(simpleNumber) {
+
+
+    var wholeRoot;
+    var firstFactor;
+    var secondFactor;
+    var remainder;
+    var newExpression;
+
+    wholeRoot = Math.floor(Math.sqrt(Math.abs(simpleNumber)));
+    firstFactor = this.pickFromRange(2, wholeRoot);
+    secondFactor = Math.floor(simpleNumber / firstFactor);
+    remainder = simpleNumber - (firstFactor * secondFactor);
+    newExpression = (secondFactor <= 0) ? '+' + firstFactor + '&nbsp;<b>&middot;</b>&nbsp;' + secondFactor + '+' + remainder: '' + firstFactor + '&nbsp;<b>&middot;</b>&nbsp;' + secondFactor + '+' + remainder;
+    return(newExpression);
+}
+
+private makeSquareExpression(simpleNumber) {
+
+    var wholeRoot;
+    var largestSquare;
+    var firstAddend;
+    var secondAddend;
+    var thirdAddend;
+    var newExpression;
+
+    if(simpleNumber <= 0) {
+        wholeRoot = Math.floor(Math.sqrt(simpleNumber*-1));
+        largestSquare = Math.pow(wholeRoot, 2);
+        firstAddend = this.pickFromRange((wholeRoot - 1), 1);
+        secondAddend = wholeRoot - firstAddend;
+        thirdAddend = (simpleNumber+largestSquare==0) ? '': (simpleNumber+largestSquare);
+        newExpression = '-(' + firstAddend + '+' + secondAddend + ')<sup>2</sup>' + thirdAddend;
+        return(newExpression);
+    } else {
+        wholeRoot = Math.floor(Math.sqrt(simpleNumber));
+        largestSquare = Math.pow(wholeRoot, 2);
+        firstAddend = this.pickFromRange((wholeRoot - 1), 1);
+        secondAddend = wholeRoot - firstAddend;
+        thirdAddend = (simpleNumber-largestSquare==0) ? '': '+' + (simpleNumber-largestSquare);
+        newExpression = '(' + firstAddend + '+' + secondAddend + ')<sup>2</sup>' + thirdAddend;
+        return(newExpression);
+    }
 }
 
 // private schoolRound(numberToRound, toNearest) { //toNearest is nearest "10", "100", etc.
