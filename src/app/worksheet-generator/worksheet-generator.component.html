@@ -395,7 +395,7 @@
 
               </div>
             <div class="worksheet-options__problem-type" [class.worksheet-options__problem-type--enabled]="worksheetService.options.aimMdOptions.enabled">
-                <mat-slide-toggle color="primary" name="aimMdEnabled" [(ngModel)]="worksheetService.options.aimMdOptions.enabled">AIM - Multiplication &amp; Division</mat-slide-toggle>
+                <mat-slide-toggle color="primary" name="aimMdEnabled" [(ngModel)]="worksheetService.options.aimMdOptions.enabled">AIM - Multiplication</mat-slide-toggle>
                 <div id="aimMD-selector" class="level-selector" *ngIf="worksheetService.options.aimMdOptions.enabled">
                 
                     <select id="aimMD-select" name="" class="select-lesson select-aimMD-lesson">
@@ -409,16 +409,16 @@
                         <option value="551">Lesson 8 - Multiplication by 4 Double, Doubles</option>
                         <option value="552">Lesson 9 - Multiplication by 6 Use a Fives Fact, Add One More Group</option>
                         <option value="553">Lesson 10 - Multiplication: Extras Facts Known and The Distributive Property </option>
-                        <option value="554">Lesson 11 - Solve for an Unknown</option>
+                        <option value="554">Solve for an Unknown</option>
 
-                        <option value="556">AIM Lesson 12(a) - Division Doubles </option>
-                        <option value="557">AIM Lesson 12(b) - Divison by 10</option>
-                        <option value="558">AIM Lesson 12(c) - Division by 5</option>
-                        <option value="559">AIM Lesson 12(d) - Division by 9</option>
-                        <option value="560">AIM Lesson 12(e) - Division by 3</option>
-                        <option value="561">AIM Lesson 12(f) - Division by 4 Double, Doubles</option>
-                        <option value="562">AIM Lesson 12(g) - Division by 6</option>
-                        <option value="563">AIM Lesson 12(h) - Division: Extras</option>
+                        <option value="556">Intro To Division - Division Doubles </option>
+                        <option value="557">Intro To Division - Divison by 10</option>
+                        <option value="558">Intro To Division - Division by 5</option>
+                        <option value="559">Intro To Division - Division by 9</option>
+                        <option value="560">Intro To Division - Division by 3</option>
+                        <option value="561">Intro To Division - Division by 4 Double, Doubles</option>
+                        <option value="562">Intro To Division - Division by 6</option>
+                        <option value="563">Intro To Division - Division: Extras</option>
                     </select>
                 </div>
 
@@ -601,7 +601,13 @@
         
                       <!--  Solve for Unknown Mult : GAMMA Lesson 8  HORIZONTAL -->
                       <span *ngIf="problem.problemType === 8">
-                          <span *ngIf="!worksheetService.options.showAnswers && problem.solveForUnknown">{{ value }}</span>
+                            <span *ngIf="j === 1">
+                                <span *ngIf="!worksheetService.options.showAnswers && problem.solveForUnknown"><i>{{ value }}</i></span>
+                            </span>
+
+                            <span *ngIf="j === 0">
+                                <span *ngIf="!worksheetService.options.showAnswers && problem.solveForUnknown">{{ value }}</span>
+                            </span>
                           <span class="math-answer" *ngIf="worksheetService.options.showAnswers && j === 1">{{problem.lhs}} x {{ problem.rhs }}&nbsp;</span>
                         </span>
                       </div>
@@ -2235,7 +2241,7 @@ TEMPLATE -->
                   <div class="math-problem__value-HOR" *ngFor="let value of problem.values; index as j">{{ value }}&nbsp;<span *ngIf="j == problem.values.length - 1"> = </span><span *ngIf="j < problem.values.length - 1">{{ problem.symbol }}</span></div>
                   <div class="math-problem__answer-HOR" *ngIf="worksheetService.options.showAnswers">
                     <ng-container *ngIf="isDivisionProblem(problem)">
-                      <ng-container *ngIf="!worksheetService.options.divisionOptions.showRemainders">{{problem.answerFloored}}<span *ngIf="problem.remainder !== 0"><strong>&nbsp;R&nbsp;</strong></span>{{problem.remainder}}</ng-container>
+                      <ng-container *ngIf="!worksheetService.options.divisionOptions.showRemainders">{{problem.answerFloored}}<span *ngIf="problem.remainder !== 0"><strong>&nbsp;R&nbsp;</strong></span><span *ngIf="problem.remainder">{{problem.remainder}}</span></ng-container>
                       <!-- <ng-container *ngIf="worksheetService.options.divisionOptions.showRemainders">{{problem.answer | number:getDivisionNumberFormat()}}</ng-container> -->
                     </ng-container>
                     <ng-container *ngIf="!isDivisionProblem(problem)">{{ problem.answer }}</ng-container> 
