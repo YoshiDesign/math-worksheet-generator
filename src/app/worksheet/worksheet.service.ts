@@ -3796,32 +3796,20 @@ export class WorksheetService {
     return x
   }
 
-  public get_div_fact() : Array<number> {
-      return [1]
-  }
-  public get_mult_fact() : number {
-    return 0
-  }
-
   private getAimMDProblem(lessonNo){
 
     const problem = new AimMDProblems();
 
     switch (Number(lessonNo)) {
       
-      // case 524:
-      //   break;
       case 546: // Lesson 3, Doubles ( Same as Gamma lesson 4 )
-        var pos = [2,3,4,5,6,7,8,9,10]
-        var x = this.rnum_gt_1(10);
-
-        var y = 2;
-        var switcher = this.getRandomInt(2);
-        if (switcher !== 0) {
-            var tmp = x;
-            x = y;
-            y = tmp;
-        }
+        var pos = [
+            [2,2],[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10],
+            [3,2],[4,2],[5,2],[6,2],[7,2],[8,2],[9,2],[10,2]
+        ]
+        var range = pos[this.getRandomInt(pos.length)]
+        var x = range[0]
+        var y = range[1]
 
         problem.problemType = ProblemType.Multiplication;
         problem.values[0] = x;
@@ -3830,16 +3818,13 @@ export class WorksheetService {
         break;
 
       case 547: // Lesson 4 - Tens Facts (Same as gamma lesson 5)
-        var pos = [3,4,5,6,7,8,9]
-        var x = this.getRandomInt(10);
-
-        var y = 10;
-        var switcher = this.getRandomInt(2);
-        if (switcher !== 0) {
-            var tmp = x;
-            x = y;
-            y = tmp;
-        }
+        var pos = [
+            [10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],
+            [3,10],[4,10],[5,10],[6,10],[7,10],[8,10],[9,10]
+        ]
+        var range = pos[this.getRandomInt(pos.length)]
+        var x = range[0]
+        var y = range[1]
 
         problem.problemType = ProblemType.Multiplication;
         problem.values[0] = x;
@@ -3847,16 +3832,12 @@ export class WorksheetService {
         problem.symbol = "x";
         break;
       case 548: // Lesson 5 (Gamma lesson 6)
-        var pos = [3,4,5,6,7,8,9]
-        var x = this.rnum_gt_1(10);
-
-        var y = 5;
-        var switcher = this.getRandomInt(2);
-        if (switcher !== 0) {
-            var tmp = x;
-            x = y;
-            y = tmp;
-        }
+        var pos = [
+            [5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[3,5],[4,5],[6,5],[7,5],[8,5],[9,5]
+        ]
+        var range = pos[this.getRandomInt(pos.length)]
+        var x = range[0]
+        var y = range[1]
 
         problem.problemType = ProblemType.Multiplication;
         problem.values[0] = x;
@@ -3864,16 +3845,13 @@ export class WorksheetService {
         problem.symbol = "x";
         break;
       case 549: // Lesson 6 ( Gamma 10 )
-        var pos = [3,4,6,7,8,9]
-        var x = this.rnum_gt_1(10);
-
-        var y = 9;
-        var switcher = this.getRandomInt(2);
-        if (switcher !== 0) {
-            var tmp = x;
-            x = y;
-            y = tmp;
-        }
+        var pos = [
+            [9,3],[9,4],[9,6],[9,7],[9,8],
+            [9,9],[3,9],[4,9],[6,9],[7,9],[8,9]
+        ]
+        var range = pos[this.getRandomInt(pos.length)]
+        var x = range[0]
+        var y = range[1]
 
         problem.problemType = ProblemType.Multiplication;
         problem.values[0] = x;
@@ -3882,16 +3860,10 @@ export class WorksheetService {
         break;
 
       case 550: // Lesson 7 (Gamma 12)
-        var pos = [3,4,6,7,8]
-        var x = this.rnum_gt_1(10);
-
-        var y = 3;
-        var switcher = this.getRandomInt(2);
-        if (switcher !== 0) {
-            var tmp = x;
-            x = y;
-            y = tmp;
-        }
+        var pos = [[3,3],[3,4],[3,6],[3,7],[3,8],[4,3],[6,3],[7,3],[8,3]]
+        var range = pos[this.getRandomInt(pos.length)]
+        var x = range[0]
+        var y = range[1]
 
         problem.problemType = ProblemType.Multiplication;
         problem.values[0] = x;
@@ -3899,16 +3871,11 @@ export class WorksheetService {
         problem.symbol = "x";
         break;
       case 551: // Lesson 8 (Gamma 16)
-        var pos = [4,6,7,8]
-        var x = this.rnum_gt_1(10);
-
-        var y = 4;
-        var switcher = this.getRandomInt(2);
-        if (switcher !== 0) {
-            var tmp = x;
-            x = y;
-            y = tmp;
-        }
+        var pos = [[4,4],[4,6],[4,7],[4,8]]
+        var range = pos[this.getRandomInt(pos.length)]
+        var x = range[0]
+        var y = range[1]
+        
 
         problem.problemType = ProblemType.Multiplication;
         problem.values[0] = x;
@@ -3916,16 +3883,10 @@ export class WorksheetService {
         problem.symbol = "x";
         break;
       case 552: // Lesson 9 (gamma lesson 14)
-        var pos = [6,7,8]
-        var x = this.rnum_gt_1(10);
-
-        var y = 6;
-        var switcher = this.getRandomInt(2);
-        if (switcher !== 0) {
-            var tmp = x;
-            x = y;
-            y = tmp;
-        }
+        var pos = [[6,6],[6,7],[6,8], [7,6], [8,6]]
+        var range = pos[this.getRandomInt(pos.length)]
+        var x = range[0]
+        var y = range[1]
 
         problem.problemType = ProblemType.Multiplication;
         problem.values[0] = x;
@@ -3934,26 +3895,10 @@ export class WorksheetService {
         break;
       case 553: // Lesson 10 (Gamma 18 && 20)
         
-        var switcher = this.getRandomInt(2);
-        var pos = [7,8]
-        var x : number = this.pickFromRange(6,8);
-
-        if (switcher){
-            var y = 7;
-
-        } else {
-            var y = 8;
-            switcher = this.getRandomInt(2);
-            if (switcher) x = 8;
-
-        }
-
-        switcher = this.getRandomInt(2);
-        if (switcher !== 0) {
-          var tmp = x;
-          x = y;
-          y = tmp;
-        }    
+        var pos = [[7,7], [7,8], [8,7], [8,8]]
+        var range = pos[this.getRandomInt(pos.length)]
+        var x = range[0]
+        var y = range[1]
 
         problem.problemType = ProblemType.Multiplication;
         problem.values[0] = x;
@@ -3994,7 +3939,7 @@ export class WorksheetService {
 
         problem.symbol = "";
         break;
-      case 555: // L
+     // case 555: // L
         
         // var x = 0;
         // var y = 0;
@@ -4006,27 +3951,20 @@ export class WorksheetService {
         // problem.values[0] = x;
         // problem.values[1] = y;
         // problem.symbol = "-";
-        break;
+        // break;
       case 556: // Lesson 12a -- DELTA 2
         var facts = [
             [4,2], [6,2], [8,2], [10,2], [12,2], [14,2], [16,2], [18,2], [20,2],
-            [6,3], [8,4], [10,5], [12,6], [14,7], [16,8], [18,8], [20,10]
+            [6,3], [8,4], [10,5], [12,6], [14,7], [16,8], [18,9], [20,10]
         ]
+
+        // Choose a fact
+        var range = facts[this.getRandomInt(facts.length)]
+        var y : number = range[1];
+        var x : number = range[0]; 
         problem.custom = false;
-        var y : number;
-        var x : number; 
         var ans = 0;
 
-        do {
-            y = this.rnum_gt_1(10);
-            x = this.rnum_gt_1(21);
-            if (x === 1 || y === 1 || x === 0 || y === 0) {
-                let vals = [6,8,10,12,14,16,18]
-                x = vals[this.getRandomInt(7)];
-                y = 2;
-                break;
-            }
-        } while(x != y * 2)
         ans = (x / y);
         this.options.showHorizontal = true;
         problem.problemType = ProblemType.Division;
@@ -4044,21 +3982,12 @@ export class WorksheetService {
             [30,3], [40,4], [50,5], [60,6], [70,7], [80,8], [90,9]
         ]
         problem.custom = false;
-        var y : number;
-        var x : number; 
+        // Choose a fact
+        var range = facts[this.getRandomInt(facts.length)]
+        var y : number = range[1];
+        var x : number = range[0]; 
         var ans = 0;
 
-        do {
-            let switchs = this.getRandomInt(5)
-            y = 10;
-            x = this.rnum_gt_1(101);
-            if (x === 0 || switchs == 1) {
-                let vals = [3,4,5,6,7,8,9]
-                y = vals[this.getRandomInt(7)]
-                x = y * 10
-                break;
-            }
-        } while(x % 10 !== 0)
         ans = (x / y);
         this.options.showHorizontal = true;
         problem.problemType = ProblemType.Division;
@@ -4074,42 +4003,12 @@ export class WorksheetService {
             [15,3], [20,4], [30,6], [35,7], [40,8], [45,9]
         ]
         problem.custom = false;
-        var y : number;
-        var x : number; 
+        // Choose a fact
+        var range = facts[this.getRandomInt(facts.length)]
+        var y : number = range[1];
+        var x : number = range[0]; 
         var ans = 0;
 
-        do {
-            y = this.rnum_gt_1(20);
-            if (y == 3)
-                x = 15;
-            else if (y == 4)
-                x = 20
-            else if (y == 5)
-                x = 25
-            else if (y == 6)
-                x = 30
-            else if (this.getRandomInt(2) == 1) {
-                // entropy at its finest
-                continue
-            }
-            else if (y == 7)
-                x = 35
-            else if (y == 8)
-                x = 40
-            else if (y == 9)
-                x = 45
-            else {
-                y = 5
-                let vals = [2,3,4,5,6,7,8,9]
-                x = y * vals[this.getRandomInt(8)]
-            }
-            /**
-             * if 5 | max 50
-             * 
-             */
-
-
-        } while(x !== 0 && (Math.ceil((x / y)) !== (x / y) || Math.floor((x / y)) !== (x / y)))
         ans = (x / y);
         this.options.showHorizontal = true;
         problem.problemType = ProblemType.Division;
@@ -4124,19 +4023,11 @@ export class WorksheetService {
             [27,3], [36,4], [54,6], [63,7], [72,8]
         ]
         problem.custom = false;
-        var y : number;
-        var x : number; 
+        var range = facts[this.getRandomInt(facts.length)]
+        var y : number = range[1];
+        var x : number = range[0]; 
         var ans = 0;
 
-        do {
-            y = 9;
-            x = this.rnum_gt_1(90);
-            if (x === 0 || (x < 53 && x >45) || (x < 63 && x > 54) || (x < 8)) {
-                let vals = [27, 36, 45,54, 63, 72]
-                x = vals[this.getRandomInt(6)]
-                y = x / 9
-            }
-        } while (x % 9 !== 0)
         ans = (x / y);
         this.options.showHorizontal = true;
         problem.problemType = ProblemType.Division;
@@ -4147,27 +4038,15 @@ export class WorksheetService {
         break;
       case 560: // Lesson 12e - also Delta lesson 4
         var facts = [
-            [1,2]
+            [9,3], [12,3], [18,3], [21,3], [24,3],
+            [12,4], [18,6], [21,7], [24,8]
         ]
         problem.custom = false;
-        var y : number;
-        var x : number; 
+        var range = facts[this.getRandomInt(facts.length)]
+        var y : number = range[1];
+        var x : number = range[0];  
         var ans = 0;
 
-        do {
-           let vals = [9, 12, 18, 21, 24]
-           x = vals[this.getRandomInt(5)]
-           let switchs = this.getRandomInt(3)
-           if (switchs == 2) {
-               y = 3
-               break
-           } else {
-               y = x / 3
-               break
-           }
-           
-
-        } while(x !== 0 && (Math.ceil((x / y)) !== (x / y) || Math.floor((x / y)) !== (x / y)))
         ans = (x / y);
         this.options.showHorizontal = true;
         problem.problemType = ProblemType.Division;
@@ -4178,24 +4057,17 @@ export class WorksheetService {
         break;
         
       case 561: // Lesson 12g - Delta 10
+
+        var facts = [
+            [16,4], [24,4], [28,4], [32,4]
+        ]
+
         problem.custom = false;
-        var y : number;
-        var x : number; 
+        var range = facts[this.getRandomInt(facts.length)]
+        var y : number = range[1];
+        var x : number = range[0]; 
         var ans = 0;
 
-        do {
-            // let switchs = this.getRandomInt(3)
-            // if (switchs == 1){
-                y = 4;
-                x = this.rnum_gt_1(40);
-                if (x === 0) {
-                x = 7; // Will prompt another iteration
-                }
-            // } 
-            // else {
-
-            // }
-        } while (x % 4 !== 0)
         ans = (x / y);
         this.options.showHorizontal = true;
         problem.problemType = ProblemType.Division;
@@ -4205,63 +4077,46 @@ export class WorksheetService {
         problem.divAnswer = ans;
         break;
       case 562: // 12g Delta 8
-      problem.custom = false;
-      var y : number;
-      var x : number; 
-      var ans = 0;
+        var facts = [
+            [36,6], [42,6], [48,6], [42,7], [48,8]
+        ]
+        problem.custom = false;
+        var range = facts[this.getRandomInt(facts.length)]
+        var y : number = range[1];
+        var x : number = range[0]; 
+        var ans = 0;
 
-      do {
-          let vals = [36, 42, 48]
-          x = vals[this.getRandomInt(3)]
-          let switchs = this.getRandomInt(3)
-          if (switchs == 2) {
-              y = x / 6
-              break;
-          } else {
-              y = 6
-              break;
-          }
-      } while (x % 6 !== 0)
-      ans = (x / y);
-      this.options.showHorizontal = true;
-      problem.problemType = ProblemType.Division;
-      problem.values[0] = x;
-      problem.values[1] = y;
-      problem.symbol = "÷";
-      problem.divAnswer = ans;
+        // do {
+        //     let vals = [36, 42, 48]
+        //     x = vals[this.getRandomInt(3)]
+        //     let switchs = this.getRandomInt(3)
+        //     if (switchs == 2) {
+        //         y = x / 6
+        //         break;
+        //     } else {
+        //         y = 6
+        //         break;
+        //     }
+        // } while (x % 6 !== 0)
+        ans = (x / y);
+        this.options.showHorizontal = true;
+        problem.problemType = ProblemType.Division;
+        problem.values[0] = x;
+        problem.values[1] = y;
+        problem.symbol = "÷";
+        problem.divAnswer = ans;
         break;
 
     case 563: // 12h - Delta 12
-        
+        var facts = [
+            [49,7], [56,7], [56,8], [64,8]
+        ]
         problem.custom = false;
-        var y : number;
-        var x : number; 
+        var range = facts[this.getRandomInt(facts.length)]
+        var y : number = range[1];
+        var x : number = range[0]; 
         var ans = 0;
 
-        do {
-
-            let switchs = this.getRandomInt(5)
-            if (switchs == 4) { 
-                x = 56
-                y = 7
-                break
-            }
-            if (switchs == 3) {
-                x = 49
-                y = 7
-                break
-            }
-            if (switchs == 2) {
-                x = 56
-                y = 8
-                break
-            } else {
-                x = 64
-                y = 8
-                break
-            }
-
-        } while(x !== 0 && (Math.ceil((x / y)) !== (x / y) || Math.floor((x / y)) !== (x / y)))
         ans = (x / y);
         this.options.showHorizontal = true;
         problem.problemType = ProblemType.Division;
@@ -4287,6 +4142,7 @@ export class WorksheetService {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  // Max is non-inclusive
   private getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
