@@ -3914,7 +3914,7 @@ export class WorksheetService {
             var nn = a * c;
             var switcher = this.getRandomInt(2);
             var letters = [ // Arbitrary coefficients
-            "c", "e", "k", "f", "b", "n", "a", "l", "d", "g", "x"
+            "c", "e", "k", "f", "b", "n", "a", "d", "g", "x","y","z"
             ]
             var letter = letters[this.getRandomInt(letters.length - 1)];
 
@@ -4059,7 +4059,7 @@ export class WorksheetService {
       case 561: // Lesson 12g - Delta 10
 
         var facts = [
-            [16,4], [24,4], [28,4], [32,4]
+            [16,4], [24,4], [28,4], [32,4], [24,6], [28,7], [32,8]
         ]
 
         problem.custom = false;
